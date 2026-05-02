@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b6rayx66b5rsc"]
+
+[ext_resource type="Texture2D" uid="uid://dluwub3dduovl" path="res://asset/front_house1.jpg" id="1_wmnuc"]
+[ext_resource type="Script" uid="uid://cgupwsupgfaai" path="res://terrain_buildings/building_4.gd" id="1_wwx3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwx3l"]
+albedo_texture = ExtResource("1_wmnuc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fwq5j"]
+material = SubResource("StandardMaterial3D_wwx3l")
+orientation = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwx3l"]
+size = Vector3(2, 2, 2)
+
+[node name="Node3D" type="Node3D" unique_id=1934080537]
+script = ExtResource("1_wwx3l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1865062215]
+transform = Transform3D(3.5, 0, 0, 0, 4, 0, 0, 0, 1, 0, 3.5, 0)
+mesh = SubResource("PlaneMesh_fwq5j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2067837786]
+transform = Transform3D(3.5, 0, 0, 0, 4, 0, 0, 0, 2, 0, 3.5, -2.01)
+mesh = SubResource("BoxMesh_wwx3l")

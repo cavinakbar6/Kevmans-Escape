@@ -1,16 +1,25 @@
 [gd_scene format=3 uid="uid://u4vha1pydfvr"]
 
 [ext_resource type="Script" uid="uid://eblon3yjc3df" path="res://terrain_buildings/building_2.gd" id="1_4ogou"]
+[ext_resource type="Texture2D" uid="uid://0kefxgxgrtfs" path="res://asset/front_pharmacy1.png" id="2_6axwb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ritw1"]
-albedo_color = Color(1, 0.22352941, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epsi0"]
+albedo_texture = ExtResource("2_6axwb")
 
-[sub_resource type="BoxMesh" id="BoxMesh_4ogou"]
-material = SubResource("StandardMaterial3D_ritw1")
+[sub_resource type="PlaneMesh" id="PlaneMesh_f5wd6"]
+material = SubResource("StandardMaterial3D_epsi0")
+orientation = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_6axwb"]
+size = Vector3(2, 2, 2)
 
 [node name="Node3D" type="Node3D" unique_id=1350112180]
 script = ExtResource("1_4ogou")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1725651088]
-transform = Transform3D(1, 0, 0, 0, 2.3857245, 0, 0, 0, 1, 0, 1.0944886, -0.5633748)
-mesh = SubResource("BoxMesh_4ogou")
+transform = Transform3D(5, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("PlaneMesh_f5wd6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1112011120]
+transform = Transform3D(5, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, -2.01)
+mesh = SubResource("BoxMesh_6axwb")
