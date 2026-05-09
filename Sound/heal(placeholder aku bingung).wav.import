@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dn1e82yptlnim"
+path="res://.godot/imported/heal(placeholder aku bingung).wav-b57478c001b3823113a20532745eaacb.sample"
+
+[deps]
+
+source_file="res://Sound/heal(placeholder aku bingung).wav"
+dest_files=["res://.godot/imported/heal(placeholder aku bingung).wav-b57478c001b3823113a20532745eaacb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

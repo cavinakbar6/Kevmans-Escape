@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://coiqfg2s3bmdo"]
+[gd_scene format=3 uid="uid://coiqfg2s3bmdo"]
 
 [ext_resource type="Script" uid="uid://cxluj8narbpw2" path="res://terrain_objects/grandma.gd" id="1_ecnsc"]
 [ext_resource type="Texture2D" uid="uid://b3u8s8m1lfqu1" path="res://asset/nenek.png" id="2_82y0e"]
-[ext_resource type="AudioStream" uid="uid://c2r1spxycstjo" path="res://Sound/grandma.wav" id="3_82y0e"]
+[ext_resource type="AudioStream" uid="uid://c2r1spxycstjo" path="res://Sound/Nenek/grandma.wav" id="3_82y0e"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82y0e"]
 transparency = 1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmfww20ic1dkn"]
+[gd_scene format=3 uid="uid://cmfww20ic1dkn"]
 
 [ext_resource type="Script" uid="uid://c1aqpl4tq73tp" path="res://terrain_objects/kuceng.gd" id="1_4w8fj"]
 [ext_resource type="Texture2D" uid="uid://ca1vk75u7i4st" path="res://asset/kuceng.webp" id="2_m45al"]
-[ext_resource type="AudioStream" uid="uid://c7sdcf1n1egyf" path="res://Sound/cat-meow.wav" id="3_g3cfd"]
+[ext_resource type="AudioStream" uid="uid://c7sdcf1n1egyf" path="res://Sound/Kucing/cat-meow.wav" id="3_g3cfd"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idrje"]
 transparency = 1

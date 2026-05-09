@@ -10,7 +10,14 @@ extends Node3D
 @export var spawn_chance: float = 0.5
 @export var spawn_x_range: Vector2 = Vector2(-1, 1)
 
+var player: Node3D
+var has_played_sound: bool = false
+
+@export var trigger_distance: float = 15.0 
+@export var horn_distance: float = 60.0
+
 func _ready() -> void:
+	player = get_node_or_null("/root/World/Player")
 	add_to_group("audio_players")
 	var aabb = mesh.get_aabb()
 	var size = aabb.size
@@ -32,13 +39,23 @@ func _ready() -> void:
 	hitbox_shape.shape = area_shape
 	hitbox.position = collision.position
 	$SpawnSound.bus = "SFX"
-	$SpawnSound.play()
 	add_to_group("ObstacleObjects")
 	print("grandma spawned")
-
+	
+func _process(_delta: float) -> void:
+	if player and not has_played_sound:
+		# Jika posisi nenek sudah masuk ke batas jarak dengan player
+		if global_position.z > (player.global_position.z - trigger_distance):
+			has_played_sound = true # Kunci biar nggak bunyi berkali-kali di setiap frame
+			
+			$SpawnSound.pitch_scale = randf_range(0.9, 1.1) # Biar suaranya sedikit bervariasi
+			$SpawnSound.play()
+				
 func disable_sounds() -> void:
 	if $SpawnSound.playing:
 		$SpawnSound.stop()
+	if $PassSound.has_method("stop") and $PassSound.playing:
+		$PassSound.stop()
 
 func get_damage() -> float:
 	return damage

@@ -66,6 +66,7 @@ var high_score_label: Label
 # delay suara lewat
 var last_pass_sound_time: float = 0.0
 var last_horn_sound_time: float = 0.0
+var last_heal_sound_time: float = 0.0
 # =============================================================
 # FUNGSI BAWAAN GODOT
 # =============================================================
@@ -537,6 +538,14 @@ func receive_hit(type: String, obj: Node3D) -> void:
 		_update_health_color()
 		obj.queue_free()
 		
+		# --- TAMBAHAN KODE: SUARA HEAL DENGAN COOLDOWN ---
+		var current_time = Time.get_ticks_msec() / 1000.0
+		
+		if current_time - last_heal_sound_time > 0.2:
+			$Audio/HealSound.pitch_scale = randf_range(0.9, 1.1)
+			$Audio/HealSound.play()
+			last_heal_sound_time = current_time
+		
 	elif type == "bribe":
 		wanted_stars = max(wanted_stars - 1, 0)
 		_update_wanted_ui()
@@ -561,12 +570,14 @@ func receive_hit(type: String, obj: Node3D) -> void:
 			if normal_camera.has_method("add_shake"):
 				normal_camera.add_shake(1.0) # Angka 1.0 adalah kekuatan getarannya
 		# ========================================================
-		
+			$Audio/CrashSound.pitch_scale = randf_range(0.85, 1.15) 
+			$Audio/CrashSound.play()
+			
 		if is_instance_valid(health_bar):
 			var tween = get_tree().create_tween()
 			tween.tween_property(health_bar, "value", car_health, 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 		_update_health_color()
-		
+			
 		if car_health <= 0.0:
 			show_game_over_ui()
 			if terrain_controller:

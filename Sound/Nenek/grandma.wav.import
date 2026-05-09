@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c2r1spxycstjo"
-path="res://.godot/imported/grandma.wav-613b67075743fe3a73dd455daf0fd8d4.sample"
+path="res://.godot/imported/grandma.wav-b208e33c0394478f6467c5d82e25e953.sample"
 
 [deps]
 
-source_file="res://Sound/grandma.wav"
-dest_files=["res://.godot/imported/grandma.wav-613b67075743fe3a73dd455daf0fd8d4.sample"]
+source_file="res://Sound/Nenek/grandma.wav"
+dest_files=["res://.godot/imported/grandma.wav-b208e33c0394478f6467c5d82e25e953.sample"]
 
 [params]
 
