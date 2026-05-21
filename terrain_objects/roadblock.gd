@@ -31,7 +31,6 @@ func _ready() -> void:
 	area_shape.size = size
 	hitbox_shape.shape = area_shape
 	hitbox.position = collision.position
-	print("roadblock spawned")
 
 func get_damage() -> float:
 	return damage

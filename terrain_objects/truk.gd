@@ -42,7 +42,6 @@ func _ready() -> void:
 	hitbox_shape.shape = area_shape
 	hitbox.position = collision.position
 	$SpawnSound.bus = "SFX"
-	print("mobil spawned")
 
 	# ✅ Cari referensi Player saat mobil spawn
 	player = get_node_or_null("/root/World/Player")

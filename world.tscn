@@ -144,7 +144,6 @@ stream = ExtResource("10_il2jm")
 [node name="HealSound" type="AudioStreamPlayer" parent="Player/Audio" unique_id=1353663792]
 stream = ExtResource("11_wjb0r")
 volume_db = -10.0
-
 [node name="TerrainController" parent="." unique_id=947274155 node_paths=PackedStringArray("building_generator") instance=ExtResource("1_wvryj")]
 initial_velocity = 40.0
 max_velocity = 70.0

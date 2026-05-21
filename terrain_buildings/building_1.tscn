@@ -1,28 +1,35 @@
 [gd_scene format=3 uid="uid://bnsr4lpg1bos3"]
 
 [ext_resource type="Script" uid="uid://cs4j5jbvuki2r" path="res://terrain_buildings/building_1.gd" id="1_ops4u"]
-[ext_resource type="Texture2D" uid="uid://d1kst3kcbm22u" path="res://asset/front_restaurant1.png" id="2_2gttr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcbol"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tcbol"]
 material = SubResource("StandardMaterial3D_tcbol")
-size = Vector3(2, 2, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_loly0"]
-albedo_texture = ExtResource("2_2gttr")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ops4u"]
+albedo_color = Color(1, 1, 0.4745098, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_1qmmx"]
-material = SubResource("StandardMaterial3D_loly0")
-orientation = 2
+[sub_resource type="BoxMesh" id="BoxMesh_2gttr"]
+material = SubResource("StandardMaterial3D_ops4u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2gttr"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_loly0"]
+material = SubResource("StandardMaterial3D_2gttr")
 
 [node name="Node3D" type="Node3D" unique_id=1653608168]
 script = ExtResource("1_ops4u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1351206536]
-transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, -2.01)
+transform = Transform3D(8, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, -0.5)
 mesh = SubResource("BoxMesh_tcbol")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=972367751]
-transform = Transform3D(3, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0)
-mesh = SubResource("PlaneMesh_1qmmx")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=434075834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8184803, 0)
+mesh = SubResource("BoxMesh_2gttr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1276931278]
+transform = Transform3D(1, 0, 0, 0, 1.7275414, 0, 0, 0, 1, 3.4987588, 1.1505681, 0)
+mesh = SubResource("BoxMesh_loly0")

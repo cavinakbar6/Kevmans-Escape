@@ -33,6 +33,8 @@ var damage_max_turn_speed: float = 0.5
 # =============================================================
 @export var terrain_controller: Node3D
 var wanted_ui_instance: Node
+var police_chase_manager: Node = null
+var police_chase_ui_instance: Node = null
 @onready var engine_audio = $Audio
 
 # Variabel untuk kamera
@@ -124,6 +126,20 @@ func _ready() -> void:
 	wanted_ui_instance = wanted_scene.instantiate()
 	add_child(wanted_ui_instance)
 	_update_wanted_ui()
+	
+	# =============================================================
+	# INISIALISASI POLICE CHASE SYSTEM
+	# =============================================================
+	var pcm_script = preload("res://police_chase_manager.gd")
+	police_chase_manager = Node.new()
+	police_chase_manager.set_script(pcm_script)
+	police_chase_manager.set_player(self)
+	add_child(police_chase_manager)
+	
+	var chase_ui_scene = preload("res://police_chase_ui.tscn")
+	police_chase_ui_instance = chase_ui_scene.instantiate()
+	police_chase_ui_instance.set_chase_manager(police_chase_manager)
+	add_child(police_chase_ui_instance)
 
 	# Atur kamera utama
 	normal_camera.current = true
@@ -302,6 +318,10 @@ func _physics_process(delta: float) -> void:
 		if score_increment > 0:
 			add_score(score_increment)
 	
+	# Update Police Chase System
+	if police_chase_manager:
+		police_chase_manager.update(delta)
+	
 	# Cek input untuk mengganti kamera
 	if Input.is_action_just_pressed("toggle_camera"):
 		toggle_camera()
@@ -340,12 +360,12 @@ func toggle_camera() -> void:
 		debug_camera.current = false
 		normal_camera.current = true
 		dashboard.visible = true
-		print("DEBUG CAMERA OFF")
+
 	else:
 		debug_camera.current = true
 		normal_camera.current = false
 		dashboard.visible = false
-		print("DEBUG CAMERA ON")
+
 
 
 func show_game_over_ui() -> void:
@@ -353,6 +373,12 @@ func show_game_over_ui() -> void:
 		return
 	game_is_over = true
 	HighScoreManager.try_set_high_score(score)
+	
+	# Stop police chase system
+	if police_chase_manager:
+		police_chase_manager.set_wanted_level(0)
+	if is_instance_valid(police_chase_ui_instance) and police_chase_ui_instance.has_method("cleanup"):
+		police_chase_ui_instance.cleanup()
 		
 	# Reset status kerusakan
 	damage_auto_turn_dir = 0
@@ -577,7 +603,7 @@ func receive_hit(type: String, obj: Node3D) -> void:
 			var tween = get_tree().create_tween()
 			tween.tween_property(health_bar, "value", car_health, 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 		_update_health_color()
-			
+		
 		if car_health <= 0.0:
 			show_game_over_ui()
 			if terrain_controller:
@@ -596,3 +622,75 @@ func receive_hit(type: String, obj: Node3D) -> void:
 func _update_wanted_ui() -> void:
 	if is_instance_valid(wanted_ui_instance):
 		wanted_ui_instance.update_stars(wanted_stars)
+	# Sync wanted level ke police chase manager
+	if police_chase_manager:
+		police_chase_manager.set_wanted_level(wanted_stars)
+
+# =============================================================
+# POLICE CHASE - RECEIVE HIT FROM POLICE
+# =============================================================
+func receive_police_hit(damage_amount: float, attack_lane: int) -> void:
+	if game_is_over or invulnerability_timer > 0.0:
+		return
+	
+	car_health -= damage_amount
+	
+	# ========== EFEK DRAMATIS DITABRAK POLISI ==========
+	
+	# 1. Camera shake SUPER KUAT
+	if is_instance_valid(normal_camera):
+		if normal_camera.has_method("add_shake"):
+			normal_camera.add_shake(2.5)  # Jauh lebih kuat dari nabrak biasa
+	
+	# 2. Flash merah layar penuh (via police chase UI)
+	if is_instance_valid(police_chase_ui_instance) and police_chase_ui_instance.has_method("play_impact_effect"):
+		police_chase_ui_instance.play_impact_effect(attack_lane)
+	
+	# 3. Health bar GOYANG + animasi turun dramatis
+	if is_instance_valid(health_bar):
+		# Goyang health bar
+		var original_pos = health_bar.position
+		var shake_tween = get_tree().create_tween()
+		shake_tween.tween_property(health_bar, "position", original_pos + Vector2(15, 0), 0.05)
+		shake_tween.tween_property(health_bar, "position", original_pos + Vector2(-15, 0), 0.05)
+		shake_tween.tween_property(health_bar, "position", original_pos + Vector2(10, 0), 0.05)
+		shake_tween.tween_property(health_bar, "position", original_pos + Vector2(-10, 0), 0.05)
+		shake_tween.tween_property(health_bar, "position", original_pos, 0.05)
+		
+		# Animasi turun value
+		var value_tween = get_tree().create_tween()
+		value_tween.tween_property(health_bar, "value", car_health, 0.4).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	_update_health_color()
+	
+	# 4. Efek belok BRUTAL dari serangan polisi (lebih kuat dari nabrak biasa)
+	if attack_lane != 0:
+		damage_auto_turn_dir = attack_lane
+		damage_auto_turn_strength = 0.6     # 2x lebih kuat
+		damage_auto_turn_timer = 1.0        # 2x lebih lama
+		damage_turn_active = true
+	else:
+		# Kalau dari belakang tengah, mobil terdorong random ke salah satu arah
+		damage_auto_turn_dir = -1 if randf() < 0.5 else 1
+		damage_auto_turn_strength = 0.4
+		damage_auto_turn_timer = 0.8
+		damage_turn_active = true
+	
+	# 5. Kedip-kedip mobil lebih lama (i-frames)
+	invulnerability_timer = 0.8  # Lebih lama dari i-frames biasa
+	
+	if car_health <= 0.0:
+		show_game_over_ui()
+		if terrain_controller:
+			terrain_controller._trigger_game_over()
+
+# =============================================================
+# HELPER - Get player lane berdasarkan posisi X
+# =============================================================
+func get_player_lane() -> int:
+	var px = global_position.x
+	if px < -1.3:
+		return -1
+	elif px > 1.3:
+		return 1
+	else:
+		return 0

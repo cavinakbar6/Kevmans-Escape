@@ -8,8 +8,10 @@ extends Node3D
 @onready var mesh = $MeshInstance3D
 var time_passed: float = 0.0
 
-func _process(delta: float) -> void:
+func _ready() -> void:
 	add_to_group("HealObjects")
+
+func _process(delta: float) -> void:
 	if is_instance_valid(mesh):
 		time_passed += delta
 		mesh.rotate_y(3.0 * delta)

@@ -34,8 +34,6 @@ func _ready() -> void:
 	hitbox.position = collision.position
 	$SpawnSound.bus = "SFX"
 	$SpawnSound.play()
-	add_to_group("ObstacleObjects")
-	print("kuceng spawned")
 
 func disable_sounds() -> void:
 	if $SpawnSound.playing:

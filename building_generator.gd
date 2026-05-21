@@ -3,14 +3,14 @@ class_name BuildingGenerator
 
 @export var building_scenes: Array[PackedScene] = []
 
-@export var side_offset: float = 0.0
+@export var side_offset: float = 2.0
 @export var min_spacing: float = 0.0
 @export var max_spacing: float = 0.0
 
 var active_buildings: Array[Node3D] = []
 var building_always_active: bool = false
 
-# GLOBAL TRACK (BIAR NYAMBUNG ANTAR BLOCK)
+# 🔥 GLOBAL TRACK (BIAR NYAMBUNG ANTAR BLOCK)
 var global_left_z: float = INF
 var global_right_z: float = INF
 
@@ -19,18 +19,17 @@ var global_right_z: float = INF
 func spawn_buildings_on_block(block: Node3D) -> void:
 	if not building_always_active: return
 	
-	print("function called: spawn_buildings_on_block")
+
 	if building_scenes.is_empty():
-		print("building scene is empty")
+
 		return
 
 	var block_length = get_block_length(block)
-	var width = 17.5
+	var width = 20.0
 
 	var start_z = block.position.z
 	var end_z = block.position.z - block_length
-	print("start_z=",start_z)
-	print("end_z=",end_z)
+
 
 	# init sekali saja
 	if global_left_z == INF:
@@ -74,7 +73,7 @@ func spawn_one(side: int, width: float, current_z: float) -> float:
 
 	add_child(building)
 	active_buildings.append(building)
-	print("Building Position:",building.position.z)
+
 
 	return next_z
 

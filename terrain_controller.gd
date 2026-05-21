@@ -56,6 +56,9 @@ var scenery_always_active: bool = true
 @export var building_generator: BuildingGenerator
 
 
+# Cache spawn_chance agar tidak perlu instantiate scene setiap kali
+var _spawn_chance_cache: Dictionary = {}  # PackedScene -> float
+
 func _ready() -> void:
 	game_over = false
 
@@ -65,7 +68,9 @@ func _ready() -> void:
 	_load_terrain_scenes("res://terrain_objects",TerrainObjects)
 	_load_scenery_scenes("res://terrain_scenery", TerrainScenery)
 	building_generator.load_buildings("res://terrain_buildings")
-	print("Building generator:", building_generator)
+	
+	# Cache spawn_chance dari semua object scene sekali saja
+	_cache_spawn_chances()
 	
 	_init_blocks(num_terrain_blocks)
 
@@ -99,10 +104,6 @@ func _physics_process(delta: float) -> void:
 	
 	if building_generator:
 		building_generator.update_buildings(delta, terrain_velocity)
-	
-	# 🚫 Hanya hentikan *spawn baru*, bukan gerakan
-	if not allow_spawn:
-		return
 
 
 # Dipanggil oleh Player.gd saat game dimulai
@@ -113,7 +114,6 @@ func enable_spawning() -> void:
 func _trigger_game_over() -> void:
 	if game_over:
 		return
-	print("GAME OVER")
 	game_over = true
 	terrain_velocity = 0.0
 
@@ -136,12 +136,17 @@ func _trigger_game_over() -> void:
 # ======================================================================
  
 func _progress_obstacles(delta: float) -> void:
+	var player = get_node_or_null("/root/World/Player")
 	for obstacle in active_obstacles:
 		if not is_instance_valid(obstacle):
 			continue
 		obstacle.position.z += terrain_velocity * delta
+
+		# Hapus obstacle yang sudah lewat kamera
+		if obstacle.position.z > 30.0:
+			obstacle.queue_free()
+			continue
  
-		var player = get_node_or_null("/root/World/Player")
 		if player and player.has_method("receive_hit"):
 			var hitbox = obstacle.get_node_or_null("Area3D")
 			if hitbox and hitbox.get_overlapping_bodies().has(player):
@@ -151,7 +156,8 @@ func _progress_obstacles(delta: float) -> void:
 					player.receive_hit("bribe", obstacle)
 				elif obstacle.is_in_group("ObstacleObjects"):
 					player.receive_hit("damage", obstacle)
- 
+	active_obstacles = active_obstacles.filter(is_instance_valid)
+
 
 func _progress_scenery(delta: float) -> void:
 	for tree in active_scenery:
@@ -169,15 +175,18 @@ func _pick_random_block() -> PackedScene:
 	return TerrainBlocks.pick_random()
  
 
+func _cache_spawn_chances() -> void:
+	for obj_scene in TerrainObjects:
+		var obj = obj_scene.instantiate()
+		_spawn_chance_cache[obj_scene] = obj.spawn_chance
+		obj.queue_free()
+
 func _pick_random_object() -> PackedScene:
 	var candidates: Array = []
 	for obj_scene in TerrainObjects:
-		var obj = obj_scene.instantiate()
-		print(obj.name," instantiated")
-		if randf() < obj.spawn_chance:
-			print(obj.name," is choosen")
+		var chance = _spawn_chance_cache.get(obj_scene, 0.5)
+		if randf() < chance:
 			candidates.append(obj_scene)
-		obj.queue_free()
 	if candidates.is_empty():
 		return null
 	return candidates.pick_random()
@@ -315,7 +324,6 @@ func _load_terrain_scenes(target_path: String, target_array: Array) -> void:
 		return
 	for scene_path in dir.get_files():
 		if scene_path.ends_with(".tscn"):
-			print("Loading:", target_path + "/" + scene_path)
 			target_array.append(load(target_path + "/" + scene_path))
 
 
@@ -326,5 +334,4 @@ func _load_scenery_scenes(target_path: String, target_array: Array) -> void:
 		return
 	for scene_path in dir.get_files():
 		if scene_path.ends_with(".tscn"):
-			print("Loading scenery:", target_path + "/" + scene_path)
 			target_array.append(load(target_path + "/" + scene_path))

@@ -18,7 +18,6 @@ config/name="DDS testing"
 config/description="This is an endless runner POC.  Used as a project to learn the concept."
 run/main_scene="uid://bybltpl8gohpv"
 config/features=PackedStringArray("4.6", "Forward Plus")
-<<<<<<<HEADconfig/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
