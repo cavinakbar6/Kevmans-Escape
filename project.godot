@@ -18,11 +18,13 @@ config/name="DDS testing"
 config/description="This is an endless runner POC.  Used as a project to learn the concept."
 run/main_scene="uid://bybltpl8gohpv"
 config/features=PackedStringArray("4.6", "Forward Plus")
+<<<<<<<HEADconfig/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
-Settings="*res://settings_manager.gd"
+Settings="*res://settings/settings_manager.gd"
 HighScoreManager="*res://high_score_manager.gd"
+<<<<<<<UpdatedupstreamSettings="*res://settings/settings_manager.gd"
 
 [display]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ceqcr5fbjy0qw"
+path="res://.godot/imported/POLICE sirenss - QuickSounds.com.wav-7b30d69fe1742339ac07869af913c726.sample"
+
+[deps]
+
+source_file="res://Sound/Polisi/POLICE sirenss - QuickSounds.com.wav"
+dest_files=["res://.godot/imported/POLICE sirenss - QuickSounds.com.wav-7b30d69fe1742339ac07869af913c726.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

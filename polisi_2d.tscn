@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b63wcj2dlnkj7"]
+
+[ext_resource type="Script" uid="uid://cd4brprloqakc" path="res://polisi_2d.gd" id="1_36bep"]
+[ext_resource type="AudioStream" uid="uid://5d8ak3tpr88s" path="res://Sound/Polisi/POLICE - QuickSounds.com.wav" id="2_1ocp4"]
+[ext_resource type="Texture2D" uid="uid://by6pqyafi0puo" path="res://asset/polisi_belakang.png" id="2_k2hxo"]
+[ext_resource type="AudioStream" uid="uid://ceqcr5fbjy0qw" path="res://Sound/Polisi/POLICE sirenss - QuickSounds.com.wav" id="3_ae7y1"]
+[ext_resource type="AudioStream" uid="uid://bc4k1rve4r161" path="res://Sound/Polisi/PolisiRem.wav" id="5_1ocp4"]
+
+[node name="Polisi2d" type="Node3D" unique_id=415877751]
+transform = Transform3D(1, 0, 0, 0, 2.6921368, 0, 0, 0, 1, 0, 1.0829124, 0)
+script = ExtResource("1_36bep")
+siren_sounds = Array[AudioStream]([ExtResource("2_1ocp4"), ExtResource("3_ae7y1")])
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=201387566]
+transform = Transform3D(1.005, 0, 0, 0, 0.555, 0, 0, 0, 1, 0, -0.039658368, 0.8055222)
+pixel_size = 0.004
+billboard = 2
+texture = ExtResource("2_k2hxo")
+
+[node name="BlueLight" type="OmniLight3D" parent="Sprite3D" unique_id=940398403]
+transform = Transform3D(0.99502486, 0, 0, 0, 0.6692831, 0, 0, 0, 1, -0.32824534, 0.6814541, 0)
+light_color = Color(0.38377172, 0.50932735, 0.8894252, 1)
+light_energy = 5.0
+omni_range = 15.0
+
+[node name="RedLight" type="OmniLight3D" parent="Sprite3D" unique_id=837174665]
+transform = Transform3D(0.99502486, 0, 0, 0, 0.6692831, 0, 0, 0, 1, 0.3484835, 0.6812436, 0)
+light_color = Color(0.9597383, 0, 0.104658, 1)
+light_energy = 5.0
+omni_range = 15.0
+
+[node name="SirenAudio" type="AudioStreamPlayer3D" parent="." unique_id=866622653]
+
+[node name="RemAudio" type="AudioStreamPlayer3D" parent="." unique_id=1174077481]
+transform = Transform3D(1, 0, 0, 0, 0.37145215, 0, 0, 0, 1, 0, 0, 0)
+stream = ExtResource("5_1ocp4")
+max_distance = 50.0
+
+[node name="MesinAudio" type="AudioStreamPlayer3D" parent="." unique_id=369664417]
+transform = Transform3D(1, 0, 0, 0, 0.37145215, 0, 0, 0, 1, 0, 0, 0)

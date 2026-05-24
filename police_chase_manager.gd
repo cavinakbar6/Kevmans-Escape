@@ -1,6 +1,7 @@
 extends Node
 # PoliceChaseManager — no class_name to avoid circular dependency
-
+var police_2d_in_3d_scene = preload("res://polisi_2d.tscn") 
+var spawned_car_visuals: Dictionary = {}
 # =============================================================
 # POLICE CHASE MANAGER
 # Mengelola semua unit polisi yang mengejar player.
@@ -102,11 +103,28 @@ func set_wanted_level(level: int) -> void:
 		unit.cooldown_timer = randf_range(1.0, 3.0)  # stagger spawn
 		unit.lane = [-1, 0, 1][randi() % 3]
 		police_units.append(unit)
-	
+		
+		if is_instance_valid(player_ref):
+			var new_car_visual = police_2d_in_3d_scene.instantiate()
+			# Masukkan ke World ( get_parent() dari Player biasanya root World)
+			player_ref.get_parent().add_child(new_car_visual) 
+			new_car_visual.set_unit_data(unit)
+			# Simpan referensi berdasarkan unit ID
+			spawned_car_visuals[unit.id] = new_car_visual
+			
 	# Kurangi polisi jika bintang turun
 	while police_units.size() > target_count:
 		police_units.pop_back()
-
+		
+		# Kurangi polisi jika bintang turun
+	while police_units.size() > target_count:
+		var removed_unit = police_units.pop_back()
+		
+		if spawned_car_visuals.has(removed_unit.id):
+			if is_instance_valid(spawned_car_visuals[removed_unit.id]):
+				spawned_car_visuals[removed_unit.id].queue_free()
+			spawned_car_visuals.erase(removed_unit.id)
+			
 func get_police_units() -> Array:
 	return police_units
 

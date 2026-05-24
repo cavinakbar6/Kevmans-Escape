@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cakhqlukxtvk6" path="res://asset/DDR_logo.png" id="4_nlkkf"]
 [ext_resource type="AudioStream" uid="uid://624yyfrdqrjh" path="res://Sound/MainMenuBGM.mp3" id="6_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://dschmnqgfqqx8" path="res://asset/Settings.png" id="7_dy7ct"]
-[ext_resource type="PackedScene" path="res://settings_ui.tscn" id="7_settings"]
+[ext_resource type="PackedScene" path="res://settings/settings_ui.tscn" id="7_settings"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.43529412, 0.6117647, 0.827451, 0)
@@ -111,7 +111,7 @@ autoplay = true
 visible = false
 layout_mode = 1
 
-[node name="HighScoreLabel" type="Label" parent="."]
+[node name="HighScoreLabel" type="Label" parent="." unique_id=1778219284]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -127,5 +127,4 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 theme_override_font_sizes/font_size = 32
-text = ""
 horizontal_alignment = 1

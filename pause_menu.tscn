@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://bnf4v4ug4oqw" path="res://pause_menu.gd" id="1_pause"]
 [ext_resource type="FontFile" uid="uid://dbjbmub5nqejo" path="res://terrain_objects/KiriFont.ttf" id="2_kirifont"]
 [ext_resource type="Texture2D" uid="uid://dugbf4p1b2j4u" path="res://asset/Pause.png" id="3_e8sti"]
-[ext_resource type="PackedScene" path="res://settings_ui.tscn" id="3_settings"]
+[ext_resource type="PackedScene" path="res://settings/settings_ui.tscn" id="3_settings"]
 [ext_resource type="Texture2D" uid="uid://dv3la6lk13syx" path="res://asset/cooltext506361273637980.png" id="4_q2yj1"]
 [ext_resource type="Texture2D" uid="uid://bpjj4liopd2ct" path="res://asset/Setting logo kecil.png" id="5_a32ks"]
 [ext_resource type="Texture2D" uid="uid://bpunejhvsgncx" path="res://asset/Restart logo kecil.png" id="6_g7dbl"]
 [ext_resource type="Texture2D" uid="uid://8287xca8yaix" path="res://asset/Main menu logo kecil.png" id="7_lv42l"]
+
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1811781227]
 process_mode = 3
