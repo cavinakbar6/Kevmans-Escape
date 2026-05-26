@@ -1,6 +1,6 @@
 extends Node
 # PoliceChaseManager — no class_name to avoid circular dependency
-var police_2d_in_3d_scene = preload("res://polisi_2d.tscn") 
+var police_2d_in_3d_scene = preload("res://Polisi//polisi_2d.tscn") 
 var spawned_car_visuals: Dictionary = {}
 # =============================================================
 # POLICE CHASE MANAGER

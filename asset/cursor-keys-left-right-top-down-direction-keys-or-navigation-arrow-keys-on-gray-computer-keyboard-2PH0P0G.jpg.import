@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg24mbnyq0bkn"
-path="res://.godot/imported/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg-61b8b4a5042e484a810514c25257ea2f.ctex"
+path="res://.godot/imported/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg-7faaf682d6f75c2b38403a760fca779f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg"
-dest_files=["res://.godot/imported/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg-61b8b4a5042e484a810514c25257ea2f.ctex"]
+source_file="res://asset/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg"
+dest_files=["res://.godot/imported/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg-7faaf682d6f75c2b38403a760fca779f.ctex"]
 
 [params]
 

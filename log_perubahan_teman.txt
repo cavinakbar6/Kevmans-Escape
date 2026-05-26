@@ -2,9 +2,9 @@ commit cfa67d7e264eec514f965cdd43a0cd7f3283f67a
 Author: NaufalSda69 <iannaufal1608@gmail.com>
 Date:   Sat May 9 13:05:50 2026 +0700
 
-    Sound nabrak + ngeheal (placeholder)
-    
-    bismillah nothing bad happen
+	Sound nabrak + ngeheal (placeholder)
+	
+	bismillah nothing bad happen
 
 diff --git a/Car Crash Scene 1 - QuickSounds.com.wav b/Car Crash Scene 1 - QuickSounds.com.wav
 new file mode 100644

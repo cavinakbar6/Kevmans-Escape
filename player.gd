@@ -130,13 +130,13 @@ func _ready() -> void:
 	# =============================================================
 	# INISIALISASI POLICE CHASE SYSTEM
 	# =============================================================
-	var pcm_script = preload("res://police_chase_manager.gd")
+	var pcm_script = preload("res://Polisi//police_chase_manager.gd")
 	police_chase_manager = Node.new()
 	police_chase_manager.set_script(pcm_script)
 	police_chase_manager.set_player(self)
 	add_child(police_chase_manager)
 	
-	var chase_ui_scene = preload("res://police_chase_ui.tscn")
+	var chase_ui_scene = preload("res://Polisi//police_chase_ui.tscn")
 	police_chase_ui_instance = chase_ui_scene.instantiate()
 	police_chase_ui_instance.set_chase_manager(police_chase_manager)
 	add_child(police_chase_ui_instance)
@@ -262,7 +262,7 @@ func _physics_process(delta: float) -> void:
 		
 		if abs(input_dir.x) > 0.1:
 			horizontal_movement = input_dir.x
-		else:
+	else:
 		horizontal_movement += damage_auto_turn_strength * damage_auto_turn_dir
 		horizontal_movement = clamp(horizontal_movement, -1.8, 1.8)
 		print("horizontal_movement: ",horizontal_movement)

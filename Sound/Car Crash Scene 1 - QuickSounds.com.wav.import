@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://72jmcnoga1vc"
+path="res://.godot/imported/Car Crash Scene 1 - QuickSounds.com.wav-8ff74e6e8e8055783241890dc5aec385.sample"
+
+[deps]
+
+source_file="res://Sound/Car Crash Scene 1 - QuickSounds.com.wav"
+dest_files=["res://.godot/imported/Car Crash Scene 1 - QuickSounds.com.wav-8ff74e6e8e8055783241890dc5aec385.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

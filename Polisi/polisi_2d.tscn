@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b63wcj2dlnkj7"]
 
-[ext_resource type="Script" uid="uid://cd4brprloqakc" path="res://polisi_2d.gd" id="1_36bep"]
+[ext_resource type="Script" uid="uid://cd4brprloqakc" path="res://Polisi/polisi_2d.gd" id="1_36bep"]
 [ext_resource type="AudioStream" uid="uid://5d8ak3tpr88s" path="res://Sound/Polisi/POLICE - QuickSounds.com.wav" id="2_1ocp4"]
 [ext_resource type="Texture2D" uid="uid://by6pqyafi0puo" path="res://asset/polisi_belakang.png" id="2_k2hxo"]
 [ext_resource type="AudioStream" uid="uid://ceqcr5fbjy0qw" path="res://Sound/Polisi/POLICE sirenss - QuickSounds.com.wav" id="3_ae7y1"]
