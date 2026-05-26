@@ -37,11 +37,6 @@ func _ready() -> void:
 		bottom.z + size.z / 2.0
 	)
 
-	# ✅ Area trigger (Area3D untuk tabrakan)
-	var area_shape = BoxShape3D.new()
-	area_shape.size = size
-	hitbox_shape.shape = area_shape
-	hitbox.position = collision.position
 	$SpawnSound.bus = "SFX"
 
 func disable_sounds() -> void:
@@ -49,6 +44,7 @@ func disable_sounds() -> void:
 		$SpawnSound.stop()
 
 func get_damage() -> float:
+	print("damage from mobil")
 	return damage
 
 func _process(_delta: float) -> void:

@@ -26,7 +26,7 @@ var damage_auto_turn_strength: float = 0.0
 var damage_auto_turn_timer: float = 0.0
 var damage_auto_turn_pause: float = 0.0
 var damage_turn_active: bool = false
-var damage_max_turn_speed: float = 0.5
+var damage_max_turn_speed: float = 0.1
 
 # =============================================================
 # REFERENSI NODE
@@ -259,17 +259,21 @@ func _physics_process(delta: float) -> void:
 	# =============================================================
 	if car_health < MAX_HEALTH:
 		_update_damage_auto_turn(delta)
-		# Gabungkan input pemain dan belok otomatis (makin rusak makin kuat nariknya)
+		
+		if abs(input_dir.x) > 0.1:
+			horizontal_movement = input_dir.x
+		else:
 		horizontal_movement += damage_auto_turn_strength * damage_auto_turn_dir
 		horizontal_movement = clamp(horizontal_movement, -1.8, 1.8)
+		print("horizontal_movement: ",horizontal_movement)
 		
 		# UI steer ikut terpengaruh efek goyang/rusak
 		if is_instance_valid(steer_center) and is_instance_valid(steer_left) and is_instance_valid(steer_right):
-			if horizontal_movement > 0.1:
+			if velocity.x > 3.0:
 				steer_right.visible = true
 				steer_left.visible = false
 				steer_center.visible = false
-			elif horizontal_movement < -0.1:
+			elif velocity.x < -3.0:
 				steer_left.visible = true
 				steer_right.visible = false
 				steer_center.visible = false
@@ -279,14 +283,8 @@ func _physics_process(delta: float) -> void:
 				steer_right.visible = false
 
 	
-	# Hitung arah gerakan final
-	var direction := (transform.basis * Vector3(horizontal_movement, 0, input_dir.y)).normalized()
-	
-	# Terapkan kecepatan ke velocity
-	if direction:
-		velocity.x = direction.x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.x = horizontal_movement * SPEED
+	print("velocity.x: ",velocity.x)
 
 	move_and_slide()
 	
@@ -510,7 +508,8 @@ func _update_damage_auto_turn(delta: float) -> void:
 		damage_auto_turn_timer -= delta
 		
 		# Tambah kekuatan tarikan secara eksponensial sesuai severity
-		damage_auto_turn_strength = min(damage_auto_turn_strength + delta * damage_max_turn_speed * 0.2, max_strength)
+		damage_auto_turn_strength = min(damage_auto_turn_strength + delta * damage_max_turn_speed, max_strength)
+		print("turn strength: ", damage_auto_turn_strength)
 		
 		# Jika sudah habis waktunya ditarik -> kembalikan ke stabil sejenak
 		if damage_auto_turn_timer <= 0:

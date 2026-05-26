@@ -25,7 +25,7 @@ var terrain_velocity: float = 0.0
  
 # === PENGATURAN DARI SKRIP KEDUA ===
 @export var object_spawn_chance: float = 0.25
-@export var num_terrain_blocks = 20
+@export var num_terrain_blocks = 10
 
 signal game_over_signal 
 
@@ -147,15 +147,6 @@ func _progress_obstacles(delta: float) -> void:
 			obstacle.queue_free()
 			continue
  
-		if player and player.has_method("receive_hit"):
-			var hitbox = obstacle.get_node_or_null("Area3D")
-			if hitbox and hitbox.get_overlapping_bodies().has(player):
-				if obstacle.is_in_group("HealObjects"):
-					player.receive_hit("heal", obstacle)
-				elif obstacle.is_in_group("BribeObjects"):
-					player.receive_hit("bribe", obstacle)
-				elif obstacle.is_in_group("ObstacleObjects"):
-					player.receive_hit("damage", obstacle)
 	active_obstacles = active_obstacles.filter(is_instance_valid)
 
 
