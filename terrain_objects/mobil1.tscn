@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://bmvaul1bcputg"]
+
+[ext_resource type="Script" uid="uid://bhnbw6gdhbw43" path="res://terrain_objects/mobil_1.gd" id="1_hvqmb"]
+[ext_resource type="Texture2D" uid="uid://b3upb2q27jy01" path="res://asset/mobil1.png" id="1_ss8x7"]
+[ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_r47k8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvqmb"]
+transparency = 1
+albedo_texture = ExtResource("1_ss8x7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r47k8"]
+material = SubResource("StandardMaterial3D_hvqmb")
+size = Vector2(1.8, 1.8)
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss8x7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r47k8"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3evle"]
+material = SubResource("StandardMaterial3D_r47k8")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyhwx"]
+emission_enabled = true
+emission = Color(0.50853425, 0.31558073, 0.3971055, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wp6b7"]
+material = SubResource("StandardMaterial3D_cyhwx")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cs5n"]
+emission_enabled = true
+emission = Color(0.56223184, 0.5312765, 0.40061146, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_acddl"]
+material = SubResource("StandardMaterial3D_2cs5n")
+orientation = 2
+
+[node name="Node3D" type="Node3D" unique_id=1983528646]
+script = ExtResource("1_hvqmb")
+spawn_chance = 0.8
+spawn_x_range = Vector2(0.15, 0.85)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=729153733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82734585, 0)
+mesh = SubResource("PlaneMesh_r47k8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1962784665]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1396288370]
+transform = Transform3D(1.6653738, 0, 0, 0, 1.593684, 0, 0, 0, 0.57378626, 0, 0.82734585, 0)
+shape = SubResource("BoxShape3D_ss8x7")
+
+[node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=1314260289]
+volume_db = 55.923
+
+[node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=235131894]
+stream = ExtResource("3_r47k8")
+
+[node name="Headlight" type="Area3D" parent="." unique_id=1255633299]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Headlight" unique_id=2127711232]
+transform = Transform3D(0.019639835, 0, 0, 0, 0.030124815, 0, 0, 0, 0.9932688, -0.48247603, 0.7606336, 0.012165368)
+mesh = SubResource("PlaneMesh_3evle")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Headlight" unique_id=1084887768]
+transform = Transform3D(0.09296218, 0, 0, 0, 0.013596315, 0, 0, 0, 1, -0.55887526, 0.6902269, 0.006196499)
+mesh = SubResource("PlaneMesh_wp6b7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Headlight" unique_id=999450709]
+transform = Transform3D(0.04131208, 0, 0, 0, 0.022156565, 0, 0, 0, 1, -0.6183281, 0.7689674, 0.0030121207)
+mesh = SubResource("PlaneMesh_acddl")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Headlight" unique_id=1245436344]
+transform = Transform3D(0.019639835, 0, 0, 0, 0.030124815, 0, 0, 0, 0.9932688, 0.62549925, 0.7606336, 0.012165368)
+mesh = SubResource("PlaneMesh_3evle")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Headlight" unique_id=434902329]
+transform = Transform3D(0.09296218, 0, 0, 0, 0.013596315, 0, 0, 0, 1, 0.5391558, 0.6902269, 0.006196499)
+mesh = SubResource("PlaneMesh_wp6b7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Headlight" unique_id=1592307800]
+transform = Transform3D(0.04131208, 0, 0, 0, 0.022156565, 0, 0, 0, 1, 0.50298023, 0.7689674, 0.0030121207)
+mesh = SubResource("PlaneMesh_acddl")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Headlight" unique_id=651815485]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.563835, 0.83930886, 0.09005743)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Headlight" unique_id=1281402297]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.5698035, 0.83930886, 0.09005743)

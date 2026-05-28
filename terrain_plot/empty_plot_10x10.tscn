@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cw4kpg1i52701"]
+
+[ext_resource type="Script" uid="uid://br7auqo2ft6tt" path="res://terrain_plot/empty_plot_10x_10.gd" id="1_hwuag"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbxsq"]
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ivue"]
+material = SubResource("StandardMaterial3D_pbxsq")
+
+[node name="Node3D" type="Node3D" unique_id=1060381324 groups=["empty_plots"]]
+script = ExtResource("1_hwuag")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1251709007]
+transform = Transform3D(40, 0, 0, 0, 0.01, 0, 0, 0, 40, 0, -1, 0)
+mesh = SubResource("BoxMesh_5ivue")

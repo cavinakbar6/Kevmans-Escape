@@ -8,13 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://b52nhdjer7qpf" path="res://terrain_objects/roadblock.tscn" id="6_dqcip"]
 [ext_resource type="PackedScene" uid="uid://ctreseqf8lw84" path="res://terrain_objects/mobil.tscn" id="7_dqcip"]
 [ext_resource type="PackedScene" uid="uid://cdvxicby2p3dn" path="res://terrain_objects/motor.tscn" id="8_ugjrb"]
-[ext_resource type="PackedScene" uid="uid://5ijwv8d1avam" path="res://terrain_scenery/pohon.tscn" id="9_ojsls"]
 [ext_resource type="PackedScene" uid="uid://g3qe86q88v1p" path="res://terrain_objects/repair_item.tscn" id="9_repair"]
 [ext_resource type="PackedScene" uid="uid://ln4ekto1yq80" path="res://terrain_objects/bribe_item.tscn" id="10_bribe"]
-[ext_resource type="PackedScene" uid="uid://cqblnwchxlnrv" path="res://terrain_scenery/semak.tscn" id="10_pmogb"]
 
 [node name="TerrainController" type="Node3D" unique_id=1315102990]
 script = ExtResource("1_ak1j6")
 TerrainBlocks = Array[PackedScene]([ExtResource("2_wdmwd")])
 TerrainObjects = Array[PackedScene]([ExtResource("3_kf7q4"), ExtResource("4_kkc12"), ExtResource("5_v0njy"), ExtResource("6_dqcip"), ExtResource("7_dqcip"), ExtResource("8_ugjrb"), ExtResource("9_repair"), ExtResource("10_bribe")])
-TerrainScenery = Array[PackedScene]([ExtResource("9_ojsls"), ExtResource("10_pmogb")])

@@ -2,8 +2,6 @@ extends Node3D
 
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var collision: CollisionShape3D = $StaticBody3D/CollisionShape3D
-@onready var hitbox: Area3D = $Area3D
-@onready var hitbox_shape: CollisionShape3D = $Area3D/CollisionShape3D
 @onready var headlight: Area3D = $Headlight
 
 @export var damage: float = 50.0

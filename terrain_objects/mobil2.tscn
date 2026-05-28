@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://m5pb4d3y6aul"]
+
+[ext_resource type="Script" uid="uid://dfrbmtbwlka5m" path="res://terrain_objects/mobil_2.gd" id="1_1cagh"]
+[ext_resource type="Texture2D" uid="uid://by1kcwadlid2l" path="res://asset/mobil2.png" id="2_va5yh"]
+[ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_va5yh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgb8k"]
+transparency = 1
+albedo_texture = ExtResource("2_va5yh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4325f"]
+material = SubResource("StandardMaterial3D_bgb8k")
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b124y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va5yh"]
+emission_enabled = true
+emission = Color(0.8741615, 0.8741615, 0.8741615, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_bgb8k"]
+material = SubResource("StandardMaterial3D_va5yh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4325f"]
+emission_enabled = true
+emission = Color(0.8879926, 0.88799256, 0.8879925, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_b124y"]
+material = SubResource("StandardMaterial3D_4325f")
+
+[node name="Node3D" type="Node3D" unique_id=1161515154]
+script = ExtResource("1_1cagh")
+spawn_chance = 0.8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1282446141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6543484, 0)
+mesh = SubResource("PlaneMesh_4325f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1343626428]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1255883080]
+transform = Transform3D(1.8203033, 0, 0, 0, 2.6324005, 0, 0, 0, 0.9568166, 0, 0, 0)
+shape = SubResource("BoxShape3D_b124y")
+
+[node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=380725970]
+volume_db = 55.923
+
+[node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1479370412]
+stream = ExtResource("3_va5yh")
+
+[node name="Headlight" type="Area3D" parent="." unique_id=660708832]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Headlight" unique_id=541090811]
+transform = Transform3D(0.1225068, 0, 0, 0, 0.115521096, 0, 0, 0, 0.06373894, -0.7304785, 0.63608646, 0.008696616)
+mesh = SubResource("SphereMesh_bgb8k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Headlight" unique_id=1891803874]
+transform = Transform3D(0.1225068, 0, 0, 0, 0.115521096, 0, 0, 0, 0.06373894, 0.7340611, 0.63608646, 0.008696616)
+mesh = SubResource("SphereMesh_bgb8k")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Headlight" unique_id=29846065]
+transform = Transform3D(0.10051855, 0, 0, 0, 0.09780422, 0, 0, 0, 0.060554363, -0.79441166, 0.33682892, 0)
+mesh = SubResource("SphereMesh_b124y")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Headlight" unique_id=1617573135]
+transform = Transform3D(0.10051855, 0, 0, 0, 0.09780422, 0, 0, 0, 0.060554363, 0.7994778, 0.31925026, 0)
+mesh = SubResource("SphereMesh_b124y")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Headlight" unique_id=429802523]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.72676134, 0.6425574, 0.104566604)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Headlight" unique_id=106919483]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.7384094, 0.6425574, 0.104566604)

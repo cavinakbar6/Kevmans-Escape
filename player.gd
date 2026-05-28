@@ -38,9 +38,12 @@ var police_chase_ui_instance: Node = null
 @onready var engine_audio = $Audio
 
 # Variabel untuk kamera
-var using_debug_camera: bool = false
+#var using_debug_camera: bool = false
+
+var camera_mode: int = 0
 @onready var normal_camera: Camera3D = $Camera3D
 @onready var debug_camera: Camera3D = $CameraDebug
+@onready var debug_camera2: Camera3D = $CameraDebug2
 
 # PASTIKAN PATH UI INI SESUAI DENGAN STRUKTUR SCENE ANDA:
 @onready var score_label: Label = get_node("/root/World/MainUI/ScoreLabel")
@@ -69,6 +72,7 @@ var high_score_label: Label
 var last_pass_sound_time: float = 0.0
 var last_horn_sound_time: float = 0.0
 var last_heal_sound_time: float = 0.0
+
 # =============================================================
 # FUNGSI BAWAAN GODOT
 # =============================================================
@@ -144,6 +148,7 @@ func _ready() -> void:
 	# Atur kamera utama
 	normal_camera.current = true
 	debug_camera.current = false
+	debug_camera.current = false
 	
 	# [BARU] Jeda game saat pertama kali dimulai
 	#get_tree().paused = true
@@ -162,6 +167,7 @@ func _ready() -> void:
 	# PASANG LAMPU SOROT (HEADLIGHTS) UNTUK MALAM HARI
 	# =============================================================
 	_setup_headlights()
+
 
 func _setup_headlights() -> void:
 	if not is_instance_valid(car_mesh): return
@@ -262,8 +268,8 @@ func _physics_process(delta: float) -> void:
 		
 		if abs(input_dir.x) > 0.1:
 			horizontal_movement = input_dir.x
-	else:
-		horizontal_movement += damage_auto_turn_strength * damage_auto_turn_dir
+		else:
+			horizontal_movement += damage_auto_turn_strength * damage_auto_turn_dir
 		horizontal_movement = clamp(horizontal_movement, -1.8, 1.8)
 		print("horizontal_movement: ",horizontal_movement)
 		
@@ -284,7 +290,7 @@ func _physics_process(delta: float) -> void:
 
 	
 	velocity.x = horizontal_movement * SPEED
-	print("velocity.x: ",velocity.x)
+	#print("velocity.x: ",velocity.x)
 
 	move_and_slide()
 	
@@ -297,6 +303,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Pengecekan Tabrakan Fisik (Fallback)
 	var collision = get_last_slide_collision()
+	if collision:
+		var collider = collision.get_collider()
+		print("Collision detected with: ", collider.name, " | Parent: ", collider.get_parent().name)
 	if collision and not game_is_over:
 		var collider = collision.get_collider()
 		if collider and collider.get_parent():
@@ -323,7 +332,7 @@ func _physics_process(delta: float) -> void:
 	# Cek input untuk mengganti kamera
 	if Input.is_action_just_pressed("toggle_camera"):
 		toggle_camera()
-		
+	
 	# Jembatan ke sistem audio
 	if terrain_controller:
 		var current_speed = terrain_controller.terrain_velocity
@@ -353,16 +362,29 @@ func add_score(points: int) -> void:
 	score_label.text = "Score:\n%d" % score
 
 func toggle_camera() -> void:
-	using_debug_camera = !using_debug_camera
-	if using_debug_camera:
-		debug_camera.current = false
-		normal_camera.current = true
-		dashboard.visible = true
-
-	else:
-		debug_camera.current = true
-		normal_camera.current = false
-		dashboard.visible = false
+	camera_mode = (camera_mode + 1) % 3
+	
+	normal_camera.current = false
+	debug_camera.current = false
+	if is_instance_valid(debug_camera2):
+		debug_camera2.current = false
+	
+	match camera_mode:
+		0: # NORMAL
+			normal_camera.current = true
+			dashboard.visible = true
+			print("Kamera: Normal")
+	
+		1: # CAMERA 1
+			debug_camera.current = true
+			dashboard.visible = false
+			print("Kamera: Debug 1")
+	
+		2: # CAMERA 2
+			if is_instance_valid(debug_camera2):
+				debug_camera2.current = true
+			dashboard.visible = false
+			print("Kamera: Debug 2")
 
 
 

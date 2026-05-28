@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://ctreseqf8lw84"]
+[gd_scene format=3 uid="uid://ctreseqf8lw84"]
 
 [ext_resource type="Script" uid="uid://c4urdk8aof3hp" path="res://terrain_objects/mobil.gd" id="1_csmvf"]
 [ext_resource type="Texture2D" uid="uid://cncun0kv1khk5" path="res://asset/mobil rush.png" id="2_csmvf"]
@@ -16,8 +16,6 @@ size = Vector2(1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xyg1"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_csmvf"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myq4o"]
 albedo_color = Color(1, 1, 1, 0)
 emission_enabled = true
@@ -30,28 +28,20 @@ material = SubResource("StandardMaterial3D_myq4o")
 [node name="mobil" type="Node3D" unique_id=1629456630]
 transform = Transform3D(1.3685, 0, 0, 0, 1.1818, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_csmvf")
-spawn_chance = 1.0
+spawn_chance = 0.8
 horn_sounds = Array[AudioStream]([ExtResource("3_csmvf"), ExtResource("3_myq4o")])
 spawn_x_range = Vector2(0.15, 0.85)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=712969452]
-transform = Transform3D(2.44536, 0, 0, 0, -4.37114e-08, -3.79645, 0, 1, -1.65948e-07, 0, 0.660872, 0)
+transform = Transform3D(2.4453597, 0, 0, 0, -3.2399246e-08, -3.7964501, 0, 0.7412082, -1.65948e-07, 0, 0.660872, 0)
 mesh = SubResource("PlaneMesh_7xyg1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=743682736]
 transform = Transform3D(1, 0, 0, 0, 0.522848, 0, 0, 0, 1, 0, 0.908863, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1935349969]
-transform = Transform3D(1.24899, 0, 0, 0, 2.9564, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1.396083, 0, 0, 0, 2.9563997, 0, 0, 0, 0.75300634, 0, 0, 0)
 shape = SubResource("BoxShape3D_7xyg1")
-
-[node name="Area3D" type="Area3D" parent="." unique_id=860562269]
-transform = Transform3D(1, 0, 0, 0, 0.579248, 0, 0, 0, 1, 0, 0.864792, 0)
-disable_mode = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=320120775]
-transform = Transform3D(1.35483, 0, 0, 0, 2.42716, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_csmvf")
 
 [node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=1903278624]
 volume_db = 55.923

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cno840nyxxpw2"]
 
-[ext_resource type="Script" uid="uid://jpn73utqfygd" path="res://player.gd" id="1_rjl68"]
+[ext_resource type="Script" uid="uid://cbbob815bg6nb" path="res://player.gd" id="1_rjl68"]
 [ext_resource type="PackedScene" uid="uid://odgtnpypykcy" path="res://terrain_controller.tscn" id="1_wvryj"]
 [ext_resource type="Texture2D" uid="uid://cdbkymvtyos1u" path="res://asset/driverPov2.png" id="2_tlwt5"]
 [ext_resource type="Texture2D" uid="uid://b2guq23v6ymo2" path="res://asset/bir.png" id="3_aqk2v"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bsc345y3jimod" path="res://Sound/gear shift.wav" id="5_dwbse"]
 [ext_resource type="AudioStream" uid="uid://dnq1vawbnvxag" path="res://Sound/tires_squal_loop.wav" id="6_pkg7o"]
 [ext_resource type="AudioStream" uid="uid://cmj1ha0opq3qp" path="res://Sound/GameOver.wav" id="7_wse8f"]
-[ext_resource type="Texture2D" uid="uid://bg24mbnyq0bkn" path="res://asset/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg" id="8_ioo17"]
+[ext_resource type="Texture2D" uid="uid://bg24mbnyq0bkn" path="res://cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg" id="8_ioo17"]
 [ext_resource type="Texture2D" uid="uid://c4e0x1y3ga3pc" path="res://terrain_objects/as.jpg" id="9_wse8f"]
 [ext_resource type="Texture2D" uid="uid://bcu0jqtmh2nk1" path="res://asset/gamespace_steer1.png" id="10_2u3nc"]
 [ext_resource type="AudioStream" uid="uid://gd4nkvf1qogw" path="res://Sound/Nabrak1.wav" id="10_il2jm"]
@@ -21,9 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://hlgbr6jxe45m" path="res://asset/gamespace_steer3.png" id="12_bc84e"]
 [ext_resource type="Texture2D" uid="uid://dk5aqx03gqw07" path="res://asset/gameover.png" id="13_hiqwa"]
 [ext_resource type="Texture2D" uid="uid://nhwrka35b5lk" path="res://asset/gamespace_dashboard.png" id="15_hiqwa"]
-[ext_resource type="PackedScene" uid="uid://mas2bqeaeobp" path="res://Menu/pause_menu.tscn" id="16_pausemenu"]
+[ext_resource type="PackedScene" uid="uid://mas2bqeaeobp" path="res://pause_menu.tscn" id="16_pausemenu"]
 [ext_resource type="Script" uid="uid://by1jkd7ffhsu3" path="res://day_night_cycle.gd" id="17_daynight"]
-[ext_resource type="Script" uid="uid://di1gals2clhjv" path="res://building_generator.gd" id="22_wukud"]
+[ext_resource type="Script" uid="uid://bar8i8c0gaq7j" path="res://background_map.gd" id="24_wjb0r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_om122"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -153,7 +153,7 @@ volume_db = -10.0
 [node name="TerrainController" parent="." unique_id=947274155 node_paths=PackedStringArray("building_generator") instance=ExtResource("1_wvryj")]
 initial_velocity = 40.0
 max_velocity = 70.0
-building_generator = NodePath("../BuildingGenerator")
+building_generator = NodePath("")
 
 [node name="DashboardLayer" type="CanvasLayer" parent="." unique_id=79425635]
 
@@ -417,8 +417,8 @@ texture = ExtResource("13_hiqwa")
 
 [node name="PauseMenu" parent="." unique_id=2088050157 instance=ExtResource("16_pausemenu")]
 
-[node name="BuildingGenerator" type="Node3D" parent="." unique_id=1115005947]
-script = ExtResource("22_wukud")
+[node name="BackgroundMap" type="Node3D" parent="." unique_id=1802851026]
+script = ExtResource("24_wjb0r")
 
 [connection signal="pressed" from="GameOverUI/ColorRect/RestartButton" to="Player" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOverUI/ColorRect/MenuButton" to="Player" method="_on_main_menu_button_pressed"]
