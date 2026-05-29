@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://du5kgovkam3wl"]
+[gd_scene format=3 uid="uid://du5kgovkam3wl"]
 
 [ext_resource type="Script" uid="uid://2slqlutjvdbn" path="res://wanted_ui.gd" id="1_scr"]
 [ext_resource type="Shader" uid="uid://d25s4wwga4rxb" path="res://chromakey.gdshader" id="3_shd"]
@@ -27,11 +27,11 @@ shader = ExtResource("5_glow")
 shader_parameter/glow_color = Color(0, 0.4, 1, 1)
 shader_parameter/intensity = 3.0
 
-[node name="WantedUI" type="CanvasLayer"]
+[node name="WantedUI" type="CanvasLayer" unique_id=1625940108]
 layer = 10
 script = ExtResource("1_scr")
 
-[node name="VignetteOverlay" type="ColorRect" parent="."]
+[node name="VignetteOverlay" type="ColorRect" parent="." unique_id=893437962]
 material = SubResource("ShaderMaterial_vignette")
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TrackerContainer" type="Control" parent="."]
+[node name="TrackerContainer" type="Control" parent="." unique_id=1944423090]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -51,7 +51,7 @@ offset_right = -328.0
 offset_bottom = 85.0
 grow_horizontal = 2
 
-[node name="TrackBG" type="ColorRect" parent="TrackerContainer"]
+[node name="TrackBG" type="ColorRect" parent="TrackerContainer" unique_id=1692212264]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -63,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.1, 0.8)
 
-[node name="TrackBorder" type="ColorRect" parent="TrackerContainer/TrackBG"]
+[node name="TrackBorder" type="ColorRect" parent="TrackerContainer/TrackBG" unique_id=1725558247]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.5)
 
-[node name="TrackFill" type="ColorRect" parent="TrackerContainer/TrackBG"]
+[node name="TrackFill" type="ColorRect" parent="TrackerContainer/TrackBG" unique_id=1494325904]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="PlayerTarget" type="ColorRect" parent="TrackerContainer"]
+[node name="PlayerTarget" type="ColorRect" parent="TrackerContainer" unique_id=1365365302]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -100,7 +100,7 @@ grow_horizontal = 0
 grow_vertical = 2
 color = Color(0, 0.8, 0.3, 1)
 
-[node name="PlayerText" type="Label" parent="TrackerContainer/PlayerTarget"]
+[node name="PlayerText" type="Label" parent="TrackerContainer/PlayerTarget" unique_id=1111733133]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +113,7 @@ text = "YOU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PoliceIcon" type="TextureRect" parent="TrackerContainer"]
+[node name="PoliceIcon" type="TextureRect" parent="TrackerContainer" unique_id=1424827315]
 material = SubResource("ShaderMaterial_chr")
 layout_mode = 1
 anchors_preset = 4
@@ -128,7 +128,7 @@ scale = Vector2(0.6, 0.6)
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SireneRed" type="ColorRect" parent="TrackerContainer/PoliceIcon"]
+[node name="SireneRed" type="ColorRect" parent="TrackerContainer/PoliceIcon" unique_id=56386473]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_glow_red")
 layout_mode = 0
@@ -137,7 +137,7 @@ offset_top = -10.0
 offset_right = 60.0
 offset_bottom = 60.0
 
-[node name="SireneBlue" type="ColorRect" parent="TrackerContainer/PoliceIcon"]
+[node name="SireneBlue" type="ColorRect" parent="TrackerContainer/PoliceIcon" unique_id=1744998418]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_glow_blue")
 layout_mode = 0
@@ -146,7 +146,7 @@ offset_top = -10.0
 offset_right = 110.0
 offset_bottom = 60.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=979609001]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -156,10 +156,10 @@ offset_right = -20.0
 offset_bottom = 80.0
 grow_horizontal = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=795291652]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=148037774]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -168,41 +168,41 @@ theme_override_font_sizes/font_size = 20
 text = "WANTED LEVEL"
 horizontal_alignment = 2
 
-[node name="StarsHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="StarsHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=545963802]
 layout_mode = 2
 alignment = 2
 
-[node name="Star1" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox"]
+[node name="Star1" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox" unique_id=1480363042]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "★"
 
-[node name="Star2" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox"]
+[node name="Star2" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox" unique_id=1785017486]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "★"
 
-[node name="Star3" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox"]
+[node name="Star3" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox" unique_id=1023643322]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "★"
 
-[node name="Star4" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox"]
+[node name="Star4" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox" unique_id=1226634859]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "★"
 
-[node name="Star5" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox"]
+[node name="Star5" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox" unique_id=309697101]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "★"
 
-[node name="Star6" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox"]
+[node name="Star6" type="Label" parent="MarginContainer/VBoxContainer/StarsHBox" unique_id=159217771]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "★"
 
-[node name="EmergencyStrip" type="Control" parent="."]
+[node name="EmergencyStrip" type="Control" parent="." unique_id=1211536186]
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -213,7 +213,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="StripBG" type="ColorRect" parent="EmergencyStrip"]
+[node name="StripBG" type="ColorRect" parent="EmergencyStrip" unique_id=216017602]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05, 0.02, 0.02, 0.85)
 
-[node name="StripBorderTop" type="ColorRect" parent="EmergencyStrip"]
+[node name="StripBorderTop" type="ColorRect" parent="EmergencyStrip" unique_id=1401146804]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -230,7 +230,7 @@ offset_bottom = 3.0
 grow_horizontal = 2
 color = Color(1, 0, 0, 1)
 
-[node name="ScrollLabel" type="Label" parent="EmergencyStrip"]
+[node name="ScrollLabel" type="Label" parent="EmergencyStrip" unique_id=622948492]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,8 +246,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="HeartbeatOverlay" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="HeartbeatOverlay" type="ColorRect" parent="." unique_id=373931389]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -256,8 +255,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="RadioChatter" type="Label" parent="."]
-layout_mode = 1
+[node name="RadioChatter" type="Label" parent="." unique_id=272082997]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -270,11 +268,9 @@ theme_override_colors/font_color = Color(0.3, 1, 0.3, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
-text = ""
 
-[node name="BustedOverlay" type="ColorRect" parent="."]
+[node name="BustedOverlay" type="ColorRect" parent="." unique_id=60602040]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -283,9 +279,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.6, 0, 0, 0)
 
-[node name="BustedText" type="Label" parent="."]
+[node name="BustedText" type="Label" parent="." unique_id=22787234]
 visible = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -305,9 +300,8 @@ text = "BUSTED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BustedSubtext" type="Label" parent="."]
+[node name="BustedSubtext" type="Label" parent="." unique_id=536179840]
 visible = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -327,9 +321,8 @@ text = "WANTED LEVEL MAXED OUT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BustedButtons" type="VBoxContainer" parent="."]
+[node name="BustedButtons" type="VBoxContainer" parent="." unique_id=384450997]
 visible = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -343,14 +336,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="RetryButton" type="Button" parent="BustedButtons"]
+[node name="RetryButton" type="Button" parent="BustedButtons" unique_id=413989740]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0.3, 0.3, 1)
 theme_override_font_sizes/font_size = 22
 text = "RETRY"
 
-[node name="MainMenuButton" type="Button" parent="BustedButtons"]
+[node name="MainMenuButton" type="Button" parent="BustedButtons" unique_id=1765236407]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0.3, 0.3, 1)

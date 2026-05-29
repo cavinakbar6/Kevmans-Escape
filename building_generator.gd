@@ -7,7 +7,7 @@ class_name BuildingGenerator
 var building_path = "res://terrain_buildings"
 var nature_path = "res://terrain_nature"
 var plot_path = "res://terrain_plot"
-var plot_template_path: String = "res://terrain_plot/empty_plot_10x10.tscn"
+var plot_template_path: String = "res://terrain_plot/empty_plot.tscn"
 
 # =========================================================
 # 🎨 SCENE ARRAYS
@@ -89,7 +89,7 @@ func _on_type_building_changed(value: bool) -> void:
 	type_building = value
 	if value:
 		type_nature = false
-		_update_active_scenes()
+		#_update_active_scenes()
 		_reset_mode_timer(building_mode_duration)
 
 func _on_type_nature_changed(value: bool) -> void:
@@ -217,7 +217,7 @@ func spawn_one(side: int, width: float, current_z: float, is_nature: bool) -> fl
 	# 🔄 HANDLE X BERDASARKAN MODE
 	var x: float
 	if is_nature:
-		x = side * 26.5  # Plot side offset khusus nature
+		x = side * 26.5  # Side offset plot nature
 	else:
 		x = side * (width / 2.0 + side_offset)
 

@@ -4,7 +4,7 @@ extends CharacterBody3D
 # KONSTANTA DAN VARIABEL UMUM
 # =============================================================
 const SPEED = 5.0           # kecepatan awal
-const BATAS_JALAN_X = 4.0   # batas lebar jalan kiri/kanan
+const BATAS_JALAN_X = 5.0   # batas lebar jalan kiri/kanan
 
 var score: int = 0
 var game_is_over: bool = false
@@ -64,9 +64,9 @@ var high_score_label: Label
 @onready var dashboard: CanvasLayer = get_node("/root/World/DashboardLayer")
 
 # Dashboard Elements
-@onready var steer_center = get_node("/root/World/DashboardLayer/Main/Steer/Center")
-@onready var steer_right  = get_node("/root/World/DashboardLayer/Main/Steer/Right")
-@onready var steer_left   = get_node("/root/World/DashboardLayer/Main/Steer/Left")
+@onready var steer_center = get_node("/root/World/DashboardLayer/Steer/Center")
+@onready var steer_right  = get_node("/root/World/DashboardLayer/Steer/Right")
+@onready var steer_left   = get_node("/root/World/DashboardLayer/Steer/Left")
 
 # delay suara lewat
 var last_pass_sound_time: float = 0.0
@@ -130,6 +130,15 @@ func _ready() -> void:
 	wanted_ui_instance = wanted_scene.instantiate()
 	add_child(wanted_ui_instance)
 	_update_wanted_ui()
+	move_child(wanted_ui_instance, 0) # Index 0 = paling belakang
+	
+	# DEBUGGING layer WantedUI yang melebihi layer PauseMenu (tolong woilah cik)
+	#print("wanted_ui_instance priority: ",wanted_ui_instance.get_process_priority())
+	#print("wanted_ui_instance index: ",wanted_ui_instance.get_index())
+	#print("dashboard index: ",dashboard.get_index())
+	#var pause_menu: CanvasLayer = get_node("/root/World/PauseMenu")
+	#print("pause_menu index: ",pause_menu.get_index())
+
 	
 	# =============================================================
 	# INISIALISASI POLICE CHASE SYSTEM
@@ -229,8 +238,6 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var horizontal_movement = input_dir.x
 	
-	
-	
 	# =============================================================
 	# TAMPILAN UI STEER BERDASARKAN ARAH GERAK
 	# =============================================================
@@ -271,7 +278,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			horizontal_movement += damage_auto_turn_strength * damage_auto_turn_dir
 		horizontal_movement = clamp(horizontal_movement, -1.8, 1.8)
-		print("horizontal_movement: ",horizontal_movement)
+		#print("horizontal_movement: ",horizontal_movement)
 		
 		# UI steer ikut terpengaruh efek goyang/rusak
 		if is_instance_valid(steer_center) and is_instance_valid(steer_left) and is_instance_valid(steer_right):
@@ -288,8 +295,9 @@ func _physics_process(delta: float) -> void:
 				steer_left.visible = false
 				steer_right.visible = false
 
-	
+
 	velocity.x = horizontal_movement * SPEED
+	dashboard.on_camera_sway(velocity.x)
 	#print("velocity.x: ",velocity.x)
 
 	move_and_slide()
@@ -332,6 +340,9 @@ func _physics_process(delta: float) -> void:
 	# Cek input untuk mengganti kamera
 	if Input.is_action_just_pressed("toggle_camera"):
 		toggle_camera()
+	
+	if Input.is_action_just_pressed("trigger_camera_shake"):
+		normal_camera.add_shake(1)
 	
 	# Jembatan ke sistem audio
 	if terrain_controller:
@@ -531,7 +542,7 @@ func _update_damage_auto_turn(delta: float) -> void:
 		
 		# Tambah kekuatan tarikan secara eksponensial sesuai severity
 		damage_auto_turn_strength = min(damage_auto_turn_strength + delta * damage_max_turn_speed, max_strength)
-		print("turn strength: ", damage_auto_turn_strength)
+		#print("turn strength: ", damage_auto_turn_strength)
 		
 		# Jika sudah habis waktunya ditarik -> kembalikan ke stabil sejenak
 		if damage_auto_turn_timer <= 0:

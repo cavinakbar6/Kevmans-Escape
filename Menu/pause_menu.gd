@@ -17,6 +17,8 @@ func _ready() -> void:
 	restart_btn.pressed.connect(_on_restart_pressed)
 	menu_btn.pressed.connect(_on_menu_pressed)
 	settings_ui.back_pressed.connect(_on_settings_back)
+	
+	print("pause_menu index: ",color_rect.get_index())
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

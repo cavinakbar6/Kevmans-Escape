@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c30im8nn0bi7j" path="res://asset/backto_mainmenu.png" id="12_70uel"]
 [ext_resource type="Texture2D" uid="uid://hlgbr6jxe45m" path="res://asset/gamespace_steer3.png" id="12_bc84e"]
 [ext_resource type="Texture2D" uid="uid://dk5aqx03gqw07" path="res://asset/gameover.png" id="13_hiqwa"]
+[ext_resource type="Script" uid="uid://cdfcb038fv0bn" path="res://dashboard_layer.gd" id="13_mc2jv"]
 [ext_resource type="Texture2D" uid="uid://nhwrka35b5lk" path="res://asset/gamespace_dashboard.png" id="15_hiqwa"]
 [ext_resource type="PackedScene" uid="uid://mas2bqeaeobp" path="res://Menu/pause_menu.tscn" id="16_pausemenu"]
 [ext_resource type="Script" uid="uid://by1jkd7ffhsu3" path="res://day_night_cycle.gd" id="17_daynight"]
@@ -156,6 +157,7 @@ max_velocity = 70.0
 building_generator = NodePath("../BuildingGenerator")
 
 [node name="DashboardLayer" type="CanvasLayer" parent="." unique_id=79425635]
+script = ExtResource("13_mc2jv")
 
 [node name="Main" type="PanelContainer" parent="DashboardLayer" unique_id=1376784750]
 anchors_preset = 15
@@ -170,21 +172,23 @@ layout_mode = 2
 texture = ExtResource("15_hiqwa")
 expand_mode = 5
 
-[node name="Steer" type="PanelContainer" parent="DashboardLayer/Main" unique_id=838401435]
-layout_mode = 2
+[node name="Steer" type="PanelContainer" parent="DashboardLayer" unique_id=838401435]
+offset_left = 82.0
+offset_right = 2002.0
+offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_il2jm")
 
-[node name="Center" type="TextureRect" parent="DashboardLayer/Main/Steer" unique_id=1288897942]
+[node name="Center" type="TextureRect" parent="DashboardLayer/Steer" unique_id=1288897942]
 layout_mode = 2
 texture = ExtResource("10_2u3nc")
 expand_mode = 5
 
-[node name="Right" type="TextureRect" parent="DashboardLayer/Main/Steer" unique_id=1104375281]
+[node name="Right" type="TextureRect" parent="DashboardLayer/Steer" unique_id=1104375281]
 layout_mode = 2
 texture = ExtResource("11_26xuy")
 expand_mode = 5
 
-[node name="Left" type="TextureRect" parent="DashboardLayer/Main/Steer" unique_id=1024797119]
+[node name="Left" type="TextureRect" parent="DashboardLayer/Steer" unique_id=1024797119]
 layout_mode = 2
 texture = ExtResource("12_bc84e")
 expand_mode = 5

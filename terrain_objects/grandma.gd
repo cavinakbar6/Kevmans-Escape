@@ -52,10 +52,11 @@ func _process(_delta: float) -> void:
 			$SpawnSound.play()
 				
 func disable_sounds() -> void:
-	if $SpawnSound.playing:
-		$SpawnSound.stop()
-	if $PassSound.has_method("stop") and $PassSound.playing:
-		$PassSound.stop()
+	print("")
+	#if $SpawnSound.playing:
+		#$SpawnSound.stop()
+	#if $PassSound.has_method("stop") and $PassSound.playing:
+		#$PassSound.stop()
 
 func get_damage() -> float:
 	return damage
