@@ -62,7 +62,7 @@ var broadcast_text = "<<< POLICE PURSUIT IN PROGRESS >>> ALL UNITS RESPOND <<< S
 
 func _ready() -> void:
 	# Load police icon texture
-	var tex_pixel = load("res://asset/police_pixel.jpg")
+	var tex_pixel = load("res://asset/polisi_depan.png")
 	if tex_pixel:
 		police_icon.texture = tex_pixel
 	

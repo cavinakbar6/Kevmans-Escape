@@ -38,7 +38,7 @@ transform = Transform3D(4.40177, 0, 0, 0, 4.995922, 0, 0, 0, 5.000572, 0, 1.7662
 mesh = SubResource("PlaneMesh_6wnxp")
 skeleton = NodePath("../StaticBody3D2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1252442943]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1252442943 groups=["obstacle"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1229421444]
 transform = Transform3D(2.2655277, 0, 0, 0, 3.092532, 0, 0, 0, 1, -0.020879803, 0, 0)

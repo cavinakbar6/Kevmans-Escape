@@ -32,7 +32,7 @@ script = ExtResource("1_inf5e")
 spawn_chance = 0.8
 spawn_x_range = Vector2(0.1, 0.8)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=247606431]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=247606431 groups=["obstacle"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=477305145]
 transform = Transform3D(0.8486971, 0, 0, 0, 2.16628, 0, 0, 0, 1, 0, 1.01968, 0)

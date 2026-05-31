@@ -27,15 +27,20 @@ var _time: float = 0.0
 # State constants (mirror PoliceChaseManager.PoliceState enum)
 const STATE_LOCK_ON = 1
 const STATE_CHARGING = 2
+const STATE_PASSING = 3     # <--- BARU
+const STATE_STALLED = 4     # <--- BARU
+const STATE_RETREATING = 5  # <--- BARU
 
 # Ikon polisi yang sudah di-spawn di UI
 var _police_icons: Dictionary = {}  # unit_id -> {left: Node, rear: Node}
 
 # Preloaded police texture
 var police_texture: Texture2D = null
+var heavy_police_texture: Texture2D = null
 
 func _ready() -> void:
-	police_texture = load("res://asset/police_pixel.jpg")
+	police_texture = load("res://asset/polisi_depan.png")
+	heavy_police_texture = load("res://asset/polisi_besar_depan.png")
 	
 	# Hide everything initially
 	left_mirror_area.visible = false
@@ -75,9 +80,9 @@ func _process(delta: float) -> void:
 	
 	# Update each unit's visual
 	for unit in units:
-		if not unit.visible:
-			_hide_unit_icons(unit.id)
-			continue
+		if not unit.visible or unit.state == STATE_PASSING or unit.state == STATE_STALLED or unit.state == STATE_RETREATING:
+				_hide_unit_icons(unit.id)
+				continue
 		
 		# Polisi muncul di spion berdasarkan lane:
 		#   lane -1 (kiri)  → spion kiri (side mirror)
@@ -213,10 +218,15 @@ func _update_unit_icon(unit, target_area: Control) -> void:
 	
 	icon.visible = true
 	
+	if unit.type == 1:
+		icon.texture = heavy_police_texture
+	else:
+		icon.texture = police_texture
+		
 	# Calculate size based on scale_factor
-	var base_size = 25.0
+	var base_size = 150
 	if active_key == "rear":
-		base_size = 22.0  # Rearview lebih kecil
+		base_size = 120  # Rearview lebih kecil
 	var icon_size = base_size * unit.scale_factor
 	icon.custom_minimum_size = Vector2(icon_size, icon_size)
 	icon.size = Vector2(icon_size, icon_size)
@@ -276,6 +286,8 @@ func _update_warning(warning_label: Label, is_active: bool, _delta: float) -> vo
 # =============================================================
 
 func play_impact_effect(attack_lane: int) -> void:
+	if has_node("NabrakAudio") and $NabrakAudio.stream:
+		$NabrakAudio.play()
 	# 1. FULL SCREEN RED FLASH
 	var flash = ColorRect.new()
 	flash.anchors_preset = 15

@@ -1,39 +1,41 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b1dx5mkd0714k"]
 
 [ext_resource type="Script" uid="uid://0bymxrj05vpd" path="res://Polisi/police_chase_ui.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://bioav3gq6ipg2" path="res://Sound/Polisi/Nabrak.wav" id="2_og7br"]
 
-
-[node name="PoliceChaseUI" type="CanvasLayer"]
+[node name="PoliceChaseUI" type="CanvasLayer" unique_id=1978388622]
 layer = 8
 script = ExtResource("1_script")
 
-[node name="LeftMirrorArea" type="Control" parent="."]
+[node name="LeftMirrorArea" type="Control" parent="." unique_id=1748034833]
+clip_contents = true
 layout_mode = 3
-anchors_preset = 0
-anchor_left = 0.0
 anchor_top = 0.56
 anchor_right = 0.085
 anchor_bottom = 0.73
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = 3.0
+offset_top = 80.20001
+offset_right = 3.0
+offset_bottom = 80.20001
 mouse_filter = 2
 
-[node name="RearviewMirrorArea" type="Control" parent="."]
+[node name="RearviewMirrorArea" type="Control" parent="." unique_id=379200094]
+clip_contents = true
 layout_mode = 3
-anchors_preset = 0
-anchor_left = 0.70
+anchor_left = 0.7
 anchor_top = 0.03
 anchor_right = 0.84
 anchor_bottom = 0.16
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = 75.0
+offset_top = 45.600002
+offset_right = 75.0
+offset_bottom = 45.600006
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.56, 1.093206)
 mouse_filter = 2
 
-[node name="WarningLeft" type="Label" parent="."]
+[node name="WarningLeft" type="Label" parent="." unique_id=1933703573]
 visible = false
 anchors_preset = 4
 anchor_top = 0.5
@@ -51,7 +53,7 @@ text = "⚠"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WarningCenter" type="Label" parent="."]
+[node name="WarningCenter" type="Label" parent="." unique_id=526852538]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -72,7 +74,7 @@ text = "⚠"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WarningRight" type="Label" parent="."]
+[node name="WarningRight" type="Label" parent="." unique_id=475054969]
 visible = false
 anchors_preset = 6
 anchor_left = 1.0
@@ -93,7 +95,7 @@ text = "⚠"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ChargeFlash" type="ColorRect" parent="."]
+[node name="ChargeFlash" type="ColorRect" parent="." unique_id=476566685]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,3 +104,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0.2, 0.1, 0)
+
+[node name="NabrakAudio" type="AudioStreamPlayer3D" parent="." unique_id=555401316]
+stream = ExtResource("2_og7br")

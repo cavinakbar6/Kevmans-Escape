@@ -4,11 +4,17 @@
 [ext_resource type="AudioStream" uid="uid://5d8ak3tpr88s" path="res://Sound/Polisi/POLICE - QuickSounds.com.wav" id="2_1ocp4"]
 [ext_resource type="Texture2D" uid="uid://by6pqyafi0puo" path="res://asset/polisi_belakang.png" id="2_k2hxo"]
 [ext_resource type="AudioStream" uid="uid://ceqcr5fbjy0qw" path="res://Sound/Polisi/POLICE sirenss - QuickSounds.com.wav" id="3_ae7y1"]
+[ext_resource type="Texture2D" uid="uid://j52mi6y07qfr" path="res://asset/polisi_besar.png" id="3_v3ig7"]
 [ext_resource type="AudioStream" uid="uid://bc4k1rve4r161" path="res://Sound/Polisi/PolisiRem.wav" id="5_1ocp4"]
+[ext_resource type="AudioStream" uid="uid://bioav3gq6ipg2" path="res://Sound/Polisi/Nabrak.wav" id="7_07e7r"]
 
-[node name="Polisi2d" type="Node3D" unique_id=415877751]
-transform = Transform3D(1, 0, 0, 0, 2.6921368, 0, 0, 0, 1, 0, 1.0829124, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xxqc"]
+
+[node name="Polisi2d" type="Area3D" unique_id=48982920]
+transform = Transform3D(1, 0, 0, 0, 2.6921368, 0, 0, 0, 1.2113211, 0, 1.0829124, 0)
 script = ExtResource("1_36bep")
+tex_normal_back = ExtResource("2_k2hxo")
+tex_heavy_back = ExtResource("3_v3ig7")
 siren_sounds = Array[AudioStream]([ExtResource("2_1ocp4"), ExtResource("3_ae7y1")])
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=201387566]
@@ -34,7 +40,20 @@ omni_range = 15.0
 [node name="RemAudio" type="AudioStreamPlayer3D" parent="." unique_id=1174077481]
 transform = Transform3D(1, 0, 0, 0, 0.37145215, 0, 0, 0, 1, 0, 0, 0)
 stream = ExtResource("5_1ocp4")
+volume_db = -10.0
 max_distance = 50.0
 
 [node name="MesinAudio" type="AudioStreamPlayer3D" parent="." unique_id=369664417]
 transform = Transform3D(1, 0, 0, 0, 0.37145215, 0, 0, 0, 1, 0, 0, 0)
+volume_db = 80.0
+autoplay = true
+max_distance = 100.0
+
+[node name="NabrakAudio" type="AudioStreamPlayer3D" parent="." unique_id=1693161638]
+stream = ExtResource("7_07e7r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1420646917]
+transform = Transform3D(1.600151, 0, 0, 0, 1, 0, 0, 0, 1.2402925, 0, 0, 0.2921046)
+shape = SubResource("BoxShape3D_2xxqc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

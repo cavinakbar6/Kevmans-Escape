@@ -38,7 +38,7 @@ spawn_chance = 0.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6543484, 0)
 mesh = SubResource("PlaneMesh_4325f")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1343626428]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1343626428 groups=["obstacle"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1255883080]
 transform = Transform3D(1.8203033, 0, 0, 0, 2.6324005, 0, 0, 0, 0.9568166, 0, 0, 0)

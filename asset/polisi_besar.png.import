@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhwo4seu08qxv"
-path="res://.godot/imported/image_2026-05-24_214131181-removebg-preview.png-37693334356b054d49345a7bf1124d88.ctex"
+uid="uid://j52mi6y07qfr"
+path="res://.godot/imported/polisi_besar.png-a19689a5d86450bd7e31f6fec005ae43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/image_2026-05-24_214131181-removebg-preview.png"
-dest_files=["res://.godot/imported/image_2026-05-24_214131181-removebg-preview.png-37693334356b054d49345a7bf1124d88.ctex"]
+source_file="res://asset/polisi_besar.png"
+dest_files=["res://.godot/imported/polisi_besar.png-a19689a5d86450bd7e31f6fec005ae43.ctex"]
 
 [params]
 

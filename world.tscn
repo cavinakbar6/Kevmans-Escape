@@ -139,6 +139,7 @@ stream = ExtResource("5_dwbse")
 [node name="TireScreechSFX" type="AudioStreamPlayer3D" parent="Player/Audio" unique_id=1322565556]
 stream = ExtResource("6_pkg7o")
 volume_db = -80.0
+max_db = 0.0
 autoplay = true
 
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="Player/Audio" unique_id=888232479]
@@ -146,6 +147,7 @@ stream = ExtResource("7_wse8f")
 
 [node name="CrashSound" type="AudioStreamPlayer" parent="Player/Audio" unique_id=933131613]
 stream = ExtResource("10_il2jm")
+volume_db = -10.0
 
 [node name="HealSound" type="AudioStreamPlayer" parent="Player/Audio" unique_id=1353663792]
 stream = ExtResource("11_wjb0r")

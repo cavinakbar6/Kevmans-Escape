@@ -24,7 +24,8 @@ const WANTED_CONFIG = {
 	6: [6, 1.5, 0.5, 1.5],
 }
 
-const POLICE_DAMAGE: float = 15.0
+const POLICE_DAMAGE_NORMAL: float = 15.0
+const POLICE_DAMAGE_HEAVY: float = 30.0
 const CHARGE_DURATION: float = 0.8      # waktu charge dari jauh sampai nabrak
 const PASS_DURATION: float = 0.6        # waktu polisi ngedahuluin (miss)
 const STALL_DURATION: float = 2.0       # waktu mogok setelah miss
@@ -46,6 +47,7 @@ enum PoliceState {
 # ----- Police Unit Inner Class -----
 class PoliceUnit:
 	var id: int = 0
+	var type: int = 0 
 	var state: int = 7  # INACTIVE (PoliceState.INACTIVE = 7)
 	var lane: int = 0                # posisi saat ini: -1 kiri, 0 tengah, 1 kanan
 	var target_lane: int = 0         # lane serangan
@@ -102,6 +104,10 @@ func set_wanted_level(level: int) -> void:
 		unit.state = PoliceState.COOLDOWN
 		unit.cooldown_timer = randf_range(1.0, 3.0)  # stagger spawn
 		unit.lane = [-1, 0, 1][randi() % 3]
+		if wanted_level >= 4:
+			unit.type = 1 if randf() > 0.5 else 0
+		else:
+			unit.type = 0
 		police_units.append(unit)
 		
 		if is_instance_valid(player_ref):
@@ -185,11 +191,11 @@ func _update_trailing(unit: PoliceUnit, delta: float, config: Array) -> void:
 	
 	# Efek sway (goyang kiri-kanan saat aim)
 	unit.sway_timer += delta * (2.0 + wanted_level * 0.5)
-	unit.sway_offset = sin(unit.sway_timer * 1.5 + unit.id * 2.0) * 0.3
+	unit.sway_offset = sin(unit.sway_timer * 1.5 + unit.id * 2.0) * 0.05
 	
 	# Update posisi mirror
 	unit.mirror_x = 0.5 + unit.sway_offset
-	unit.mirror_y = 0.5 + sin(_time_passed * 1.2 + unit.id) * 0.1
+	unit.mirror_y = 0.5 + sin(_time_passed * 1.2 + unit.id) * 0.02
 	
 	# Sesekali ganti lane target
 	if fmod(unit.sway_timer, 3.0) < delta:
@@ -314,12 +320,9 @@ func _update_cooldown(unit: PoliceUnit, delta: float, config: Array) -> void:
 func _on_police_hit(unit: PoliceUnit) -> void:
 	unit.last_attack_was_miss = false
 	emit_signal("police_attack_hit", unit.target_lane)
-	
-	# Apply damage to player
+	var damage_dealt = POLICE_DAMAGE_HEAVY if unit.type == 1 else POLICE_DAMAGE_NORMAL
 	if is_instance_valid(player_ref) and player_ref.has_method("receive_police_hit"):
-		player_ref.receive_police_hit(POLICE_DAMAGE, unit.target_lane)
-	
-	# Langsung mundur
+		player_ref.receive_police_hit(damage_dealt, unit.target_lane)
 	_change_state(unit, PoliceState.RETREATING)
 	unit.retreat_progress = 0.0
 
@@ -340,3 +343,7 @@ func _change_state(unit: PoliceUnit, new_state: int) -> void:
 
 func _deactivate_all() -> void:
 	police_units.clear()
+	for id in spawned_car_visuals:
+		if is_instance_valid(spawned_car_visuals[id]):
+			spawned_car_visuals[id].queue_free()
+	spawned_car_visuals.clear()
