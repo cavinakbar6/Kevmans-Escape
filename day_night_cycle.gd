@@ -1,8 +1,8 @@
 extends DirectionalLight3D
 
 @export var day_duration: float = 50.0 # default = 50.0
-@export var transition_duration: float = 0.0 # default = 3.0
-@export var night_duration: float = 0.0 # default = 40.0
+@export var transition_duration: float = 3.0 # default = 3.0
+@export var night_duration: float = 40.0 # default = 40.0
 
 # kontrol gelap malam
 @export var night_min_intensity: float = 0.2
