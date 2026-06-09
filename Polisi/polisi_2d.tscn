@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://by6pqyafi0puo" path="res://asset/polisi_belakang.png" id="2_k2hxo"]
 [ext_resource type="AudioStream" uid="uid://ceqcr5fbjy0qw" path="res://Sound/Polisi/POLICE sirenss - QuickSounds.com.wav" id="3_ae7y1"]
 [ext_resource type="Texture2D" uid="uid://j52mi6y07qfr" path="res://asset/polisi_besar.png" id="3_v3ig7"]
+[ext_resource type="PackedScene" uid="uid://c5q3nrxth12kn" path="res://ledakan.tscn" id="4_2xxqc"]
 [ext_resource type="AudioStream" uid="uid://bc4k1rve4r161" path="res://Sound/Polisi/PolisiRem.wav" id="5_1ocp4"]
 [ext_resource type="AudioStream" uid="uid://bioav3gq6ipg2" path="res://Sound/Polisi/Nabrak.wav" id="7_07e7r"]
 
@@ -15,6 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 2.6921368, 0, 0, 0, 1.2113211, 0, 1.0829124,
 script = ExtResource("1_36bep")
 tex_normal_back = ExtResource("2_k2hxo")
 tex_heavy_back = ExtResource("3_v3ig7")
+Ledakan_scene = ExtResource("4_2xxqc")
 siren_sounds = Array[AudioStream]([ExtResource("2_1ocp4"), ExtResource("3_ae7y1")])
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=201387566]
