@@ -4,6 +4,7 @@ extends Area3D
 @onready var blue_light: OmniLight3D = $Sprite3D/BlueLight
 @export var tex_normal_back: Texture2D
 @export var tex_heavy_back: Texture2D
+@export var Ledakan_scene: PackedScene
 @onready var sprite = $Sprite3D
 
 var police_unit_data = null
@@ -111,21 +112,39 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	var induk = body.get_parent()
+	# --- Logika Rintangan ---
 	var is_obstacle = false
+	var target_nabrak = null 
 	
 	if body.is_in_group("obstacle") or body.is_in_group("rintangan") or body.is_in_group("ObstacleObjects"):
 		is_obstacle = true
+		target_nabrak = body
 	elif induk and (induk.is_in_group("obstacle") or induk.is_in_group("rintangan") or induk.is_in_group("ObstacleObjects")):
 		is_obstacle = true
+		target_nabrak = induk 
 		
 	if is_obstacle:
-		# Hanya bisa nabrak saat meleset(3) atau mogok di depan(4)
 		if police_unit_data and (police_unit_data.state == 3 or police_unit_data.state == 4):
-			if has_node("NabrakAudio") and $NabrakAudio.stream:
-				$NabrakAudio.play()
-			
-			# CATAT LOKASI PERSIS SAAT DIA NABRAK!
 			crash_z_offset = global_position.z - player.global_position.z
 			
-			police_unit_data.state = 5
-			police_unit_data.retreat_progress = 0.0
+			# KOCOK DADU 50:50!
+			if randf() > 1.5:
+				# 50% MUNDUR BIASA
+				if has_node("NabrakAudio") and $NabrakAudio.stream:
+					$NabrakAudio.play()
+				police_unit_data.state = 5
+				police_unit_data.retreat_progress = 0.0
+			else:
+				
+				_ledakkan_polisi(target_nabrak)
+
+func _ledakkan_polisi(benda_target: Node3D) -> void:
+	if Ledakan_scene:
+		# Spawn ledakannya ke dunia
+		var efek = Ledakan_scene.instantiate()
+		benda_target.add_child(efek)
+		efek.global_position = global_position # Posisinya pas di tempat polisi
+		
+	# Bikin polisinya mati / ngilang (masuk state 6 Cooldown)
+	police_unit_data.state = 6
+	police_unit_data.cooldown_timer = 5.0
