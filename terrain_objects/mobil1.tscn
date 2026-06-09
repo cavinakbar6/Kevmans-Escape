@@ -44,6 +44,7 @@ orientation = 2
 
 [node name="Node3D" type="Node3D" unique_id=1983528646]
 script = ExtResource("1_hvqmb")
+damage = 30.0
 spawn_chance = 0.8
 spawn_x_range = Vector2(0.15, 0.85)
 
@@ -54,7 +55,7 @@ mesh = SubResource("PlaneMesh_r47k8")
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1962784665]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1396288370]
-transform = Transform3D(1.6653738, 0, 0, 0, 1.593684, 0, 0, 0, 0.57378626, 0, 0.82734585, 0)
+transform = Transform3D(1.665, 0, 0, 0, 1.594, 0, 0, 0, 0.1, 0, 0.82734585, 0)
 shape = SubResource("BoxShape3D_ss8x7")
 
 [node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=1314260289]

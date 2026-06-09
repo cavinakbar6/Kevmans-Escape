@@ -21,6 +21,7 @@ func _ready() -> void:
 	add_to_group("ObstacleObjects")
 	player = get_node_or_null("/root/World/Player")
 	day_night = get_node_or_null("/root/World/DirectionalLight3D")
+	
 	var aabb = mesh.get_aabb()
 	var size = aabb.size
 	var bottom = aabb.position
@@ -35,12 +36,6 @@ func _ready() -> void:
 		bottom.z + size.z / 2.0
 	)
 
-	$SpawnSound.bus = "SFX"
-
-func disable_sounds() -> void:
-	if $SpawnSound.playing:
-		$SpawnSound.stop()
-
 func get_damage() -> float:
 	print("damage from mobil")
 	return damage
@@ -53,17 +48,6 @@ func _process(_delta: float) -> void:
 			headlight.visible = true
 		
 	if player:
-		if not has_horned and global_position.z > (player.global_position.z - horn_distance):
-			has_horned = true
-			var current_time = Time.get_ticks_msec() / 1000.0
-			
-			if current_time - player.last_horn_sound_time > 1.0:
-				if horn_sounds.size() > 0:
-					$SpawnSound.stream = horn_sounds.pick_random()
-				$SpawnSound.pitch_scale = randf_range(0.9, 1.1)
-				$SpawnSound.play()
-				player.last_horn_sound_time = current_time
-				
 		if not has_passed and global_position.z > (player.global_position.z - trigger_distance):
 			has_passed = true
 			var current_time = Time.get_ticks_msec() / 1000.0

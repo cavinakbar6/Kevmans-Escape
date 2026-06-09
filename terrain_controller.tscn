@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dsfgvso7he55e" path="res://terrain_controller.gd" id="1_ak1j6"]
 [ext_resource type="PackedScene" uid="uid://1l8w78xdj6gf" path="res://terrain_roads/4lane.tscn" id="2_wdmwd"]
-[ext_resource type="PackedScene" uid="uid://cmfww20ic1dkn" path="res://terrain_objects/kuceng.tscn" id="3_kf7q4"]
+[ext_resource type="PackedScene" uid="uid://cmfww20ic1dkn" path="res://debugging/kucengxx.tscn" id="3_kf7q4"]
 [ext_resource type="PackedScene" uid="uid://cyus6r1w5g64f" path="res://terrain_objects/truk.tscn" id="4_kkc12"]
-[ext_resource type="PackedScene" uid="uid://coiqfg2s3bmdo" path="res://terrain_objects/grandma.tscn" id="5_v0njy"]
-[ext_resource type="PackedScene" uid="uid://b52nhdjer7qpf" path="res://terrain_objects/roadblock.tscn" id="6_dqcip"]
+[ext_resource type="PackedScene" uid="uid://coiqfg2s3bmdo" path="res://debugging/xxgrandma_xx.tscn" id="5_v0njy"]
+[ext_resource type="PackedScene" uid="uid://b52nhdjer7qpf" path="res://debugging/roadblockxx.tscn" id="6_dqcip"]
 [ext_resource type="PackedScene" uid="uid://ctreseqf8lw84" path="res://terrain_objects/mobil.tscn" id="7_dqcip"]
 [ext_resource type="PackedScene" uid="uid://cdvxicby2p3dn" path="res://terrain_objects/motor.tscn" id="8_ugjrb"]
 [ext_resource type="PackedScene" uid="uid://g3qe86q88v1p" path="res://terrain_objects/repair_item.tscn" id="9_repair"]

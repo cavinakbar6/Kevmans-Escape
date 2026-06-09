@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://y7vroxxq4nq0"]
+
+[ext_resource type="PackedScene" uid="uid://m5pb4d3y6aul" path="res://terrain_objects/mobil2.tscn" id="1_n423v"]
+[ext_resource type="PackedScene" uid="uid://doboup7dmncy" path="res://terrain_objects/mobil3.tscn" id="2_2qp1g"]
+[ext_resource type="PackedScene" uid="uid://dnbp448yig0g8" path="res://terrain_objects/mobil4.tscn" id="3_nch63"]
+[ext_resource type="PackedScene" uid="uid://decgwq4gwr62g" path="res://terrain_objects/truk1.tscn" id="4_bbysc"]
+[ext_resource type="PackedScene" uid="uid://uln1c8a0t1m4" path="res://terrain_objects/truk2.tscn" id="5_ormdd"]
+[ext_resource type="PackedScene" uid="uid://ctreseqf8lw84" path="res://terrain_objects/mobil.tscn" id="6_tsaxk"]
+[ext_resource type="PackedScene" uid="uid://cyus6r1w5g64f" path="res://terrain_objects/truk.tscn" id="7_y422p"]
+
+[node name="Node3D" type="Node3D" unique_id=1907211154]
+
+[node name="Node3D" parent="." unique_id=1161515154 instance=ExtResource("1_n423v")]
+
+[node name="Node3D2" parent="." unique_id=1542320228 instance=ExtResource("2_2qp1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4519382, 0, 0)
+
+[node name="Node3D3" parent="." unique_id=363315146 instance=ExtResource("3_nch63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0623803, 0, 0)
+
+[node name="Node3D4" parent="." unique_id=987418272 instance=ExtResource("4_bbysc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.042454, 0, 0)
+
+[node name="Node3D5" parent="." unique_id=716736500 instance=ExtResource("5_ormdd")]
+transform = Transform3D(1.0146422, 0, 0, 0, 0.933081, 0, 0, 0, 1, 10.999193, 0, 0)
+
+[node name="mobil" parent="." unique_id=1629456630 instance=ExtResource("6_tsaxk")]
+transform = Transform3D(1.3685, 0, 0, 0, 1.1818, 0, 0, 0, 1, -2.5079432, 0, 0)
+
+[node name="truk" parent="." unique_id=2133664635 instance=ExtResource("7_y422p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.773737, 0, 0)

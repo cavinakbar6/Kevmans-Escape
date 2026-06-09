@@ -9,8 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://bsc345y3jimod" path="res://Sound/gear shift.wav" id="5_dwbse"]
 [ext_resource type="AudioStream" uid="uid://dnq1vawbnvxag" path="res://Sound/tires_squal_loop.wav" id="6_pkg7o"]
 [ext_resource type="AudioStream" uid="uid://cmj1ha0opq3qp" path="res://Sound/GameOver.wav" id="7_wse8f"]
-[ext_resource type="Texture2D" uid="uid://bg24mbnyq0bkn" path="res://asset/cursor-keys-left-right-top-down-direction-keys-or-navigation-arrow-keys-on-gray-computer-keyboard-2PH0P0G.jpg" id="8_ioo17"]
-[ext_resource type="Texture2D" uid="uid://c4e0x1y3ga3pc" path="res://terrain_objects/as.jpg" id="9_wse8f"]
 [ext_resource type="Texture2D" uid="uid://bcu0jqtmh2nk1" path="res://asset/gamespace_steer1.png" id="10_2u3nc"]
 [ext_resource type="AudioStream" uid="uid://gd4nkvf1qogw" path="res://Sound/Nabrak1.wav" id="10_il2jm"]
 [ext_resource type="Texture2D" uid="uid://cnfccbxdkh7i8" path="res://asset/retry.png" id="11_2o6r5"]
@@ -24,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://nhwrka35b5lk" path="res://asset/gamespace_dashboard.png" id="15_hiqwa"]
 [ext_resource type="PackedScene" uid="uid://mas2bqeaeobp" path="res://Menu/pause_menu.tscn" id="16_pausemenu"]
 [ext_resource type="Script" uid="uid://by1jkd7ffhsu3" path="res://day_night_cycle.gd" id="17_daynight"]
+[ext_resource type="Texture2D" uid="uid://cgv0cq5tol6gm" path="res://asset/arrow_key.png" id="19_wjb0r"]
 [ext_resource type="Script" uid="uid://di1gals2clhjv" path="res://building_generator.gd" id="22_wukud"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_om122"]
@@ -41,7 +40,7 @@ glow_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofssd"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_187ag"]
+[sub_resource type="BoxMesh" id="BoxMesh_mc2jv"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aqk2v"]
 
@@ -66,6 +65,8 @@ loop_end = 99888
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_il2jm"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mc2jv"]
+
 [sub_resource type="Theme" id="Theme_2o6r5"]
 
 [node name="World" type="Node3D" unique_id=136713038]
@@ -88,11 +89,11 @@ terrain_controller = NodePath("../TerrainController")
 shape = SubResource("CapsuleShape3D_ofssd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=2134901097]
-transform = Transform3D(1, 0, 0, 0, 0.530533, 0, 0, 0, 1, 2.08165e-12, -0.2565, 2.08165e-12)
-mesh = SubResource("CapsuleMesh_187ag")
+transform = Transform3D(1, 0, 0, 0, 0.530533, 0, 0, 0, 1, 0, 0.16510653, 0)
+mesh = SubResource("BoxMesh_mc2jv")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=1916901448]
-transform = Transform3D(1, 0, 0, 0, 0.984384, 0.176037, 0, -0.176037, 0.984384, 0, 1.03728, 0.50842)
+transform = Transform3D(1, 0, 0, 0, 0.984384, 0.176037, 0, -0.176037, 0.984384, 0, 1.037, -0.3)
 fov = 80.0
 far = 500.0
 script = ExtResource("3_bc84e")
@@ -265,7 +266,8 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_fonts/font = ExtResource("11_70uel")
 theme_override_font_sizes/font_size = 50
-text = "PRESS LEFT OR RIGHT..."
+text = "PRESS ARROW LEFT OR 
+ARROW RIGHT..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -319,15 +321,17 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CursorKeysLeftRightTopDownDirectionKeysOrNavigationArrowKeysOnGrayComputerKeyboard2ph0p0g" type="Sprite2D" parent="MainUI/StartUI/Container" unique_id=921685386]
+[node name="ArrowLeft" type="Sprite2D" parent="MainUI/StartUI/Container" unique_id=921685386]
+material = SubResource("CanvasItemMaterial_mc2jv")
 position = Vector2(-576, -4.00001)
 scale = Vector2(0.491849, 0.482706)
-texture = ExtResource("8_ioo17")
+texture = ExtResource("19_wjb0r")
 
-[node name="As" type="Sprite2D" parent="MainUI/StartUI/Container" unique_id=308841078]
-position = Vector2(590, 4)
-scale = Vector2(0.505, 0.496901)
-texture = ExtResource("9_wse8f")
+[node name="ArrowRight" type="Sprite2D" parent="MainUI/StartUI/Container" unique_id=1828446277]
+material = SubResource("CanvasItemMaterial_mc2jv")
+position = Vector2(599, -4)
+scale = Vector2(-0.492, -0.483)
+texture = ExtResource("19_wjb0r")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=1317169803]
 process_mode = 3

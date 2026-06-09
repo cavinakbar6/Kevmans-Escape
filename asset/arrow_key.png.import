@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4e0x1y3ga3pc"
-path="res://.godot/imported/as.jpg-82b71c6f3af0bc31802383d7fd7c4bd2.ctex"
+uid="uid://cgv0cq5tol6gm"
+path="res://.godot/imported/arrow_key.png-781c3fc7e32c66280c0348dea5f8e622.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://terrain_objects/as.jpg"
-dest_files=["res://.godot/imported/as.jpg-82b71c6f3af0bc31802383d7fd7c4bd2.ctex"]
+source_file="res://asset/arrow_key.png"
+dest_files=["res://.godot/imported/arrow_key.png-781c3fc7e32c66280c0348dea5f8e622.ctex"]
 
 [params]
 

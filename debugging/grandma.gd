@@ -39,7 +39,7 @@ func _ready() -> void:
 	hitbox_shape.shape = area_shape
 	hitbox.position = collision.position
 	$SpawnSound.bus = "SFX"
-	add_to_group("ObstacleObjects")
+	#add_to_group("ObstacleObjects")
 	print("grandma spawned")
 	
 func _process(_delta: float) -> void:

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://decgwq4gwr62g"]
+
+[ext_resource type="Script" uid="uid://cetkwbijcqj52" path="res://terrain_objects/truk_1.gd" id="1_r2a4v"]
+[ext_resource type="Texture2D" uid="uid://c5tuy4ntyw334" path="res://asset/truk1.png" id="1_shh00"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2a4v"]
+transparency = 1
+albedo_texture = ExtResource("1_shh00")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4nop0"]
+material = SubResource("StandardMaterial3D_r2a4v")
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shh00"]
+
+[node name="Node3D" type="Node3D" unique_id=987418272]
+script = ExtResource("1_r2a4v")
+damage = 70.0
+spawn_chance = 0.15
+spawn_x_range = Vector2(0.2, 0.8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=919791650]
+transform = Transform3D(1.573, 0, 0, 0, 1.8480002, 0, 0, 0, 1, 0, 1.8131281, 0)
+mesh = SubResource("PlaneMesh_4nop0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2087272438]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1846793863]
+transform = Transform3D(2.602, 0, 0, 0, 2.5, 0, 0, 0, 0.1, 0, 1.1398269, 0)
+shape = SubResource("BoxShape3D_shh00")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=429006074]

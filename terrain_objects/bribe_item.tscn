@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ln4ekto1yq80"]
+[gd_scene format=3 uid="uid://ln4ekto1yq80"]
 
 [ext_resource type="Script" uid="uid://bg5ev1sv1jyiy" path="res://terrain_objects/bribe_item.gd" id="1_scr"]
 
@@ -17,19 +17,19 @@ size = Vector3(1.2, 0.3, 1.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hitbox"]
 size = Vector3(1.5, 1.5, 1.5)
 
-[node name="BribeItem" type="Node3D" groups=["BribeObjects"]]
+[node name="BribeItem" type="Node3D" unique_id=229760155 groups=["BribeObjects"]]
 script = ExtResource("1_scr")
 
-[node name="StarTop" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+[node name="StarTop" type="MeshInstance3D" parent="." unique_id=844951824]
+transform = Transform3D(0.82499516, -2.4703048e-08, -0.5651398, -0.5651398, -3.6061685e-08, -0.82499516, 0, 1, -4.3711385e-08, 0, 1, 0)
 mesh = SubResource("PrismMesh_star")
 
-[node name="StarBottom" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 1.0, 0)
+[node name="StarBottom" type="MeshInstance3D" parent="." unique_id=1478207715]
+transform = Transform3D(0.9829739, -8.03177e-09, -0.18374547, 0.18374547, 4.296715e-08, 0.9829739, 0, -1, 4.371139e-08, 0, 1, 0)
 mesh = SubResource("PrismMesh_star")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=981291161]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1157084798]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("BoxShape3D_hitbox")

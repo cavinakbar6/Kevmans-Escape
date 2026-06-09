@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dnbp448yig0g8"]
+
+[ext_resource type="Texture2D" uid="uid://bn7m5gry1pyki" path="res://asset/mobil4.png" id="1_06b77"]
+[ext_resource type="Script" uid="uid://b7hijoyi0831q" path="res://terrain_objects/mobil_4.gd" id="1_kyx2t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyx2t"]
+transparency = 1
+albedo_texture = ExtResource("1_06b77")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_10ab6"]
+material = SubResource("StandardMaterial3D_kyx2t")
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xalni"]
+
+[node name="Node3D" type="Node3D" unique_id=363315146]
+script = ExtResource("1_kyx2t")
+damage = 35.0
+spawn_chance = 0.8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=67172256]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.1033406, 0)
+mesh = SubResource("PlaneMesh_10ab6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=432719109]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1440667049]
+transform = Transform3D(1.781, 0, 0, 0, 1.7411364, 0, 0, 0, 0.1, 0, 0.8336997, 0)
+shape = SubResource("BoxShape3D_xalni")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2110853274]

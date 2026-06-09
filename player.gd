@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const DEBUG_MODE = true
 # =============================================================
 # KONSTANTA DAN VARIABEL UMUM
 # =============================================================
@@ -337,19 +338,22 @@ func _physics_process(delta: float) -> void:
 	if police_chase_manager:
 		police_chase_manager.update(delta)
 	
-	# Cek input untuk mengganti kamera
-	if Input.is_action_just_pressed("toggle_camera"):
-		toggle_camera()
-	
-	if Input.is_action_just_pressed("trigger_camera_shake"):
-		normal_camera.add_shake(1)
+	if DEBUG_MODE:
+		# Cek input untuk mengganti kamera
+		if Input.is_action_just_pressed("toggle_camera"):
+			toggle_camera()
+		
+		if Input.is_action_just_pressed("trigger_camera_shake"):
+			normal_camera.add_shake(1)
+		
+		if Input.is_action_just_pressed("toggle_slow_speed"):
+			terrain_controller.toggle_slow_speed()
 	
 	# Jembatan ke sistem audio
-	if terrain_controller:
-		var current_speed = terrain_controller.terrain_velocity
-		var is_terrain_over = terrain_controller.game_over
-		var input_x = input_dir.x
-		engine_audio.update_audio(current_speed, input_x, delta, is_terrain_over)
+	var current_speed = terrain_controller.terrain_velocity
+	var is_terrain_over = terrain_controller.game_over
+	var input_x = input_dir.x
+	engine_audio.update_audio(current_speed, input_x, delta, is_terrain_over)
 
 # =============================================================
 # FUNGSI UTILITY & LOGIKA GAME

@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b52nhdjer7qpf"]
+[gd_scene format=3 uid="uid://b52nhdjer7qpf"]
 
-[ext_resource type="Script" uid="uid://cmuq1lr4liin8" path="res://terrain_objects/roadblock.gd" id="1_1cs6e"]
+[ext_resource type="Script" uid="uid://cmuq1lr4liin8" path="res://debugging/roadblock.gd" id="1_1cs6e"]
 [ext_resource type="Texture2D" uid="uid://bgtdqig1d78kn" path="res://asset/pembatas.png" id="2_1cs6e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cs6e"]
@@ -19,24 +19,24 @@ size = Vector3(1, 1.30774, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_o282f"]
 size = Vector3(1, 1.30774, 1)
 
-[node name="Roadblock" type="Node3D"]
+[node name="Roadblock" type="Node3D" unique_id=1417703125]
 script = ExtResource("1_1cs6e")
 spawn_chance = 1000.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=461250083]
 transform = Transform3D(3.3298306, 0, 0, 0, -8.7422805e-08, -2.7528162, 0, 2.0000002, -1.2032947e-07, 0.28101665, 0.627588, 0)
 mesh = SubResource("PlaneMesh_fdvry")
 skeleton = NodePath("../StaticBody3D2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=105102167]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=346608453]
 transform = Transform3D(1.4116, 0, 0, 0, 2.16628, 0, 0, 0, 1, 0, 1.01968, 0)
 shape = SubResource("BoxShape3D_wptxm")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=112584733]
 disable_mode = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2062688768]
 transform = Transform3D(1.30724, 0, 0, 0, 2.16628, 0, 0, 0, 1, 0, 1.01968, 0)
 shape = SubResource("BoxShape3D_o282f")

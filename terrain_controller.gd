@@ -316,11 +316,14 @@ func _spawn_scenery(block: Node3D) -> void:
 
 # ✅ LEGACY: Load terrain scenes
 func _load_terrain_scenes(target_path: String, target_array: Array) -> void:
+	target_array.clear()
 	var dir = DirAccess.open(target_path)
 	if dir == null:
 		push_error("Could not open directory: " + target_path)
 		return
 	for scene_path in dir.get_files():
+		if scene_path.contains("scaling_test.tscn") or scene_path.contains("xx"):
+			continue
 		if scene_path.ends_with(".tscn"):
 			target_array.append(load(target_path + "/" + scene_path))
 
@@ -333,3 +336,13 @@ func _load_scenery_scenes(target_path: String, target_array: Array) -> void:
 	for scene_path in dir.get_files():
 		if scene_path.ends_with(".tscn"):
 			target_array.append(load(target_path + "/" + scene_path))
+
+var slow_speed = false
+var temp_vel
+func toggle_slow_speed() -> void:
+	if not slow_speed:
+		temp_vel = terrain_velocity
+		terrain_velocity = 1.0
+	else:
+		terrain_velocity = temp_vel
+	slow_speed = not slow_speed

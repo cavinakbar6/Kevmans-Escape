@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://doboup7dmncy"]
+
+[ext_resource type="Script" uid="uid://cewka8s2v1e6j" path="res://terrain_objects/mobil_3.gd" id="1_8cq71"]
+[ext_resource type="Texture2D" uid="uid://ym8yo82db7yi" path="res://asset/mobil3.png" id="2_fynrr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ae1hc"]
+transparency = 1
+albedo_texture = ExtResource("2_fynrr")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b4p0b"]
+material = SubResource("StandardMaterial3D_ae1hc")
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fynrr"]
+
+[node name="Node3D" type="Node3D" unique_id=1542320228]
+script = ExtResource("1_8cq71")
+damage = 50.0
+spawn_chance = 0.8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1938685475]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.0946796, 0)
+mesh = SubResource("PlaneMesh_b4p0b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1516120518]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=9663536]
+transform = Transform3D(1.843, 0, 0, 0, 2.016418, 0, 0, 0, 0.1, 0, 0.89574456, 0)
+shape = SubResource("BoxShape3D_fynrr")
+
+[node name="Headlight" type="Area3D" parent="." unique_id=881276579]

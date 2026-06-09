@@ -28,6 +28,7 @@ material = SubResource("StandardMaterial3D_myq4o")
 [node name="mobil" type="Node3D" unique_id=1629456630]
 transform = Transform3D(1.3685, 0, 0, 0, 1.1818, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_csmvf")
+damage = 35.0
 spawn_chance = 0.8
 horn_sounds = Array[AudioStream]([ExtResource("3_csmvf"), ExtResource("3_myq4o")])
 spawn_x_range = Vector2(0.15, 0.85)
@@ -40,7 +41,7 @@ mesh = SubResource("PlaneMesh_7xyg1")
 transform = Transform3D(1, 0, 0, 0, 0.522848, 0, 0, 0, 1, 0, 0.908863, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1935349969]
-transform = Transform3D(1.396083, 0, 0, 0, 2.9563997, 0, 0, 0, 0.75300634, 0, 0, 0)
+transform = Transform3D(1.369, 0, 0, 0, 2.956, 0, 0, 0, 0.1, 0, -0.45196998, 0)
 shape = SubResource("BoxShape3D_7xyg1")
 
 [node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=1903278624]
