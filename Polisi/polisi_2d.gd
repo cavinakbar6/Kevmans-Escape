@@ -128,7 +128,7 @@ func _on_body_entered(body: Node3D) -> void:
 			crash_z_offset = global_position.z - player.global_position.z
 			
 			# KOCOK DADU 50:50!
-			if randf() > 1.5:
+			if randf() > 0.5:
 				# 50% MUNDUR BIASA
 				if has_node("NabrakAudio") and $NabrakAudio.stream:
 					$NabrakAudio.play()
