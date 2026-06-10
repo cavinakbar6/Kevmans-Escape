@@ -127,9 +127,7 @@ func _on_body_entered(body: Node3D) -> void:
 		if police_unit_data and (police_unit_data.state == 3 or police_unit_data.state == 4):
 			crash_z_offset = global_position.z - player.global_position.z
 			
-			# KOCOK DADU 50:50!
 			if randf() > 0.5:
-				# 50% MUNDUR BIASA
 				if has_node("NabrakAudio") and $NabrakAudio.stream:
 					$NabrakAudio.play()
 				police_unit_data.state = 5
@@ -140,11 +138,8 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _ledakkan_polisi(benda_target: Node3D) -> void:
 	if Ledakan_scene:
-		# Spawn ledakannya ke dunia
 		var efek = Ledakan_scene.instantiate()
 		benda_target.add_child(efek)
-		efek.global_position = global_position # Posisinya pas di tempat polisi
-		
-	# Bikin polisinya mati / ngilang (masuk state 6 Cooldown)
+		efek.global_position = global_position 
 	police_unit_data.state = 6
 	police_unit_data.cooldown_timer = 5.0
