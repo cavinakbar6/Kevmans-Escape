@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dwp0bxj4j5mem" path="res://asset/truk2.png" id="1_grbty"]
 [ext_resource type="Script" uid="uid://dskda5d2iq1op" path="res://terrain_objects/truk_2.gd" id="1_u11c8"]
+[ext_resource type="AudioStream" uid="uid://cco8ckghrl0dt" path="res://Sound/Horn/truk2.wav" id="3_ahnda"]
+[ext_resource type="AudioStream" uid="uid://o4vp2ed6eei7" path="res://Sound/Truk/truk lewat.wav" id="4_nkihv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u11c8"]
 transparency = 1
@@ -12,6 +14,24 @@ material = SubResource("StandardMaterial3D_u11c8")
 orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_grbty"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkw78"]
+albedo_color = Color(1, 1, 1, 0)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.33
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ahnda"]
+material = SubResource("StandardMaterial3D_lkw78")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahnda"]
+albedo_color = Color(1, 1, 1, 0)
+emission_enabled = true
+emission = Color(1, 0.24705882, 0, 1)
+emission_energy_multiplier = 2.33
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nkihv"]
+material = SubResource("StandardMaterial3D_ahnda")
 
 [node name="Node3D" type="Node3D" unique_id=716736500]
 transform = Transform3D(1.0146422, 0, 0, 0, 0.933081, 0, 0, 0, 1, 0, 0, 0)
@@ -30,4 +50,69 @@ mesh = SubResource("PlaneMesh_1ufdo")
 transform = Transform3D(2.231, 0, 0, 0, 2.209, 0, 0, 0, 0.1, 0, 1.108932, 0)
 shape = SubResource("BoxShape3D_grbty")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=2124675527]
+[node name="Headlight" type="Area3D" parent="." unique_id=2124675527]
+
+[node name="RightLight" type="MeshInstance3D" parent="Headlight" unique_id=603643534]
+transform = Transform3D(0.07975953, 0, 0, 0, -2.1855689e-08, -0.0639373, 0, 0.49999994, -2.794788e-09, -0.7600092, 1.0286467, 0.003775064)
+mesh = SubResource("PlaneMesh_ahnda")
+skeleton = NodePath("../../../..")
+
+[node name="Beam" type="SpotLight3D" parent="Headlight/RightLight" unique_id=1794068236]
+transform = Transform3D(-9.408168, 2.0992209e-14, -6.508298e-07, 1.3835422e-07, -6.0928606e-08, -2.0000002, -9.642387e-14, -22.224102, 6.770418e-07, 0.051555634, 0.13148803, -0.05687523)
+
+[node name="RightLight2" type="MeshInstance3D" parent="Headlight" unique_id=85030948]
+transform = Transform3D(0.07975953, 0, 0, 0, -2.1855689e-08, -0.0639373, 0, 0.49999994, -2.794788e-09, -0.9545584, 1.0286467, 0.003775064)
+mesh = SubResource("PlaneMesh_ahnda")
+skeleton = NodePath("../../../..")
+
+[node name="LeftLight" type="MeshInstance3D" parent="Headlight" unique_id=1195696175]
+transform = Transform3D(0.07975953, 0, 0, 0, -2.1855689e-08, -0.0639373, 0, 0.49999994, -2.794788e-09, 0.8229919, 1.0681875, 0.003775064)
+mesh = SubResource("PlaneMesh_ahnda")
+skeleton = NodePath("../../../..")
+
+[node name="Beam" type="SpotLight3D" parent="Headlight/LeftLight" unique_id=2072128993]
+transform = Transform3D(-9.408168, 2.0992209e-14, -6.508298e-07, 1.3835422e-07, -6.0928606e-08, -2.0000002, -9.642387e-14, -22.224102, 6.770418e-07, 0.051555634, 0.13148803, -0.05687523)
+
+[node name="LeftLight2" type="MeshInstance3D" parent="Headlight" unique_id=1740902332]
+transform = Transform3D(0.056669023, 0, 0, 0, -2.1855689e-08, -0.0639373, 0, 0.49999994, -2.794788e-09, 0.9871667, 1.0681875, 0.003775064)
+mesh = SubResource("PlaneMesh_ahnda")
+skeleton = NodePath("../../../..")
+
+[node name="Area3D" type="Area3D" parent="Headlight" unique_id=1866350397]
+
+[node name="bulb" type="MeshInstance3D" parent="Headlight/Area3D" unique_id=1140695305]
+transform = Transform3D(0.030071557, 0, 0, 0, -2.1855689e-08, -0.022577407, 0, 0.49999994, -9.868898e-10, 0.79104704, 2.7639332, 0.003775064)
+mesh = SubResource("PlaneMesh_nkihv")
+skeleton = NodePath("../../../..")
+
+[node name="bulb2" type="MeshInstance3D" parent="Headlight/Area3D" unique_id=1050831747]
+transform = Transform3D(0.030071557, 0, 0, 0, -2.1855689e-08, -0.033119988, 0, 0.49999994, -1.4477207e-09, 0.5216306, 2.8643918, 0.003775064)
+mesh = SubResource("PlaneMesh_nkihv")
+skeleton = NodePath("../../../..")
+
+[node name="bulb3" type="MeshInstance3D" parent="Headlight/Area3D" unique_id=549590609]
+transform = Transform3D(0.03392283, 0, 0, 0, -2.1855689e-08, -0.03176628, 0, 0.49999994, -1.3885483e-09, 0.24762073, 2.892073, 0.003775064)
+mesh = SubResource("PlaneMesh_nkihv")
+skeleton = NodePath("../../../..")
+
+[node name="bulb4" type="MeshInstance3D" parent="Headlight/Area3D" unique_id=787463955]
+transform = Transform3D(0.0335903, 0, 0, 0, -2.1855689e-08, -0.0299789, 0, 0.49999994, -1.3104193e-09, -0.051052723, 2.8868253, 0.003775064)
+mesh = SubResource("PlaneMesh_nkihv")
+skeleton = NodePath("../../../..")
+
+[node name="bulb5" type="MeshInstance3D" parent="Headlight/Area3D" unique_id=1495499464]
+transform = Transform3D(0.034379236, 0, 0, 0, -2.1855689e-08, -0.025813723, 0, 0.49999994, -1.1283539e-09, -0.39406484, 2.8728566, 0.003775064)
+mesh = SubResource("PlaneMesh_nkihv")
+skeleton = NodePath("../../../..")
+
+[node name="bulb6" type="MeshInstance3D" parent="Headlight/Area3D" unique_id=712965387]
+transform = Transform3D(0.032381475, 0, 0, 0, -2.1855689e-08, -0.023773948, 0, 0.49999994, -1.0391922e-09, -0.7235073, 2.7947695, 0.003775064)
+mesh = SubResource("PlaneMesh_nkihv")
+skeleton = NodePath("../../../..")
+
+[node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=770596593]
+stream = ExtResource("3_ahnda")
+volume_db = 15.0
+
+[node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1699172352]
+stream = ExtResource("4_nkihv")

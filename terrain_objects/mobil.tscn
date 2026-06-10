@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4urdk8aof3hp" path="res://terrain_objects/mobil.gd" id="1_csmvf"]
 [ext_resource type="Texture2D" uid="uid://cncun0kv1khk5" path="res://asset/mobil rush.png" id="2_csmvf"]
-[ext_resource type="AudioStream" uid="uid://ccmflf6d8bekt" path="res://Sound/Mobil/carhorn.mp3" id="3_csmvf"]
-[ext_resource type="AudioStream" uid="uid://cad7fw0rqgamd" path="res://Sound/Mobil/Car Horn Beep Beep.wav" id="3_myq4o"]
+[ext_resource type="AudioStream" uid="uid://cad7fw0rqgamd" path="res://Sound/Horn/mobil.wav" id="3_6jxow"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="4_6jxow"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cbxk"]
@@ -30,7 +29,6 @@ transform = Transform3D(1.3685, 0, 0, 0, 1.1818, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_csmvf")
 damage = 35.0
 spawn_chance = 0.8
-horn_sounds = Array[AudioStream]([ExtResource("3_csmvf"), ExtResource("3_myq4o")])
 spawn_x_range = Vector2(0.15, 0.85)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=712969452]
@@ -44,7 +42,8 @@ transform = Transform3D(1, 0, 0, 0, 0.522848, 0, 0, 0, 1, 0, 0.908863, 0)
 transform = Transform3D(1.369, 0, 0, 0, 2.956, 0, 0, 0, 0.1, 0, -0.45196998, 0)
 shape = SubResource("BoxShape3D_7xyg1")
 
-[node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=1903278624]
+[node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=1903278624]
+stream = ExtResource("3_6jxow")
 volume_db = 55.923
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=309357600]

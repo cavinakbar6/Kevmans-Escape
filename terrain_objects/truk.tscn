@@ -45,7 +45,7 @@ skeleton = NodePath("../StaticBody3D2")
 transform = Transform3D(2.266, 0, 0, 0, 3.093, 0, 0, 0, 0.1, -0.020879803, 0, 0)
 shape = SubResource("BoxShape3D_ap2ud")
 
-[node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=2056570804]
+[node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=2056570804]
 stream = ExtResource("3_wyfyf")
 volume_db = 15.0
 

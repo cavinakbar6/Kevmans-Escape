@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfrbmtbwlka5m" path="res://terrain_objects/mobil_2.gd" id="1_1cagh"]
 [ext_resource type="Texture2D" uid="uid://by1kcwadlid2l" path="res://asset/mobil2.png" id="2_va5yh"]
+[ext_resource type="AudioStream" uid="uid://bnble60acj208" path="res://Sound/Horn/mobil2.wav" id="3_bgb8k"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_va5yh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgb8k"]
@@ -32,7 +33,9 @@ material = SubResource("StandardMaterial3D_4325f")
 
 [node name="Node3D" type="Node3D" unique_id=1161515154]
 script = ExtResource("1_1cagh")
+damage = 40.0
 spawn_chance = 0.8
+spawn_x_range = Vector2(0.15, 0.85)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1282446141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6543484, 0)
@@ -44,7 +47,8 @@ mesh = SubResource("PlaneMesh_4325f")
 transform = Transform3D(1.731, 0, 0, 0, 1.6208425, 0, 0, 0, 0.1, 0, 0.5673075, 0)
 shape = SubResource("BoxShape3D_b124y")
 
-[node name="SpawnSound" type="AudioStreamPlayer3D" parent="." unique_id=380725970]
+[node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=380725970]
+stream = ExtResource("3_bgb8k")
 volume_db = 55.923
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1479370412]
