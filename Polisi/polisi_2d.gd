@@ -1,11 +1,10 @@
 extends Area3D
 
-@onready var red_light: OmniLight3D = $Sprite3D/RedLight
-@onready var blue_light: OmniLight3D = $Sprite3D/BlueLight
+@onready var red_light: OmniLight3D = $MeshInstance3D/RedLight
+@onready var blue_light: OmniLight3D = $MeshInstance3D/BlueLight
 @export var tex_normal_back: Texture2D
 @export var tex_heavy_back: Texture2D
 @export var Ledakan_scene: PackedScene
-@onready var sprite = $Sprite3D
 
 var police_unit_data = null
 var player: Node3D
@@ -25,13 +24,13 @@ func _ready() -> void:
 
 func set_unit_data(unit_data) -> void:
 	police_unit_data = unit_data
-	if police_unit_data.type == 1:
-		if tex_heavy_back:
-			sprite.texture = tex_heavy_back
-	else:
-		if tex_normal_back:
-			sprite.texture = tex_normal_back
-			
+	#if police_unit_data.type == 1:
+		#if tex_heavy_back:
+			#sprite.texture = tex_heavy_back
+	#else:
+		#if tex_normal_back:
+			#sprite.texture = tex_normal_back
+			#
 func _process(delta: float) -> void:
 	if not player or not police_unit_data:
 		hide()

@@ -12,6 +12,14 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2xxqc"]
 load_path = "res://.godot/imported/polisi_belakang.png-5c02cbfff3bcccf9ad4224f53cd4de93.s3tc.ctex"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xxqc"]
+transparency = 1
+albedo_texture = ExtResource("2_k2hxo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ur768"]
+material = SubResource("StandardMaterial3D_2xxqc")
+orientation = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2xxqc"]
 
 [node name="Polisi2d" type="Area3D" unique_id=48982920]
@@ -22,20 +30,18 @@ tex_heavy_back = ExtResource("3_v3ig7")
 Ledakan_scene = ExtResource("4_2xxqc")
 siren_sounds = Array[AudioStream]([ExtResource("2_1ocp4"), ExtResource("3_ae7y1")])
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=201387566]
-transform = Transform3D(0.45918107, 0, 0, 0, 0.15637146, 0, 0, 0, 0.9999999, 0, -0.10710293, 0.8055221)
-pixel_size = 0.004
-billboard = 2
-texture = ExtResource("2_k2hxo")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1716638459]
+transform = Transform3D(0.9450981, 0, 0, 0, 0.32222724, 0, 0, 0, 0.99999994, 0, -0.08588681, 0.99999994)
+mesh = SubResource("PlaneMesh_ur768")
 
-[node name="BlueLight" type="OmniLight3D" parent="Sprite3D" unique_id=940398403]
-transform = Transform3D(0.99502486, 0, 0, 0, 0.6692831, 0, 0, 0, 1, -0.32824534, 0.6814541, 0)
+[node name="BlueLight" type="OmniLight3D" parent="MeshInstance3D" unique_id=940398403]
+transform = Transform3D(1.0580912, 0, 0, 0, 1.1527646, 0, 0, 0, 0.82554495, -0.32461974, 0.6483581, 0.030795693)
 light_color = Color(0.38377172, 0.50932735, 0.8894252, 1)
 light_energy = 5.0
 omni_range = 15.0
 
-[node name="RedLight" type="OmniLight3D" parent="Sprite3D" unique_id=837174665]
-transform = Transform3D(0.99502486, 0, 0, 0, 0.6692831, 0, 0, 0, 1, 0.3484835, 0.6812436, 0)
+[node name="RedLight" type="OmniLight3D" parent="MeshInstance3D" unique_id=837174665]
+transform = Transform3D(1.0580912, 0, 0, 0, 1.1527646, 0, 0, 0, 0.82554495, 0.38587326, 0.61787355, 0.050207198)
 light_color = Color(0.9597383, 0, 0.104658, 1)
 light_energy = 5.0
 omni_range = 15.0
