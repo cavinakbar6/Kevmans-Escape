@@ -39,6 +39,7 @@ tonemap_mode = 3
 glow_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofssd"]
+radius = 0.4501953
 
 [sub_resource type="BoxMesh" id="BoxMesh_mc2jv"]
 
@@ -86,6 +87,7 @@ script = ExtResource("1_rjl68")
 terrain_controller = NodePath("../TerrainController")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1902967093]
+transform = Transform3D(0.82751614, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ofssd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=2134901097]
