@@ -31,6 +31,7 @@ func _ready() -> void:
 	gear_shift_sfx.bus = "SFX"
 	tire_screech_sfx.bus = "SFX"
 	game_over_music.bus = "Music"
+	
 
 # =============================================================
 # UPDATE AUDIO SAAT GAME BERJALAN

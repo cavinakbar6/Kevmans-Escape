@@ -47,21 +47,25 @@ light_energy = 5.0
 omni_range = 15.0
 
 [node name="SirenAudio" type="AudioStreamPlayer3D" parent="." unique_id=866622653]
+bus = &"SFX"
 
 [node name="RemAudio" type="AudioStreamPlayer3D" parent="." unique_id=1174077481]
 transform = Transform3D(1, 0, 0, 0, 0.37145215, 0, 0, 0, 1, 0, 0, 0)
 stream = ExtResource("5_1ocp4")
 volume_db = -10.0
 max_distance = 50.0
+bus = &"SFX"
 
 [node name="MesinAudio" type="AudioStreamPlayer3D" parent="." unique_id=369664417]
 transform = Transform3D(1, 0, 0, 0, 0.37145215, 0, 0, 0, 1, 0, 0, 0)
 volume_db = 80.0
 autoplay = true
 max_distance = 100.0
+bus = &"SFX"
 
 [node name="NabrakAudio" type="AudioStreamPlayer3D" parent="." unique_id=1693161638]
 stream = ExtResource("7_07e7r")
+bus = &"SFX"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1420646917]
 transform = Transform3D(1.600151, 0, 0, 0, 1, 0, 0, 0, 1.2402925, 0, 0, 0.2921046)

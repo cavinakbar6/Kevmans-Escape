@@ -137,6 +137,8 @@ skeleton = NodePath("../../../..")
 [node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=499911760]
 stream = ExtResource("3_uxiej")
 volume_db = 15.0
+bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1294165624]
 stream = ExtResource("4_re3ra")
+bus = &"SFX"

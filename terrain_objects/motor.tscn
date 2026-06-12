@@ -55,5 +55,7 @@ spot_angle = 30.083801
 
 [node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=733515586]
 stream = ExtResource("3_j3w7b")
+bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1816041604]
+bus = &"SFX"

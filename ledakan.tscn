@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5q3nrxth12kn"]
 
-[ext_resource type="Script" uid="uid://t50ekso78b1p" path="res://ledakan.gd" id="1_j750a"]
+[ext_resource type="Script" path="res://ledakan.gd" id="1_j750a"]
 [ext_resource type="Texture2D" uid="uid://rfg2iavbftjm" path="res://explosion-ezgif.com-gif-to-sprite-converter.png" id="2_36vs6"]
 [ext_resource type="AudioStream" uid="uid://ccfh4jitq1wy4" path="res://Sound/Ledakan/Minecraft Explosion Meme Sound Effect - QuickSounds.com.mp3" id="3_36vs6"]
 [ext_resource type="AudioStream" uid="uid://23iaucx3aa5c" path="res://Sound/Ledakan/MrBeast Explosion Sound - QuickSounds.com.mp3" id="3_bhyea"]
@@ -588,3 +588,4 @@ frame_progress = 1.0
 
 [node name="Ledakan" type="AudioStreamPlayer3D" parent="." unique_id=1431512678]
 stream = ExtResource("3_36vs6")
+bus = &"SFX"

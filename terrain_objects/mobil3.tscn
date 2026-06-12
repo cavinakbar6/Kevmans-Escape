@@ -108,6 +108,8 @@ mesh = SubResource("SphereMesh_ntkq8")
 [node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=1737959281]
 stream = ExtResource("3_b4p0b")
 volume_db = 55.923
+bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=187013550]
 stream = ExtResource("3_ae1hc")
+bus = &"SFX"

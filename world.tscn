@@ -163,10 +163,12 @@ stream = ExtResource("7_wse8f")
 [node name="CrashSound" type="AudioStreamPlayer" parent="Player/Audio" unique_id=933131613]
 stream = ExtResource("10_il2jm")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="HealSound" type="AudioStreamPlayer" parent="Player/Audio" unique_id=1353663792]
 stream = ExtResource("11_wjb0r")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="TerrainController" parent="." unique_id=947274155 node_paths=PackedStringArray("building_generator") instance=ExtResource("1_wvryj")]
 TerrainObjects = Array[PackedScene]([ExtResource("13_g1i3r"), ExtResource("14_my276"), ExtResource("15_yx0jh"), ExtResource("16_1ew0l"), ExtResource("17_ryup7"), ExtResource("18_ytpkv"), ExtResource("19_jas3d"), ExtResource("20_7htu6"), ExtResource("21_7qk3m"), ExtResource("22_xpnt2"), ExtResource("23_ruyqm"), ExtResource("24_fnoqa")])

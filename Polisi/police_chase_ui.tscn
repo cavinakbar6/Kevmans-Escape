@@ -107,3 +107,4 @@ color = Color(1, 0.2, 0.1, 0)
 
 [node name="NabrakAudio" type="AudioStreamPlayer3D" parent="." unique_id=555401316]
 stream = ExtResource("2_og7br")
+bus = &"SFX"

@@ -48,9 +48,11 @@ shape = SubResource("BoxShape3D_ap2ud")
 [node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=2056570804]
 stream = ExtResource("3_wyfyf")
 volume_db = 15.0
+bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1132273705]
 stream = ExtResource("4_ap2ud")
+bus = &"SFX"
 
 [node name="Headlight" type="Area3D" parent="." unique_id=1675069419]
 
