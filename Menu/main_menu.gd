@@ -25,7 +25,10 @@ func _update_high_score_display() -> void:
 
 # Kalau tombol Play ditekan
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://INTRO/intro.tscn")
+	if Settings.skip_intro:
+		get_tree().change_scene_to_file("res://world.tscn")
+	else:
+		get_tree().change_scene_to_file("res://INTRO/intro.tscn")
 
 func _on_settings_pressed() -> void:
 	settings_ui.visible = true

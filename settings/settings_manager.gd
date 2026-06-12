@@ -7,6 +7,7 @@ var master_volume: float = 1.0
 var sfx_volume: float = 1.0
 var music_volume: float = 1.0
 var is_fullscreen: bool = false
+var skip_intro: bool = false
 
 @onready var master_bus = AudioServer.get_bus_index("Master")
 var sfx_bus
@@ -46,6 +47,7 @@ func save_settings() -> void:
 	config.set_value("audio", "sfx", sfx_volume)
 	config.set_value("audio", "music", music_volume)
 	config.set_value("display", "fullscreen", is_fullscreen)
+	config.set_value("display", "skip_intro", skip_intro)
 	config.save(save_path)
 	
 	apply_audio_volumes()
@@ -57,6 +59,7 @@ func load_settings() -> void:
 		sfx_volume = config.get_value("audio", "sfx", 1.0)
 		music_volume = config.get_value("audio", "music", 1.0)
 		is_fullscreen = config.get_value("display", "fullscreen", false)
+		skip_intro = config.get_value("display", "skip_intro", false)
 	
 	apply_audio_volumes()
 	apply_fullscreen()

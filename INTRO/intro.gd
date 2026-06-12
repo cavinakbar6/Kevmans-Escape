@@ -1,13 +1,15 @@
 extends Control
 
-@onready var skip_dialog = $SkipDialog
 @onready var intro_container = $IntroContainer
 @onready var image_display = $IntroContainer/ImageDisplay
 @onready var black_overlay = $BlackOverlay
 @onready var audio_player = $IntroAudio
+@onready var disclaimer_overlay = $IntroContainer/DisclaimerOverlay
+@onready var delay_label = $IntroContainer/DisclaimerOverlay/VBox/DelayLabel
 
 # Kombinasi gambar (tanpa sound)
 var intro_data = [
+	"res://INTRO/workinprogress.png",
 	"res://INTRO/Gambar 1.png",
 	"res://INTRO/Gambar 2.png",
 	"res://INTRO/Gambar 3.png",
@@ -23,25 +25,11 @@ var intro_playing = false
 var can_skip = false
 
 func _ready() -> void:
-	intro_container.visible = false
-	black_overlay.visible = true
-	black_overlay.modulate = Color(1, 1, 1, 0)
-	skip_dialog.visible = true
-
-func _on_watch_intro_pressed() -> void:
-	skip_dialog.visible = false
-	
-	# Fade to black sebelum mulai intro
-	var tw = create_tween()
-	tw.tween_property(black_overlay, "modulate:a", 1.0, 0.5)
-	await tw.finished
-	
 	intro_container.visible = true
+	black_overlay.visible = true
+	black_overlay.modulate = Color(1, 1, 1, 1)
 	can_skip = true
 	_play_intro()
-
-func _on_skip_intro_pressed() -> void:
-	_start_game()
 
 func _input(event: InputEvent) -> void:
 	if can_skip and event is InputEventKey and event.pressed:
@@ -60,6 +48,11 @@ func _play_intro() -> void:
 		if tex:
 			image_display.texture = tex
 			
+			if data == "res://INTRO/workinprogress.png":
+				disclaimer_overlay.visible = true
+			else:
+				disclaimer_overlay.visible = false
+			
 			# Fade In image + Fade Out black overlay
 			image_display.modulate.a = 1.0
 			var tw_in = create_tween()
@@ -68,8 +61,15 @@ func _play_intro() -> void:
 			
 			if not intro_playing: break
 			
-			# Tampilkan gambar selama durasi intro (3 detik)
-			await get_tree().create_timer(3.0).timeout
+			# Jika ini gambar disclaimer, hitung mundur 5 detik
+			if data == "res://INTRO/workinprogress.png":
+				for sec in range(5, 0, -1):
+					if not intro_playing: break
+					delay_label.text = "Continuing in " + str(sec) + "..."
+					await get_tree().create_timer(1.0).timeout
+			else:
+				# Tampilkan gambar selama durasi intro biasa (3 detik)
+				await get_tree().create_timer(3.0).timeout
 			
 			if not intro_playing: break
 			
