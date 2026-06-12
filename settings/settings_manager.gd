@@ -9,6 +9,9 @@ var music_volume: float = 1.0
 var is_fullscreen: bool = false
 var skip_intro: bool = false
 
+var has_shown_obstacle_tutorial: bool = false
+var has_shown_wanted_tutorial: bool = false
+
 @onready var master_bus = AudioServer.get_bus_index("Master")
 var sfx_bus
 var music_bus
@@ -48,6 +51,8 @@ func save_settings() -> void:
 	config.set_value("audio", "music", music_volume)
 	config.set_value("display", "fullscreen", is_fullscreen)
 	config.set_value("display", "skip_intro", skip_intro)
+	config.set_value("tutorial", "obstacle", has_shown_obstacle_tutorial)
+	config.set_value("tutorial", "wanted", has_shown_wanted_tutorial)
 	config.save(save_path)
 	
 	apply_audio_volumes()
@@ -60,6 +65,8 @@ func load_settings() -> void:
 		music_volume = config.get_value("audio", "music", 1.0)
 		is_fullscreen = config.get_value("display", "fullscreen", false)
 		skip_intro = config.get_value("display", "skip_intro", false)
+		has_shown_obstacle_tutorial = config.get_value("tutorial", "obstacle", false)
+		has_shown_wanted_tutorial = config.get_value("tutorial", "wanted", false)
 	
 	apply_audio_volumes()
 	apply_fullscreen()

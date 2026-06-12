@@ -59,6 +59,8 @@ var high_score_label: Label
 @onready var health_bar: ProgressBar = get_node("/root/World/MainUI/HealthBar")
 @onready var health_label: Label = get_node("/root/World/MainUI/HealthLabel")
 
+var tutorial_overlay_instance: Node = null
+
 @onready var car_mesh: MeshInstance3D = $MeshInstance3D
 
 # Dashboard
@@ -132,6 +134,13 @@ func _ready() -> void:
 	add_child(wanted_ui_instance)
 	_update_wanted_ui()
 	move_child(wanted_ui_instance, 0) # Index 0 = paling belakang
+	
+	# =============================================================
+	# INISIALISASI TUTORIAL OVERLAY
+	# =============================================================
+	var tutorial_scene = preload("res://tutorial_overlay.tscn")
+	tutorial_overlay_instance = tutorial_scene.instantiate()
+	get_node("/root/World/MainUI").add_child(tutorial_overlay_instance)
 	
 	# DEBUGGING layer WantedUI yang melebihi layer PauseMenu (tolong woilah cik)
 	#print("wanted_ui_instance priority: ",wanted_ui_instance.get_process_priority())
@@ -369,6 +378,21 @@ func start_game() -> void:
 	# Sembunyikan UI "Mulai"
 	if is_instance_valid(start_ui):
 		start_ui.visible = false
+
+	show_tutorial("obstacle")
+
+func show_tutorial(type: String) -> void:
+	if not is_instance_valid(tutorial_overlay_instance): return
+	
+	if type == "obstacle" and not Settings.has_shown_obstacle_tutorial:
+		Settings.has_shown_obstacle_tutorial = true
+		Settings.save_settings()
+		tutorial_overlay_instance.show_tutorial("HINDARI RINTANGAN!", "Jangan menabrak kendaraan lain atau objek di jalan raya.\n\nTabrakan akan merusak mesin mobilmu (Health berkurang) dan memancing perhatian polisi!")
+		
+	elif type == "wanted" and not Settings.has_shown_wanted_tutorial:
+		Settings.has_shown_wanted_tutorial = true
+		Settings.save_settings()
+		tutorial_overlay_instance.show_tutorial("WANTED LEVEL NAIK!", "Bintang kejaran polisimu bertambah karena menabrak!\n\nSemakin banyak bintang, kejaran polisi akan semakin agresif. Jika mencapai 6 bintang, kamu akan BUSTED dan game berakhir!")
 
 # ... (fungsi add_score, toggle_camera, show_game_over_ui tidak berubah) ...
 
@@ -624,6 +648,7 @@ func receive_hit(type: String, obj: Node3D) -> void:
 		# Nambah Bintang Pas Nabrak!
 		wanted_stars += 1
 		_update_wanted_ui()
+		show_tutorial("wanted")
 		
 		# ========================================================
 		# MEMANGGIL EFEK GETAR DI SCRIPT KAMERA SAAT NABRAK
