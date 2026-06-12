@@ -32,9 +32,12 @@ func _on_play_pressed() -> void:
 
 func _on_settings_pressed() -> void:
 	settings_ui.visible = true
+	if is_instance_valid(high_score_label):
+		high_score_label.visible = false
 
 func _on_settings_back() -> void:
 	settings_ui.visible = false
+	_update_high_score_display()
 
 # Kalau tombol Exit ditekan
 func _on_exit_pressed() -> void:
