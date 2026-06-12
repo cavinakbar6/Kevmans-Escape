@@ -17,13 +17,25 @@
 [ext_resource type="AudioStream" uid="uid://dn1e82yptlnim" path="res://Sound/heal(placeholder aku bingung).wav" id="11_wjb0r"]
 [ext_resource type="Texture2D" uid="uid://c30im8nn0bi7j" path="res://asset/backto_mainmenu.png" id="12_70uel"]
 [ext_resource type="Texture2D" uid="uid://hlgbr6jxe45m" path="res://asset/gamespace_steer3.png" id="12_bc84e"]
+[ext_resource type="PackedScene" uid="uid://cyus6r1w5g64f" path="res://terrain_objects/truk.tscn" id="13_g1i3r"]
 [ext_resource type="Texture2D" uid="uid://dk5aqx03gqw07" path="res://asset/gameover.png" id="13_hiqwa"]
 [ext_resource type="Script" uid="uid://cdfcb038fv0bn" path="res://dashboard_layer.gd" id="13_mc2jv"]
+[ext_resource type="PackedScene" uid="uid://g3qe86q88v1p" path="res://terrain_objects/repair_item.tscn" id="14_my276"]
 [ext_resource type="Texture2D" uid="uid://nhwrka35b5lk" path="res://asset/gamespace_dashboard.png" id="15_hiqwa"]
+[ext_resource type="PackedScene" uid="uid://ln4ekto1yq80" path="res://terrain_objects/bribe_item.tscn" id="15_yx0jh"]
+[ext_resource type="PackedScene" uid="uid://bmvaul1bcputg" path="res://terrain_objects/mobil1.tscn" id="16_1ew0l"]
 [ext_resource type="PackedScene" uid="uid://mas2bqeaeobp" path="res://Menu/pause_menu.tscn" id="16_pausemenu"]
 [ext_resource type="Script" uid="uid://by1jkd7ffhsu3" path="res://day_night_cycle.gd" id="17_daynight"]
+[ext_resource type="PackedScene" uid="uid://m5pb4d3y6aul" path="res://terrain_objects/mobil2.tscn" id="17_ryup7"]
+[ext_resource type="PackedScene" uid="uid://doboup7dmncy" path="res://terrain_objects/mobil3.tscn" id="18_ytpkv"]
+[ext_resource type="PackedScene" uid="uid://dnbp448yig0g8" path="res://terrain_objects/mobil4.tscn" id="19_jas3d"]
 [ext_resource type="Texture2D" uid="uid://cgv0cq5tol6gm" path="res://asset/arrow_key.png" id="19_wjb0r"]
+[ext_resource type="PackedScene" uid="uid://decgwq4gwr62g" path="res://terrain_objects/truk1.tscn" id="20_7htu6"]
+[ext_resource type="PackedScene" uid="uid://uln1c8a0t1m4" path="res://terrain_objects/truk2.tscn" id="21_7qk3m"]
 [ext_resource type="Script" uid="uid://di1gals2clhjv" path="res://building_generator.gd" id="22_wukud"]
+[ext_resource type="PackedScene" uid="uid://cdvxicby2p3dn" path="res://terrain_objects/motor.tscn" id="22_xpnt2"]
+[ext_resource type="PackedScene" uid="uid://d2f7tjkkbinlb" path="res://terrain_objects/mobil5.tscn" id="23_ruyqm"]
+[ext_resource type="PackedScene" uid="uid://ccft5ene0f36o" path="res://terrain_objects/mobil6.tscn" id="24_fnoqa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_om122"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -157,6 +169,7 @@ stream = ExtResource("11_wjb0r")
 volume_db = -10.0
 
 [node name="TerrainController" parent="." unique_id=947274155 node_paths=PackedStringArray("building_generator") instance=ExtResource("1_wvryj")]
+TerrainObjects = Array[PackedScene]([ExtResource("13_g1i3r"), ExtResource("14_my276"), ExtResource("15_yx0jh"), ExtResource("16_1ew0l"), ExtResource("17_ryup7"), ExtResource("18_ytpkv"), ExtResource("19_jas3d"), ExtResource("20_7htu6"), ExtResource("21_7qk3m"), ExtResource("22_xpnt2"), ExtResource("23_ruyqm"), ExtResource("24_fnoqa")])
 initial_velocity = 40.0
 max_velocity = 70.0
 building_generator = NodePath("../BuildingGenerator")

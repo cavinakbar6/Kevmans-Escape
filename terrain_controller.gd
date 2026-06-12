@@ -302,18 +302,25 @@ func _spawn_object_on_block(block: Node3D) -> void:
 	var min_x = min(x1, x2)
 	var max_x = max(x1, x2)
  
-	if "get_counter_flow_bool" in obj:
-		if obj.get_counter_flow_bool() and randf() < 0.5:
-			var temp_min = min_x
-			min_x = -max_x
-			max_x = -temp_min
+	if obj.get("counter_flow_speed") != null:
+		if obj.counter_flow_speed > 0.0:
+			if randf() < 0.5:
+				obj.set_counter_flow_bool(true)
+				var temp_min = min_x
+				min_x = -max_x
+				max_x = -temp_min
 
 	obj.position = block.position
 	obj.position.x += randf_range(min_x, max_x)
 	obj.position.z -= length / 2.0
- 
+	print("before add_child")
+	if "print_debug" in obj:
+		obj.print_debug()
 	add_child(obj)
 	active_obstacles.append(obj)
+	print("after add_child")
+	if "print_debug" in obj:
+		obj.print_debug()
 
 # ✅ LEGACY: Spawn scenery function (original implementation)
 func _spawn_scenery(block: Node3D) -> void:

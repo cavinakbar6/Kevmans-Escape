@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ctreseqf8lw84" path="res://terrain_objects/mobil.tscn" id="6_tsaxk"]
 [ext_resource type="PackedScene" uid="uid://cyus6r1w5g64f" path="res://terrain_objects/truk.tscn" id="7_y422p"]
 [ext_resource type="PackedScene" uid="uid://bnsr4lpg1bos3" path="res://terrain_buildings/building_1.tscn" id="8_biptf"]
+[ext_resource type="PackedScene" uid="uid://d2f7tjkkbinlb" path="res://terrain_objects/mobil5.tscn" id="9_4hyyp"]
+[ext_resource type="PackedScene" uid="uid://ccft5ene0f36o" path="res://terrain_objects/mobil6.tscn" id="10_mv2ev"]
 
 [node name="Node3D" type="Node3D" unique_id=1907211154]
 
@@ -33,3 +35,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.773737, 0, 0)
 
 [node name="Node3D6" parent="." unique_id=1653608168 instance=ExtResource("8_biptf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="Node3D7" parent="." unique_id=64941405 instance=ExtResource("9_4hyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.938325, 0, 0)
+
+[node name="Node3D8" parent="." unique_id=1292224423 instance=ExtResource("10_mv2ev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0934916, 0, 0)

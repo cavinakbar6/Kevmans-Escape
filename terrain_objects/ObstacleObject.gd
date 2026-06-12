@@ -2,7 +2,8 @@ class_name ObstacleObject
 extends Node3D
 
 # 1. GUNAKAN get_node_or_null AGAR TIDAK CRASH KALAU NODENYA NGGAK ADA
-@onready var mesh: MeshInstance3D = get_node_or_null("MeshInstance3D")
+@onready var front_texture: MeshInstance3D = get_node_or_null("MeshInstance3D")
+@onready var back_texture: Area3D = get_node_or_null("BackTexture")
 @onready var collision: CollisionShape3D = get_node_or_null("StaticBody3D/CollisionShape3D")
 @onready var headlight: Area3D = get_node_or_null("Headlight")
 
@@ -31,28 +32,27 @@ func _ready() -> void:
 	player = get_node_or_null("/root/World/Player")
 	day_night = get_node_or_null("/root/World/DirectionalLight3D")
 
-	# 2. CARI MESH ALTERNATIF KALAU NAMANYA BUKAN "MeshInstance3D"
-	if mesh == null:
-		mesh = find_child("*", true, false) as MeshInstance3D
+	# 2. CARI front_texture ALTERNATIF KALAU NAMANYA BUKAN "MeshInstance3D"
+	if front_texture == null:
+		front_texture = find_child("*", true, false) as MeshInstance3D
 
-	if mesh and collision:
-		var aabb = mesh.get_aabb()
+	if front_texture and collision:
+		var aabb = front_texture.get_aabb()
 		var size = aabb.size
 		# Kalikan dengan skala agar akurat
-		object_width = size.x * abs(mesh.scale.x) 
+		object_width = size.x * abs(front_texture.scale.x) 
 		var bottom = aabb.position
 		
 		var shape = BoxShape3D.new()
 		shape.size = size
 
-	collision.shape = shape
-	collision.position = Vector3(
-		bottom.x + size.x / 2.0,
-		bottom.y + size.y / 2.0,
-		bottom.z + size.z / 2.0
-	)
-	
-	#print(spawn_message)
+		collision.shape = shape
+		collision.position = Vector3(
+			bottom.x + size.x / 2.0,
+			bottom.y + size.y / 2.0,
+			bottom.z + size.z / 2.0
+		)
+	if is_counter_flow: set_backside_texture()
 
 func _process(_delta: float) -> void:
 	if player:
@@ -92,7 +92,10 @@ func _process(_delta: float) -> void:
 	# 5. CEK LAMPU DEPAN (TIDAK SEMUA RINTANGAN PUNYA LAMPU)
 	if day_night and headlight:
 		if day_night.has_method("is_daytime"):
-			headlight.visible = not day_night.is_daytime()
+			if is_counter_flow:
+				headlight.visible = false
+			else:
+				headlight.visible = not day_night.is_daytime()
 
 func _physics_process(delta: float) -> void:
 	if is_counter_flow:
@@ -110,10 +113,18 @@ func disable_sounds() -> void:
 func get_damage() -> float:
 	return damage
 
-func get_counter_flow_bool() -> bool:
-	if counter_flow_speed: return true
-	else: return false
+func set_counter_flow_bool(bool) -> void:
+	is_counter_flow = true
 
 func set_backside_texture() -> void:
-	front_texture.visible = false
-	back_texture.visible = true
+	if front_texture:
+		front_texture.visible = false
+	if back_texture:
+		back_texture.visible = true
+
+func print_debug() -> void:
+	if false:
+		print(object_name)
+		print("MeshInstance3D found: " + str(front_texture))
+		print("BackTexture found: " + str(back_texture))
+		print("Is counter flow: " + str(is_counter_flow))

@@ -5,12 +5,12 @@
 [ext_resource type="AudioStream" uid="uid://ccuqg8s52hv4r" path="res://Sound/Horn/mobil1.wav" id="3_3evle"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_r47k8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvqmb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3evle"]
 transparency = 1
 albedo_texture = ExtResource("1_ss8x7")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r47k8"]
-material = SubResource("StandardMaterial3D_hvqmb")
+material = SubResource("StandardMaterial3D_3evle")
 size = Vector2(1.8, 1.8)
 orientation = 2
 
@@ -46,7 +46,7 @@ orientation = 2
 [node name="Node3D" type="Node3D" unique_id=1983528646]
 script = ExtResource("1_hvqmb")
 damage = 30.0
-spawn_chance = 0.8
+spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=729153733]

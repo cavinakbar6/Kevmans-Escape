@@ -44,7 +44,7 @@ material = SubResource("StandardMaterial3D_efykm")
 [node name="Node3D" type="Node3D" unique_id=1542320228]
 script = ExtResource("1_8cq71")
 damage = 50.0
-spawn_chance = 0.8
+spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1938685475]

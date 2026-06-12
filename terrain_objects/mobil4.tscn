@@ -24,18 +24,18 @@ orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xalni"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10ab6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dpac"]
 emission_enabled = true
 emission = Color(0.8741615, 0.8741615, 0.8741615, 1)
 emission_energy_multiplier = 2.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_xalni"]
-material = SubResource("StandardMaterial3D_10ab6")
+material = SubResource("StandardMaterial3D_8dpac")
 
 [node name="Node3D" type="Node3D" unique_id=363315146]
 script = ExtResource("1_kyx2t")
 damage = 35.0
-spawn_chance = 1.0
+spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
 counter_flow_speed = 10.0
 
@@ -44,7 +44,7 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.1033406, 0)
 mesh = SubResource("PlaneMesh_10ab6")
 
 [node name="BackTexture" type="Area3D" parent="." unique_id=335697623]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.029293656)
 
 [node name="bb" type="MeshInstance3D" parent="BackTexture" unique_id=195016054]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.1033406, 0)

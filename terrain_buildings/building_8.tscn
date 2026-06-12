@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dw6j568lhgsue"]
+
+[ext_resource type="Script" uid="uid://cagtbpt0iibou" path="res://terrain_buildings/building_8.gd" id="1_dsxx1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epsi0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h3iww"]
+material = SubResource("StandardMaterial3D_epsi0")
+size = Vector3(2, 2, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hhfcs"]
+load_path = "res://.godot/imported/building1.png-76032190078ff27470c0cc4f5a3fb871.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsxx1"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_hhfcs")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h3iww"]
+material = SubResource("StandardMaterial3D_dsxx1")
+orientation = 2
+
+[node name="Node3D" type="Node3D" unique_id=839716710]
+script = ExtResource("1_dsxx1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=854686686]
+transform = Transform3D(2.0204842, 0, 0, 0, 2.967, 0, 0, 0, 2, 0, 2.5796719, -1.02)
+mesh = SubResource("BoxMesh_h3iww")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1622214450]
+transform = Transform3D(2.0763035, 0, 0, 0, 2.9665742, 0, 0, 0, 1, 0, 2.727642, 0)
+mesh = SubResource("PlaneMesh_h3iww")
