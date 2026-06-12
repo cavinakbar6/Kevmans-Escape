@@ -615,8 +615,8 @@ func receive_hit(type: String, obj: Node3D) -> void:
 		if obj.has_method("get_heal"):
 			heal_amount = obj.get_heal()
 		elif "heal" in obj:
-			heal_amount = obj.damage
-		car_health += heal_amount
+			heal_amount = obj.heal
+		car_health = min(car_health + heal_amount, MAX_HEALTH)
 		
 		if is_instance_valid(health_bar):
 			var tween = get_tree().create_tween()
