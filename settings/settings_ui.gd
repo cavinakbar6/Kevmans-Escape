@@ -7,6 +7,8 @@ signal back_pressed
 @onready var music_slider = $Panel/VBoxContainer/MusicSlider
 @onready var fullscreen_check = $Panel/VBoxContainer/FullscreenCheck
 @onready var skip_intro_check = $Panel/VBoxContainer/SkipIntroCheck
+@onready var skip_obstacle_check = $Panel/VBoxContainer/SkipObstacleCheck
+@onready var skip_wanted_check = $Panel/VBoxContainer/SkipWantedCheck
 @onready var back_button = $Panel/VBoxContainer/BackButton
 
 func _ready() -> void:
@@ -15,12 +17,16 @@ func _ready() -> void:
 	music_slider.value = Settings.music_volume
 	fullscreen_check.button_pressed = Settings.is_fullscreen
 	skip_intro_check.button_pressed = Settings.skip_intro
+	skip_obstacle_check.button_pressed = Settings.has_shown_obstacle_tutorial
+	skip_wanted_check.button_pressed = Settings.has_shown_wanted_tutorial
 	
 	master_slider.value_changed.connect(_on_master_changed)
 	sfx_slider.value_changed.connect(_on_sfx_changed)
 	music_slider.value_changed.connect(_on_music_changed)
 	fullscreen_check.toggled.connect(_on_fullscreen_toggled)
 	skip_intro_check.toggled.connect(_on_skip_intro_toggled)
+	skip_obstacle_check.toggled.connect(_on_skip_obstacle_toggled)
+	skip_wanted_check.toggled.connect(_on_skip_wanted_toggled)
 	back_button.pressed.connect(_on_back_pressed)
 
 func _on_master_changed(value: float) -> void:
@@ -41,6 +47,12 @@ func _on_fullscreen_toggled(button_pressed: bool) -> void:
 
 func _on_skip_intro_toggled(button_pressed: bool) -> void:
 	Settings.skip_intro = button_pressed
+
+func _on_skip_obstacle_toggled(button_pressed: bool) -> void:
+	Settings.has_shown_obstacle_tutorial = button_pressed
+
+func _on_skip_wanted_toggled(button_pressed: bool) -> void:
+	Settings.has_shown_wanted_tutorial = button_pressed
 
 func _on_back_pressed() -> void:
 	Settings.save_settings()

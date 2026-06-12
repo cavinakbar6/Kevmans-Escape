@@ -102,6 +102,16 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 text = "SKIP INTRO"
 
+[node name="SkipObstacleCheck" type="CheckBox" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kirifont")
+text = "SKIP OBSTACLE TUTORIAL"
+
+[node name="SkipWantedCheck" type="CheckBox" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kirifont")
+text = "SKIP WANTED TUTORIAL"
+
 [node name="Spacer" type="Control" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
