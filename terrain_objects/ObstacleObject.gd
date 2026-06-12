@@ -10,7 +10,8 @@ extends Node3D
 @export var spawn_chance: float = 0.5
 @export var spawn_x_range: Vector2 = Vector2(-1, 1)
 
-var object_width: float = 2.0
+@export var counter_flow_speed: float = 0.0
+var object_width: float = 0.0
 
 @export var trigger_distance: float = 15.0 
 @export var horn_distance: float = 60.0
@@ -19,6 +20,7 @@ var has_horned: bool = false
 var player: Node3D
 var has_passed: bool = false
 var day_night: Node = null
+var is_counter_flow: bool = false
 
 @onready var object_name = scene_file_path.get_file().get_basename()
 @onready var spawn_message = object_name + " spawned"
@@ -43,12 +45,14 @@ func _ready() -> void:
 		var shape = BoxShape3D.new()
 		shape.size = size
 
-		collision.shape = shape
-		collision.position = Vector3(
-			bottom.x + size.x / 2.0,
-			bottom.y + size.y / 2.0,
-			bottom.z + size.z / 2.0
-		)
+	collision.shape = shape
+	collision.position = Vector3(
+		bottom.x + size.x / 2.0,
+		bottom.y + size.y / 2.0,
+		bottom.z + size.z / 2.0
+	)
+	
+	#print(spawn_message)
 
 func _process(_delta: float) -> void:
 	if player:
@@ -90,6 +94,10 @@ func _process(_delta: float) -> void:
 		if day_night.has_method("is_daytime"):
 			headlight.visible = not day_night.is_daytime()
 
+func _physics_process(delta: float) -> void:
+	if is_counter_flow:
+		global_position.z -= delta * counter_flow_speed
+
 func disable_sounds() -> void:
 	var horn = get_node_or_null("HornSound")
 	if horn and horn.playing:
@@ -101,3 +109,11 @@ func disable_sounds() -> void:
 
 func get_damage() -> float:
 	return damage
+
+func get_counter_flow_bool() -> bool:
+	if counter_flow_speed: return true
+	else: return false
+
+func set_backside_texture() -> void:
+	front_texture.visible = false
+	back_texture.visible = true

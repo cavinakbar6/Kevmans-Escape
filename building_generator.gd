@@ -31,7 +31,7 @@ var nature_components: Array[PackedScene] = []
 # =========================================================
 @export var building_mode_duration: float = 3.0  # Detik
 @export var nature_mode_duration: float = 3.0    # Detik
-@export var auto_cycle_modes: bool = true         # Aktifkan auto-toggle timer
+@export var auto_cycle_modes: bool = false         # Aktifkan auto-toggle timer
 
 var _mode_timer: float = 0.0
 var _mode_timer_running: bool = false
@@ -82,8 +82,8 @@ var global_right_z: float = INF
 # =========================================================
 # 🔄 MODE TOGGLE
 # =========================================================
-var type_building: bool = false : set = _on_type_building_changed
-var type_nature: bool = true : set = _on_type_nature_changed
+var type_building: bool = true : set = _on_type_building_changed
+var type_nature: bool = false : set = _on_type_nature_changed
 
 func _on_type_building_changed(value: bool) -> void:
 	type_building = value

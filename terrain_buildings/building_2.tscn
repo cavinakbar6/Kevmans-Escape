@@ -2,15 +2,26 @@
 
 [ext_resource type="Script" uid="uid://eblon3yjc3df" path="res://terrain_buildings/building_2.gd" id="1_4ogou"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ritw1"]
-albedo_color = Color(1, 0.22352941, 1, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_4ogou"]
-material = SubResource("StandardMaterial3D_ritw1")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6axwb"]
+load_path = "res://.godot/imported/building2.png-39a7be33ebc11bd5a8d5fbd75dc23dde.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epsi0"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_6axwb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f5wd6"]
+material = SubResource("StandardMaterial3D_epsi0")
+orientation = 2
 
 [node name="Node3D" type="Node3D" unique_id=1350112180]
 script = ExtResource("1_4ogou")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1725651088]
-transform = Transform3D(1, 0, 0, 0, 2.3857245, 0, 0, 0, 1, 0, 1.0944886, -0.5633748)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1048116656]
+transform = Transform3D(8.840182, 0, 0, 0, 7.59975, 0, 0, 0, 3.996, 0, 3.6820285, -2.01)
 mesh = SubResource("BoxMesh_4ogou")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=516871458]
+transform = Transform3D(4.7545943, 0, 0, 0, 6.1630507, 0, 0, 0, 1, 0, 4.0406656, 0)
+mesh = SubResource("PlaneMesh_f5wd6")

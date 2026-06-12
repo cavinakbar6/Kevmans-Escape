@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://uln1c8a0t1m4" path="res://terrain_objects/truk2.tscn" id="5_ormdd"]
 [ext_resource type="PackedScene" uid="uid://ctreseqf8lw84" path="res://terrain_objects/mobil.tscn" id="6_tsaxk"]
 [ext_resource type="PackedScene" uid="uid://cyus6r1w5g64f" path="res://terrain_objects/truk.tscn" id="7_y422p"]
+[ext_resource type="PackedScene" uid="uid://bnsr4lpg1bos3" path="res://terrain_buildings/building_1.tscn" id="8_biptf"]
 
 [node name="Node3D" type="Node3D" unique_id=1907211154]
 
@@ -29,3 +30,6 @@ transform = Transform3D(1.3685, 0, 0, 0, 1.1818, 0, 0, 0, 1, -2.5079432, 0, 0)
 
 [node name="truk" parent="." unique_id=2133664635 instance=ExtResource("7_y422p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.773737, 0, 0)
+
+[node name="Node3D6" parent="." unique_id=1653608168 instance=ExtResource("8_biptf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)

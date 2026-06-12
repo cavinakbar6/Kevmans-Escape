@@ -295,9 +295,19 @@ func _spawn_object_on_block(block: Node3D) -> void:
  
 	var spawn_x_range: Vector2 = obj.spawn_x_range
 	var half_width = width / 2.0
-	var min_x = lerp(-half_width, half_width, (spawn_x_range.x + 1.0) / 2.0)
-	var max_x = lerp(-half_width, half_width, (spawn_x_range.y + 1.0) / 2.0)
+
+	var x1 = lerp(-half_width, half_width, (spawn_x_range.x + 1.0) / 2.0)
+	var x2 = lerp(-half_width, half_width, (spawn_x_range.y + 1.0) / 2.0)
  
+	var min_x = min(x1, x2)
+	var max_x = max(x1, x2)
+ 
+	if "get_counter_flow_bool" in obj:
+		if obj.get_counter_flow_bool() and randf() < 0.5:
+			var temp_min = min_x
+			min_x = -max_x
+			max_x = -temp_min
+
 	obj.position = block.position
 	obj.position.x += randf_range(min_x, max_x)
 	obj.position.z -= length / 2.0

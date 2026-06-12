@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bn7m5gry1pyki" path="res://asset/mobil4.png" id="1_06b77"]
 [ext_resource type="Script" uid="uid://b7hijoyi0831q" path="res://terrain_objects/mobil_4.gd" id="1_kyx2t"]
+[ext_resource type="Texture2D" uid="uid://sb85jibvuify" path="res://asset/mobil4b.png" id="3_8dpac"]
 [ext_resource type="AudioStream" uid="uid://d041iqb7e3huj" path="res://Sound/Horn/mobil4.wav" id="3_xalni"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="4_8dpac"]
 
@@ -11,6 +12,14 @@ albedo_texture = ExtResource("1_06b77")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_10ab6"]
 material = SubResource("StandardMaterial3D_kyx2t")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1dr3"]
+transparency = 1
+albedo_texture = ExtResource("3_8dpac")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mui5q"]
+material = SubResource("StandardMaterial3D_k1dr3")
 orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xalni"]
@@ -26,12 +35,21 @@ material = SubResource("StandardMaterial3D_10ab6")
 [node name="Node3D" type="Node3D" unique_id=363315146]
 script = ExtResource("1_kyx2t")
 damage = 35.0
-spawn_chance = 0.8
+spawn_chance = 1.0
 spawn_x_range = Vector2(0.15, 0.85)
+counter_flow_speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=67172256]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.1033406, 0)
 mesh = SubResource("PlaneMesh_10ab6")
+
+[node name="BackTexture" type="Area3D" parent="." unique_id=335697623]
+visible = false
+
+[node name="bb" type="MeshInstance3D" parent="BackTexture" unique_id=195016054]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.1033406, 0)
+mesh = SubResource("PlaneMesh_mui5q")
+skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=432719109]
 
