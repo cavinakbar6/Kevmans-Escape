@@ -313,14 +313,9 @@ func _spawn_object_on_block(block: Node3D) -> void:
 	obj.position = block.position
 	obj.position.x += randf_range(min_x, max_x)
 	obj.position.z -= length / 2.0
-	print("before add_child")
-	if "print_debug" in obj:
-		obj.print_debug()
+
 	add_child(obj)
 	active_obstacles.append(obj)
-	print("after add_child")
-	if "print_debug" in obj:
-		obj.print_debug()
 
 # ✅ LEGACY: Spawn scenery function (original implementation)
 func _spawn_scenery(block: Node3D) -> void:

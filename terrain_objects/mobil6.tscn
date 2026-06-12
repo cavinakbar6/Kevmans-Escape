@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cxvvlj5gx24rr" path="res://asset/mobil6.png" id="1_kodad"]
 [ext_resource type="AudioStream" uid="uid://d041iqb7e3huj" path="res://Sound/Horn/mobil4.wav" id="2_0nve2"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_y34wk"]
+[ext_resource type="Texture2D" uid="uid://d3oxdco1qrdhm" path="res://asset/mobil6b.png" id="5_y34wk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tr01y"]
 transparency = 1
@@ -23,14 +24,23 @@ emission_energy_multiplier = 2.5
 [sub_resource type="SphereMesh" id="SphereMesh_0nve2"]
 material = SubResource("StandardMaterial3D_kodad")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y34wk"]
+transparency = 1
+albedo_texture = ExtResource("5_y34wk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vf33i"]
+material = SubResource("StandardMaterial3D_y34wk")
+orientation = 2
+
 [node name="Node3D" type="Node3D" unique_id=1292224423]
 script = ExtResource("1_0nve2")
 damage = 40.0
 spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
+counter_flow_speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=472444777]
-transform = Transform3D(0.9651343, 0, 0, 0, 0.95077276, 0, 0, 0, 1, 0, 0.91296923, 0)
+transform = Transform3D(0.9651343, 0, 0, 0, 0.95077276, 0, 0, 0, 1, 0, 0.91296923, 0.0074898005)
 mesh = SubResource("PlaneMesh_m2wuy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=914830456]
@@ -70,4 +80,10 @@ bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=1108068891]
 stream = ExtResource("3_y34wk")
-bus = &"SFX"
+
+[node name="BackTexture" type="Area3D" parent="." unique_id=1256382132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.029293656)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackTexture" unique_id=1127996387]
+transform = Transform3D(0.9651343, 0, 0, 0, 0.95077276, 0, 0, 0, 1, 0, 0.91296923, 0)
+mesh = SubResource("PlaneMesh_vf33i")

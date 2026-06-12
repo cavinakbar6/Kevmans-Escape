@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bwr88a58wmqno"]
+
+[ext_resource type="Script" uid="uid://kgb5k5f7md7g" path="res://terrain_objects/motor_1.gd" id="1_7pcjb"]
+[ext_resource type="Texture2D" uid="uid://dwjc64phwnrib" path="res://asset/gamespace_motor (1).png" id="1_xiptm"]
+[ext_resource type="AudioStream" uid="uid://drptu28kdlx0w" path="res://Sound/Motor/Motorcycle Horn - Sound Effect for editing.wav" id="2_7pcjb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxqni"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_xiptm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5giys"]
+material = SubResource("StandardMaterial3D_uxqni")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ww1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3w7b"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_b2sob"]
+material = SubResource("StandardMaterial3D_j3w7b")
+
+[node name="Node3D" type="Node3D" unique_id=1583666992]
+script = ExtResource("1_7pcjb")
+damage = 20.0
+spawn_chance = 1.0
+spawn_x_range = Vector2(0.1, 0.9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1465804763]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.87816215, -0.0021838248)
+mesh = SubResource("PlaneMesh_5giys")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=867053548]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=992435245]
+transform = Transform3D(0.6066664, 0, 0, 0, 1.7411364, 0, 0, 0, 0.1, 0, 0.8336997, 0)
+shape = SubResource("BoxShape3D_7ww1r")
+
+[node name="Headlight" type="Area3D" parent="." unique_id=711501600]
+
+[node name="Headlight" type="MeshInstance3D" parent="Headlight" unique_id=1435401896]
+transform = Transform3D(0.12618822, 0, 0, 0, -5.4347665e-10, -0.122263916, 0, 0.012433298, -5.344325e-09, -0.0016443282, 1.2266153, 0.0005777627)
+mesh = SubResource("SphereMesh_b2sob")
+skeleton = NodePath("../..")
+
+[node name="Beam" type="SpotLight3D" parent="Headlight/Headlight" unique_id=2022464955]
+transform = Transform3D(-7.9246693, 7.8690506e-14, -1.1482488e-08, 5.2013746e-08, 7.3191824, -35.897377, 1.0428677e-07, -3.6504862, -71.97382, 0.051555634, 6.8767314, -0.056879044)
+light_energy = 5.0
+spot_range = 3.9669242
+spot_angle = 30.083801
+
+[node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=1464505376]
+stream = ExtResource("2_7pcjb")
+
+[node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=2108079099]

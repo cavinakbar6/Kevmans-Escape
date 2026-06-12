@@ -66,16 +66,17 @@ func _process(_delta: float) -> void:
 		var is_overlapping_x = object_left < player_right and object_right > player_left
 		
 		# 3. CEK EKSISTENSI KLAKSON SEBELUM DIBUNYIKAN
-		if not has_horned and is_overlapping_x and global_position.z > (player.global_position.z - horn_distance):
-			has_horned = true
-			var current_time = Time.get_ticks_msec() / 1000.0
-			
-			if current_time - player.last_horn_sound_time > 1.0:
-				var horn = get_node_or_null("HornSound")
-				if horn:
-					horn.pitch_scale = randf_range(0.9, 1.1)
-					horn.play()
-					player.last_horn_sound_time = current_time
+		if not is_counter_flow:
+			if not has_horned and is_overlapping_x and global_position.z > (player.global_position.z - horn_distance):
+				has_horned = true
+				var current_time = Time.get_ticks_msec() / 1000.0
+				
+				if current_time - player.last_horn_sound_time > 1.0:
+					var horn = get_node_or_null("HornSound")
+					if horn:
+						horn.pitch_scale = randf_range(0.9, 1.1)
+						horn.play()
+						player.last_horn_sound_time = current_time
 	
 		# 4. CEK EKSISTENSI SUARA LEWAT (PASS SOUND)
 		if not has_passed and global_position.z > (player.global_position.z - trigger_distance):

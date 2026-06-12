@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ym8yo82db7yi" path="res://asset/mobil3.png" id="2_fynrr"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_ae1hc"]
 [ext_resource type="AudioStream" uid="uid://dflesi8hx3c8y" path="res://Sound/Horn/mobil3.wav" id="3_b4p0b"]
+[ext_resource type="Texture2D" uid="uid://c08qiql26bsb" path="res://asset/mobil3b.png" id="5_efykm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ae1hc"]
 transparency = 1
@@ -41,11 +42,20 @@ emission_energy_multiplier = 2.5
 [sub_resource type="SphereMesh" id="SphereMesh_ntkq8"]
 material = SubResource("StandardMaterial3D_efykm")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntkq8"]
+transparency = 1
+albedo_texture = ExtResource("5_efykm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5uf8r"]
+material = SubResource("StandardMaterial3D_ntkq8")
+orientation = 2
+
 [node name="Node3D" type="Node3D" unique_id=1542320228]
 script = ExtResource("1_8cq71")
 damage = 50.0
 spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
+counter_flow_speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1938685475]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.0946796, 0)
@@ -112,4 +122,10 @@ bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=187013550]
 stream = ExtResource("3_ae1hc")
-bus = &"SFX"
+
+[node name="BackTexture" type="Area3D" parent="." unique_id=1454785090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.029293656)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackTexture" unique_id=1104275873]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1, 0, 1.0946796, 0)
+mesh = SubResource("PlaneMesh_5uf8r")

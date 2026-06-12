@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgupwsupgfaai" path="res://terrain_buildings/building_4.gd" id="1_wwx3l"]
 [ext_resource type="Texture2D" uid="uid://77awlxujda7b" path="res://asset/Building/building4.png" id="2_wwx3l"]
+[ext_resource type="Texture2D" uid="uid://calbycx06gq1p" path="res://asset/texture_trotoar.png" id="3_fwq5j"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wwx3l"]
 size = Vector3(2, 2, 2)
@@ -14,6 +15,12 @@ albedo_texture = ExtResource("2_wwx3l")
 material = SubResource("StandardMaterial3D_s37nj")
 orientation = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu6bs"]
+albedo_texture = ExtResource("3_fwq5j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8vlid"]
+material = SubResource("StandardMaterial3D_bu6bs")
+
 [node name="Node3D" type="Node3D" unique_id=1934080537]
 script = ExtResource("1_wwx3l")
 
@@ -24,3 +31,29 @@ mesh = SubResource("BoxMesh_wwx3l")
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="." unique_id=1865062215]
 transform = Transform3D(1.9837002, 0, 0, 0, 3.3870842, 0, 0, 0, 1, 0, 3.1173072, 0)
 mesh = SubResource("PlaneMesh_fwq5j")
+
+[node name="Area3D3" type="Area3D" parent="." unique_id=406747956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31554317, 0, 0)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Area3D3" unique_id=480516405]
+transform = Transform3D(-8.851063e-08, 0, -1.4, 0, 0.11999999, 0, 2.0248868, 0, -6.119594e-08, 0, 0.06494218, 2)
+mesh = SubResource("PlaneMesh_8vlid")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Area3D3" unique_id=1213723203]
+transform = Transform3D(2.580576e-07, 0, 1.3999999, 1.9678901, -5.2453655e-09, -1.835878e-07, 8.6019206e-08, 0.119999975, 1.1870316e-14, 0, -1.9112806, 4.0029488)
+mesh = SubResource("PlaneMesh_8vlid")
+skeleton = NodePath("../..")
+
+[node name="Area3D3" type="Area3D" parent="Area3D3" unique_id=978970395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5926688, 0, 0)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Area3D3/Area3D3" unique_id=2020849522]
+transform = Transform3D(-8.851063e-08, 0, -1.4, 0, 0.11999999, 0, 2.0248868, 0, -6.119594e-08, 0, 0.06494218, 2)
+mesh = SubResource("PlaneMesh_8vlid")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Area3D3/Area3D3" unique_id=1639586422]
+transform = Transform3D(2.580576e-07, 0, 1.3999999, 1.9678901, -5.2453655e-09, -1.835878e-07, 8.6019206e-08, 0.119999975, 1.1870316e-14, 0, -1.9112806, 4.0029488)
+mesh = SubResource("PlaneMesh_8vlid")
+skeleton = NodePath("../..")

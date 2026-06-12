@@ -9,11 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bpunejhvsgncx" path="res://asset/Restart logo kecil.png" id="6_g7dbl"]
 [ext_resource type="Texture2D" uid="uid://8287xca8yaix" path="res://asset/Main menu logo kecil.png" id="7_lv42l"]
 
-
-
 [node name="PauseMenu" type="CanvasLayer" unique_id=1811781227]
-layer = 100
 process_mode = 3
+layer = 100
 script = ExtResource("1_pause")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1500439965]
@@ -61,24 +59,28 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 theme_override_font_sizes/font_size = 24
 icon = ExtResource("4_q2yj1")
+icon_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="ColorRect/VBoxContainer" unique_id=830744128]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 theme_override_font_sizes/font_size = 24
 icon = ExtResource("5_a32ks")
+icon_alignment = 1
 
 [node name="RestartButton" type="Button" parent="ColorRect/VBoxContainer" unique_id=1515787240]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 theme_override_font_sizes/font_size = 24
 icon = ExtResource("6_g7dbl")
+icon_alignment = 1
 
 [node name="MenuButton" type="Button" parent="ColorRect/VBoxContainer" unique_id=293001868]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 theme_override_font_sizes/font_size = 24
 icon = ExtResource("7_lv42l")
+icon_alignment = 1
 
 [node name="SettingsUI" parent="." unique_id=123426795 instance=ExtResource("3_settings")]
 visible = false

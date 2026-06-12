@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://bybltpl8gohpv"]
 
 [ext_resource type="Script" uid="uid://dkrra3t53gw3k" path="res://Menu/main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://w8ywxtfbhgcu" path="res://asset/gamespace_mainmenu.png" id="2_glbon"]
+[ext_resource type="Texture2D" uid="uid://oxmfogrdaigs" path="res://asset/menu_bg2.png" id="2_cgse8"]
 [ext_resource type="Texture2D" uid="uid://cpsm4xajlgaih" path="res://asset/start.png" id="2_jix8l"]
 [ext_resource type="FontFile" uid="uid://dbjbmub5nqejo" path="res://terrain_objects/KiriFont.ttf" id="2_kirifont"]
 [ext_resource type="Texture2D" uid="uid://birjyk4g4uhef" path="res://asset/exit.png" id="3_glbon"]
-[ext_resource type="Texture2D" uid="uid://cakhqlukxtvk6" path="res://asset/DDR_logo.png" id="4_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://c8dje7rjmltw8" path="res://asset/judul_kevmans_escape.png" id="5_218iu"]
 [ext_resource type="AudioStream" uid="uid://624yyfrdqrjh" path="res://Sound/MainMenuBGM.mp3" id="6_nlkkf"]
 [ext_resource type="Texture2D" uid="uid://dschmnqgfqqx8" path="res://asset/Settings.png" id="7_dy7ct"]
 [ext_resource type="PackedScene" path="res://settings/settings_ui.tscn" id="7_settings"]
+[ext_resource type="Texture2D" uid="uid://bj3ler5rdl37h" path="res://asset/texts/kevmans_escape.png" id="10_cgse8"]
+[ext_resource type="Texture2D" uid="uid://djyx2cl2c2003" path="res://asset/texts/start.png" id="11_o4wy8"]
+[ext_resource type="Texture2D" uid="uid://bi4urry54optt" path="res://asset/texts/settings.png" id="12_dqyvv"]
+[ext_resource type="Texture2D" uid="uid://cp6if7d3n7m0w" path="res://asset/texts/Exit.png" id="13_m8x2t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
 bg_color = Color(0.43529412, 0.6117647, 0.827451, 0)
@@ -17,6 +21,8 @@ bg_color = Color(0.43529412, 0.6117647, 0.827451, 0)
 bg_color = Color(0.42352942, 0.6117647, 0.8392157, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0o4t1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e2v8n"]
 
 [node name="MainMenu" type="Control" unique_id=1239796749]
 layout_mode = 3
@@ -34,7 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_glbon")
+texture = ExtResource("2_cgse8")
 expand_mode = 3
 
 [node name="PlayButton" type="Button" parent="." unique_id=1095993167]
@@ -77,12 +83,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -498.0
-offset_top = 32.0
-offset_right = 498.0
-offset_bottom = 343.0
+offset_left = -791.0
+offset_top = 56.000004
+offset_right = 205.0
+offset_bottom = 367.0
 grow_horizontal = 2
-texture = ExtResource("4_nlkkf")
+scale = Vector2(1.6002346, 0.8324142)
+texture = ExtResource("5_218iu")
 
 [node name="SettingsButton" type="Button" parent="." unique_id=472836841]
 layout_mode = 1
@@ -98,7 +105,7 @@ offset_bottom = 208.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0o4t1")
 icon = ExtResource("7_dy7ct")
 
@@ -116,10 +123,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -300.0
-offset_top = 340.0
-offset_right = 300.0
-offset_bottom = 390.0
+offset_left = -295.0
+offset_top = 368.0
+offset_right = 305.0
+offset_bottom = 418.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
@@ -128,3 +135,48 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("2_kirifont")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
+
+[node name="UITest" type="Control" parent="." unique_id=1161139138]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UITest" unique_id=2030124465]
+layout_mode = 0
+offset_left = 292.00003
+offset_top = 146.0
+offset_right = 1235.0
+offset_bottom = 276.0
+scale = Vector2(1.403679, 1.403679)
+texture = ExtResource("10_cgse8")
+
+[node name="Button" type="Button" parent="UITest" unique_id=408282072]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 489.0
+offset_right = 1129.0
+offset_bottom = 628.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e2v8n")
+icon = ExtResource("11_o4wy8")
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="UITest" unique_id=645616649]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 610.0
+offset_right = 1221.0
+offset_bottom = 749.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e2v8n")
+icon = ExtResource("12_dqyvv")
+icon_alignment = 1
+
+[node name="Button3" type="Button" parent="UITest" unique_id=49797250]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 731.0
+offset_right = 1132.0
+offset_bottom = 870.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e2v8n")
+icon = ExtResource("13_m8x2t")
+icon_alignment = 1

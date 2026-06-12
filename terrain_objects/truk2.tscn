@@ -37,7 +37,7 @@ material = SubResource("StandardMaterial3D_ahnda")
 transform = Transform3D(1.0146422, 0, 0, 0, 0.933081, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_u11c8")
 damage = 65.0
-spawn_chance = 0.15
+spawn_chance = 0.05
 spawn_x_range = Vector2(0.2, 0.8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1855354382]

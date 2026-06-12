@@ -55,6 +55,7 @@ func stop_all_engine_sounds() -> void:
 		gear_shift_sfx.stop()
 	if tire_screech_sfx.playing:
 		tire_screech_sfx.stop()
+	
 	# Setelah semua berhenti, mainkan lagu Game Over
 	play_game_over_music()
 

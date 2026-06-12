@@ -60,6 +60,8 @@ var high_score_label: Label
 @onready var health_label: Label = get_node("/root/World/MainUI/HealthLabel")
 
 var tutorial_overlay_instance: Node = null
+var _local_obstacle_tutorial_shown: bool = false
+var _local_wanted_tutorial_shown: bool = false
 
 @onready var car_mesh: MeshInstance3D = $MeshInstance3D
 
@@ -384,14 +386,12 @@ func start_game() -> void:
 func show_tutorial(type: String) -> void:
 	if not is_instance_valid(tutorial_overlay_instance): return
 	
-	if type == "obstacle" and not Settings.has_shown_obstacle_tutorial:
-		Settings.has_shown_obstacle_tutorial = true
-		Settings.save_settings()
+	if type == "obstacle" and not Settings.has_shown_obstacle_tutorial and not _local_obstacle_tutorial_shown:
+		_local_obstacle_tutorial_shown = true
 		tutorial_overlay_instance.show_tutorial("HINDARI RINTANGAN!", "Jangan menabrak kendaraan lain atau objek di jalan raya.\n\nTabrakan akan merusak mesin mobilmu (Health berkurang) dan memancing perhatian polisi!")
 		
-	elif type == "wanted" and not Settings.has_shown_wanted_tutorial:
-		Settings.has_shown_wanted_tutorial = true
-		Settings.save_settings()
+	elif type == "wanted" and not Settings.has_shown_wanted_tutorial and not _local_wanted_tutorial_shown:
+		_local_wanted_tutorial_shown = true
 		tutorial_overlay_instance.show_tutorial("WANTED LEVEL NAIK!", "Bintang kejaran polisimu bertambah karena menabrak!\n\nSemakin banyak bintang, kejaran polisi akan semakin agresif. Jika mencapai 6 bintang, kamu akan BUSTED dan game berakhir!")
 
 # ... (fungsi add_score, toggle_camera, show_game_over_ui tidak berubah) ...
@@ -506,6 +506,18 @@ func show_game_over_ui() -> void:
 		var tw5 = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tw5.tween_interval(1.7)
 		tw5.tween_property(menu_btn, "modulate", Color(1, 1, 1, 1), 0.5)
+	
+	var survey_tr = game_over_ui.get_node_or_null("SurveyQR")
+	if survey_tr:
+		var tw6 = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		tw6.tween_interval(1.9)
+		tw6.tween_property(survey_tr, "modulate", Color(1, 1, 1, 1), 0.5)
+	
+	var survey_txt = game_over_ui.get_node_or_null("SurveyText")
+	if survey_txt:
+		var tw7 = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		tw7.tween_interval(2.0)
+		tw7.tween_property(survey_txt, "modulate", Color(1, 1, 1, 1), 0.5)
 	
 	# Pause langsung - tween tetap jalan karena TWEEN_PAUSE_PROCESS
 	get_tree().paused = true

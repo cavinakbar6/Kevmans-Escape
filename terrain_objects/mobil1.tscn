@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3upb2q27jy01" path="res://asset/mobil1.png" id="1_ss8x7"]
 [ext_resource type="AudioStream" uid="uid://ccuqg8s52hv4r" path="res://Sound/Horn/mobil1.wav" id="3_3evle"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_r47k8"]
+[ext_resource type="Texture2D" uid="uid://tuumov4uaksv" path="res://asset/mobil1b.png" id="5_cyhwx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3evle"]
 transparency = 1
@@ -43,11 +44,21 @@ emission_energy_multiplier = 2.0
 material = SubResource("StandardMaterial3D_2cs5n")
 orientation = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wp6b7"]
+transparency = 1
+albedo_texture = ExtResource("5_cyhwx")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2cs5n"]
+material = SubResource("StandardMaterial3D_wp6b7")
+size = Vector2(1.8, 1.8)
+orientation = 2
+
 [node name="Node3D" type="Node3D" unique_id=1983528646]
 script = ExtResource("1_hvqmb")
 damage = 30.0
 spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
+counter_flow_speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=729153733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82734585, 0)
@@ -102,3 +113,10 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.5
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Headlight" unique_id=1281402297]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.5698035, 0.83930886, 0.09005743)
+
+[node name="BackTexture" type="Area3D" parent="." unique_id=1815803308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.029293656)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackTexture" unique_id=266038142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82734585, 0)
+mesh = SubResource("PlaneMesh_2cs5n")

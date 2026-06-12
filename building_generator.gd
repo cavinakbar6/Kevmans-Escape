@@ -18,7 +18,7 @@ var nature_components: Array[PackedScene] = []
 # =========================================================
 # ⚙️ SPAWN SETTINGS
 # =========================================================
-@export var side_offset: float = 2.0
+@export var side_offset: float = 0.0
 @export var min_spacing: float = 0.0
 @export var max_spacing: float = 0.0
 @export var nature_density: int = 12
@@ -29,9 +29,9 @@ var nature_components: Array[PackedScene] = []
 # =========================================================
 # ⏱️ MODE TIMER SETTINGS
 # =========================================================
-@export var building_mode_duration: float = 3.0  # Detik
-@export var nature_mode_duration: float = 3.0    # Detik
-@export var auto_cycle_modes: bool = false         # Aktifkan auto-toggle timer
+@export var building_mode_duration: float = 4.0  # Detik
+@export var nature_mode_duration: float = 4.0    # Detik
+@export var auto_cycle_modes: bool = true         # Aktifkan auto-toggle timer
 
 var _mode_timer: float = 0.0
 var _mode_timer_running: bool = false

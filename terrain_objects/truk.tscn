@@ -31,7 +31,7 @@ material = SubResource("StandardMaterial3D_ap2ud")
 [node name="truk" type="Node3D" unique_id=2133664635]
 script = ExtResource("1_6wnxp")
 damage = 65.0
-spawn_chance = 0.15
+spawn_chance = 0.05
 spawn_x_range = Vector2(0.15, 0.8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1923181619]

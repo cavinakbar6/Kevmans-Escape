@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://f608ovq3gw3d" path="res://asset/mobil5.png" id="1_hyrfy"]
 [ext_resource type="AudioStream" uid="uid://ccuqg8s52hv4r" path="res://Sound/Horn/mobil1.wav" id="2_eumsb"]
 [ext_resource type="AudioStream" uid="uid://dtj6gxmyybj0t" path="res://Sound/Mobil/Mobil Lewat.wav" id="3_xplpy"]
+[ext_resource type="Texture2D" uid="uid://c2fil20uvs2tu" path="res://asset/mobil5b.png" id="5_x1qy5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xplpy"]
 transparency = 1
@@ -11,17 +12,6 @@ albedo_texture = ExtResource("1_hyrfy")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0djfq"]
 material = SubResource("StandardMaterial3D_xplpy")
-orientation = 2
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hyrfy"]
-load_path = "res://.godot/imported/mobil5.png-7825d403d5b111b59ff62112878f2b16.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eumsb"]
-transparency = 1
-albedo_texture = SubResource("CompressedTexture2D_hyrfy")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_xplpy"]
-material = SubResource("StandardMaterial3D_eumsb")
 orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w41a6"]
@@ -42,22 +32,24 @@ emission_energy_multiplier = 2.5
 [sub_resource type="SphereMesh" id="SphereMesh_bkfuq"]
 material = SubResource("StandardMaterial3D_w41a6")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1qy5"]
+transparency = 1
+albedo_texture = ExtResource("5_x1qy5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ltpyk"]
+material = SubResource("StandardMaterial3D_x1qy5")
+orientation = 2
+
 [node name="Node3D" type="Node3D" unique_id=64941405]
 script = ExtResource("1_eumsb")
 damage = 35.0
 spawn_chance = 0.7
 spawn_x_range = Vector2(0.15, 0.85)
+counter_flow_speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1376112164]
 transform = Transform3D(1.0896746, 0, 0, 0, 0.9752786, 0, 0, 0, 1, 0, 0.9739343, 0)
 mesh = SubResource("PlaneMesh_0djfq")
-
-[node name="BackTexture" type="Area3D" parent="." unique_id=1388484351]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BackTexture" unique_id=1693831640]
-transform = Transform3D(1.0896746, 0, 0, 0, 0.9752786, 0, 0, 0, 1, 0, 0.9739343, 0)
-mesh = SubResource("PlaneMesh_xplpy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1699284037]
 
@@ -84,8 +76,13 @@ transform = Transform3D(-4.6994686, 0, -1.2306283e-07, 0, 4.051518, 0, 4.108406e
 [node name="HornSound" type="AudioStreamPlayer3D" parent="." unique_id=571627679]
 stream = ExtResource("2_eumsb")
 volume_db = 55.923
-bus = &"SFX"
 
 [node name="PassSound" type="AudioStreamPlayer3D" parent="." unique_id=530454547]
 stream = ExtResource("3_xplpy")
-bus = &"SFX"
+
+[node name="BackTexture" type="Area3D" parent="." unique_id=89502394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.029293656)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackTexture" unique_id=1851414405]
+transform = Transform3D(1.0896746, 0, 0, 0, 0.9752786, 0, 0, 0, 1, 0, 0.9739343, 0)
+mesh = SubResource("PlaneMesh_ltpyk")
