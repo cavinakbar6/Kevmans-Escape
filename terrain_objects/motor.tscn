@@ -12,7 +12,6 @@ albedo_texture = ExtResource("1_ghnwk")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mw6mc"]
 material = SubResource("StandardMaterial3D_uxqni")
-orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_inf5e"]
 size = Vector3(1, 1.30774, 1)
@@ -32,7 +31,7 @@ spawn_chance = 0.8
 spawn_x_range = Vector2(0.1, 0.8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=234641994]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87816215, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.87816215, 0)
 mesh = SubResource("PlaneMesh_mw6mc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=247606431 groups=["obstacle"]]
