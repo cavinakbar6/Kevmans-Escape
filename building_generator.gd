@@ -345,18 +345,19 @@ func update_buildings(delta: float, speed: float) -> void:
 	
 	active_buildings = active_buildings.filter(func(item): return is_instance_valid(item))
 
-# =========================================================
-# 📂 LOADERS
-# =========================================================
 func load_buildings() -> void:
 	var dir = DirAccess.open(building_path)
 	if dir == null:
 		push_error("Cannot open building folder: " + building_path)
 		return
 	
+	building_scenes.clear() # Pastikan dikosongkan dulu biar nggak double
 	for file in dir.get_files():
-		if file.ends_with(".tscn"):
-			var scene = load(building_path + "/" + file) as PackedScene
+		# ✅ KODE BARU: Tangkap file .tscn dan .tscn.remap (versi Export)
+		if file.ends_with(".tscn") or file.ends_with(".tscn.remap"):
+			# Buang akhiran .remap karena load() Godot hanya mau membaca nama aslinya
+			var clean_file = file.trim_suffix(".remap")
+			var scene = load(building_path + "/" + clean_file) as PackedScene
 			if scene:
 				building_scenes.append(scene)
 	print("🏢 Loaded %d building scenes" % building_scenes.size())
@@ -369,8 +370,11 @@ func load_nature_components() -> void:
 	
 	nature_components.clear()
 	for file in dir.get_files():
-		if file.ends_with(".tscn"):
-			var scene = load(nature_path + "/" + file) as PackedScene
+		# ✅ KODE BARU: Tangkap file .tscn dan .tscn.remap (versi Export)
+		if file.ends_with(".tscn") or file.ends_with(".tscn.remap"):
+			# Buang akhiran .remap karena load() Godot hanya mau membaca nama aslinya
+			var clean_file = file.trim_suffix(".remap")
+			var scene = load(nature_path + "/" + clean_file) as PackedScene
 			if scene:
 				nature_components.append(scene)
 	print("🌿 Loaded %d nature components" % nature_components.size())

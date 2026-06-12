@@ -1,9 +1,10 @@
 class_name ObstacleObject
 extends Node3D
 
-@onready var mesh: MeshInstance3D = $MeshInstance3D
-@onready var collision: CollisionShape3D = $StaticBody3D/CollisionShape3D
-@onready var headlight: Area3D = $Headlight
+# 1. GUNAKAN get_node_or_null AGAR TIDAK CRASH KALAU NODENYA NGGAK ADA
+@onready var mesh: MeshInstance3D = get_node_or_null("MeshInstance3D")
+@onready var collision: CollisionShape3D = get_node_or_null("StaticBody3D/CollisionShape3D")
+@onready var headlight: Area3D = get_node_or_null("Headlight")
 
 @export var damage: float = 60.0
 @export var spawn_chance: float = 0.5
@@ -19,7 +20,7 @@ var player: Node3D
 var has_passed: bool = false
 var day_night: Node = null
 
-@onready var object_name = scene_file_path.get_file().get_basename() #ambil nama objek dari scene
+@onready var object_name = scene_file_path.get_file().get_basename()
 @onready var spawn_message = object_name + " spawned"
 @onready var incoming_damage_message = "damage coming from " + object_name
 
@@ -28,22 +29,26 @@ func _ready() -> void:
 	player = get_node_or_null("/root/World/Player")
 	day_night = get_node_or_null("/root/World/DirectionalLight3D")
 
-	var aabb = mesh.get_aabb()
-	var size = aabb.size
-	object_width = size.x
-	var bottom = aabb.position
-	
-	var shape = BoxShape3D.new()
-	shape.size = size
+	# 2. CARI MESH ALTERNATIF KALAU NAMANYA BUKAN "MeshInstance3D"
+	if mesh == null:
+		mesh = find_child("*", true, false) as MeshInstance3D
 
-	collision.shape = shape
-	collision.position = Vector3(
-		bottom.x + size.x / 2.0,
-		bottom.y + size.y / 2.0,
-		bottom.z + size.z / 2.0
-	)
-	
-	#print(spawn_message)
+	if mesh and collision:
+		var aabb = mesh.get_aabb()
+		var size = aabb.size
+		# Kalikan dengan skala agar akurat
+		object_width = size.x * abs(mesh.scale.x) 
+		var bottom = aabb.position
+		
+		var shape = BoxShape3D.new()
+		shape.size = size
+
+		collision.shape = shape
+		collision.position = Vector3(
+			bottom.x + size.x / 2.0,
+			bottom.y + size.y / 2.0,
+			bottom.z + size.z / 2.0
+		)
 
 func _process(_delta: float) -> void:
 	if player:
@@ -56,36 +61,43 @@ func _process(_delta: float) -> void:
 		
 		var is_overlapping_x = object_left < player_right and object_right > player_left
 		
+		# 3. CEK EKSISTENSI KLAKSON SEBELUM DIBUNYIKAN
 		if not has_horned and is_overlapping_x and global_position.z > (player.global_position.z - horn_distance):
 			has_horned = true
 			var current_time = Time.get_ticks_msec() / 1000.0
 			
 			if current_time - player.last_horn_sound_time > 1.0:
-				$HornSound.pitch_scale = randf_range(0.9, 1.1)
-				$HornSound.play()
-				player.last_horn_sound_time = current_time
+				var horn = get_node_or_null("HornSound")
+				if horn:
+					horn.pitch_scale = randf_range(0.9, 1.1)
+					horn.play()
+					player.last_horn_sound_time = current_time
 	
+		# 4. CEK EKSISTENSI SUARA LEWAT (PASS SOUND)
 		if not has_passed and global_position.z > (player.global_position.z - trigger_distance):
 			has_passed = true
 			var current_time = Time.get_ticks_msec() / 1000.0
 			
 			if current_time - player.last_pass_sound_time > 0.6:
-				$PassSound.pitch_scale = randf_range(0.85, 1.15) 
-				$PassSound.play()
-				player.last_pass_sound_time = current_time
+				var pass_sound = get_node_or_null("PassSound")
+				if pass_sound:
+					pass_sound.pitch_scale = randf_range(0.85, 1.15) 
+					pass_sound.play()
+					player.last_pass_sound_time = current_time
 	
-	if day_night:
-		if day_night.is_daytime():
-			headlight.visible = false
-		else:
-			headlight.visible = true
+	# 5. CEK LAMPU DEPAN (TIDAK SEMUA RINTANGAN PUNYA LAMPU)
+	if day_night and headlight:
+		if day_night.has_method("is_daytime"):
+			headlight.visible = not day_night.is_daytime()
 
 func disable_sounds() -> void:
-	if $HornSound.playing:
-		$HornSound.stop()
-	if $PassSound.has_method("stop") and $PassSound.playing:
-		$PassSound.stop()
+	var horn = get_node_or_null("HornSound")
+	if horn and horn.playing:
+		horn.stop()
+		
+	var pass_sound = get_node_or_null("PassSound")
+	if pass_sound and pass_sound.has_method("stop") and pass_sound.playing:
+		pass_sound.stop()
 
 func get_damage() -> float:
-	#print(incoming_damage_message)
 	return damage

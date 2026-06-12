@@ -106,8 +106,8 @@ func _on_shift_timer_timeout():
 func _update_tire_screech(current_speed: float, input_x: float, delta: float) -> bool:
 	var fade_speed = 80.0 
 	
-	if input_x != 0 and current_speed >= screech_min_speed:
-		tire_screech_sfx.volume_db = move_toward(tire_screech_sfx.volume_db, 3.0, fade_speed * delta)
+	if abs(input_x) > 0.6 and current_speed >= screech_min_speed:
+		tire_screech_sfx.volume_db = move_toward(tire_screech_sfx.volume_db, -25.0, fade_speed * delta)
 		return true
 	else:
 		tire_screech_sfx.volume_db = move_toward(tire_screech_sfx.volume_db, -80, fade_speed * delta)

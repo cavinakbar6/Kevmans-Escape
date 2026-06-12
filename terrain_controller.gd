@@ -94,12 +94,14 @@ func _ready() -> void:
 	game_over = false
 	terrain_velocity = initial_velocity
 	
-	_load_terrain_scenes("res://terrain_objects", TerrainObjects)
-	_load_scenery_scenes("res://terrain_scenery", TerrainScenery)  # ✅ LEGACY: Load scenery scenes
-	print("TerrainObjects size:", TerrainObjects.size())
-	print("TerrainScenery size:", TerrainScenery.size())
+	# MATIKAN DUA BARIS INI AGAR ARRAY INSPECTOR TIDAK DIHAPUS!
+	# _load_terrain_scenes("res://terrain_objects", TerrainObjects)
+	# _load_scenery_scenes("res://terrain_scenery", TerrainScenery) 
 	
-	if building_generator:  # ✅ LEGACY: Load buildings via BuildingGenerator
+	print("TerrainObjects size:", TerrainObjects.size())
+	# print("TerrainScenery size:", TerrainScenery.size())
+	
+	if building_generator:
 		building_generator.init_load()
 	
 	_cache_spawn_chances()
@@ -178,6 +180,10 @@ func _pick_random_block() -> PackedScene:
 
 func _cache_spawn_chances() -> void:
 	for obj_scene in TerrainObjects:
+		# KODE PENGAMAN: Lewati slot yang kosong/null di Inspector
+		if not obj_scene: 
+			continue
+			
 		var obj = obj_scene.instantiate()
 		_spawn_chance_cache[obj_scene] = obj.spawn_chance
 		obj.queue_free()
@@ -185,9 +191,14 @@ func _cache_spawn_chances() -> void:
 func _pick_random_object() -> PackedScene:
 	var candidates: Array = []
 	for obj_scene in TerrainObjects:
+		# KODE PENGAMAN: Cegah slot kosong masuk ke dalam gacha rintangan
+		if not obj_scene: 
+			continue
+			
 		var chance = _spawn_chance_cache.get(obj_scene, 0.5)
 		if randf() < chance:
 			candidates.append(obj_scene)
+			
 	if candidates.is_empty(): return null
 	return candidates.pick_random()
 
