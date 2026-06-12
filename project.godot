@@ -16,15 +16,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="DDS testing"
 config/description="This is an endless runner POC.  Used as a project to learn the concept."
-run/main_scene="uid://bybltpl8gohpv"
+run/main_scene="res://Menu/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
-<<<<<<<HEADconfig/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
 Settings="*res://settings/settings_manager.gd"
 HighScoreManager="*res://Menu/high_score_manager.gd"
-<<<<<<<UpdatedupstreamSettings="*res://settings/settings_manager.gd"
 
 [display]
 

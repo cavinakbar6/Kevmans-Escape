@@ -48,7 +48,12 @@ sky_material = SubResource("ProceduralSkyMaterial_om122")
 background_mode = 2
 sky = SubResource("Sky_clgfu")
 tonemap_mode = 3
+tonemap_exposure = 1.1
 glow_enabled = true
+glow_bloom = 0.15
+fog_enabled = true
+fog_light_color = Color(0.65, 0.7, 0.8, 1)
+fog_density = 0.005
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ofssd"]
 radius = 0.4501953
@@ -90,6 +95,7 @@ environment = SubResource("Environment_y0213")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1080771480]
 transform = Transform3D(1, 0, 0, 0, 0.76604474, 0.6427878, 0, -0.6427878, 0.76604474, 0, 0, -0.701444)
 shadow_enabled = true
+shadow_blur = 1.5
 script = ExtResource("17_daynight")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1421345576 node_paths=PackedStringArray("terrain_controller")]
@@ -225,6 +231,8 @@ offset_right = 188.5
 offset_bottom = 166.0
 grow_horizontal = 2
 scale = Vector2(1.01082, 0.984781)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("11_70uel")
 theme_override_font_sizes/font_size = 100
 text = "Score:
@@ -254,6 +262,8 @@ offset_top = 228.0
 offset_right = 116.5
 offset_bottom = 271.0
 grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("11_70uel")
 theme_override_font_sizes/font_size = 27
 text = "HEALTH"
@@ -351,6 +361,7 @@ scale = Vector2(-0.492, -0.483)
 texture = ExtResource("19_wjb0r")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=1317169803]
+layer = 100
 process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="GameOverUI" unique_id=48088543]
