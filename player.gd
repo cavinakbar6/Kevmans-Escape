@@ -616,7 +616,7 @@ func _on_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Menu//main_menu.tscn")
 
 @export var MAX_WANTED_STARS: int = 6
-var wanted_stars: int = 0
+var wanted_stars: int = 1
 
 func receive_hit(type: String, obj: Node3D) -> void:
 	if game_is_over:
